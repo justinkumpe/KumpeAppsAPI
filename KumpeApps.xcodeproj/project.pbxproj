@@ -11,7 +11,6 @@
 		0F645F5E22C2F51F0054A71B /* KumpeAppsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F645F5D22C2F51F0054A71B /* KumpeAppsTests.swift */; };
 		0F645F6022C2F51F0054A71B /* KumpeApps.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F645F5222C2F51F0054A71B /* KumpeApps.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0F645F6A22C2F9070054A71B /* KumpeAppsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F645F6922C2F9070054A71B /* KumpeAppsAPI.swift */; };
-		0F645F6C22C446900054A71B /* KumpeAppsSSO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F645F6B22C446900054A71B /* KumpeAppsSSO.swift */; };
 		1D156BBFF9BF10ED2DE6E1C3 /* Pods_KumpeApps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E6820587EC00F011744C339 /* Pods_KumpeApps.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,7 +33,6 @@
 		0F645F5D22C2F51F0054A71B /* KumpeAppsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KumpeAppsTests.swift; sourceTree = "<group>"; };
 		0F645F5F22C2F51F0054A71B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F645F6922C2F9070054A71B /* KumpeAppsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KumpeAppsAPI.swift; sourceTree = "<group>"; };
-		0F645F6B22C446900054A71B /* KumpeAppsSSO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KumpeAppsSSO.swift; sourceTree = "<group>"; };
 		28BC46124E06F409CAF8DD12 /* Pods-KumpeApps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KumpeApps.debug.xcconfig"; path = "Target Support Files/Pods-KumpeApps/Pods-KumpeApps.debug.xcconfig"; sourceTree = "<group>"; };
 		716CA37231D76360F1FDCB32 /* Pods-KumpeApps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KumpeApps.release.xcconfig"; path = "Target Support Files/Pods-KumpeApps/Pods-KumpeApps.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,7 +83,6 @@
 				0F645F5222C2F51F0054A71B /* KumpeApps.h */,
 				0F645F5322C2F51F0054A71B /* Info.plist */,
 				0F645F6922C2F9070054A71B /* KumpeAppsAPI.swift */,
-				0F645F6B22C446900054A71B /* KumpeAppsSSO.swift */,
 			);
 			path = KumpeApps;
 			sourceTree = "<group>";
@@ -251,7 +248,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F645F6C22C446900054A71B /* KumpeAppsSSO.swift in Sources */,
 				0F645F6A22C2F9070054A71B /* KumpeAppsAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
