@@ -10,6 +10,9 @@
 		0F645F5922C2F51F0054A71B /* KumpeApps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F645F4F22C2F51F0054A71B /* KumpeApps.framework */; };
 		0F645F5E22C2F51F0054A71B /* KumpeAppsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F645F5D22C2F51F0054A71B /* KumpeAppsTests.swift */; };
 		0F645F6022C2F51F0054A71B /* KumpeApps.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F645F5222C2F51F0054A71B /* KumpeApps.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0F645F6A22C2F9070054A71B /* KumpeAppsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F645F6922C2F9070054A71B /* KumpeAppsAPI.swift */; };
+		0F645F6C22C446900054A71B /* KumpeAppsSSO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F645F6B22C446900054A71B /* KumpeAppsSSO.swift */; };
+		1D156BBFF9BF10ED2DE6E1C3 /* Pods_KumpeApps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E6820587EC00F011744C339 /* Pods_KumpeApps.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,12 +26,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E6820587EC00F011744C339 /* Pods_KumpeApps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KumpeApps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F645F4F22C2F51F0054A71B /* KumpeApps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KumpeApps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F645F5222C2F51F0054A71B /* KumpeApps.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KumpeApps.h; sourceTree = "<group>"; };
 		0F645F5322C2F51F0054A71B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F645F5822C2F51F0054A71B /* KumpeAppsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KumpeAppsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F645F5D22C2F51F0054A71B /* KumpeAppsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KumpeAppsTests.swift; sourceTree = "<group>"; };
 		0F645F5F22C2F51F0054A71B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0F645F6922C2F9070054A71B /* KumpeAppsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KumpeAppsAPI.swift; sourceTree = "<group>"; };
+		0F645F6B22C446900054A71B /* KumpeAppsSSO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KumpeAppsSSO.swift; sourceTree = "<group>"; };
+		28BC46124E06F409CAF8DD12 /* Pods-KumpeApps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KumpeApps.debug.xcconfig"; path = "Target Support Files/Pods-KumpeApps/Pods-KumpeApps.debug.xcconfig"; sourceTree = "<group>"; };
+		716CA37231D76360F1FDCB32 /* Pods-KumpeApps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KumpeApps.release.xcconfig"; path = "Target Support Files/Pods-KumpeApps/Pods-KumpeApps.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D156BBFF9BF10ED2DE6E1C3 /* Pods_KumpeApps.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +65,8 @@
 				0F645F5122C2F51F0054A71B /* KumpeApps */,
 				0F645F5C22C2F51F0054A71B /* KumpeAppsTests */,
 				0F645F5022C2F51F0054A71B /* Products */,
+				618508982C34ED8BA7D855CA /* Pods */,
+				142FF05A761B653FCE974F5E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,6 +84,8 @@
 			children = (
 				0F645F5222C2F51F0054A71B /* KumpeApps.h */,
 				0F645F5322C2F51F0054A71B /* Info.plist */,
+				0F645F6922C2F9070054A71B /* KumpeAppsAPI.swift */,
+				0F645F6B22C446900054A71B /* KumpeAppsSSO.swift */,
 			);
 			path = KumpeApps;
 			sourceTree = "<group>";
@@ -84,6 +97,23 @@
 				0F645F5F22C2F51F0054A71B /* Info.plist */,
 			);
 			path = KumpeAppsTests;
+			sourceTree = "<group>";
+		};
+		142FF05A761B653FCE974F5E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0E6820587EC00F011744C339 /* Pods_KumpeApps.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		618508982C34ED8BA7D855CA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				28BC46124E06F409CAF8DD12 /* Pods-KumpeApps.debug.xcconfig */,
+				716CA37231D76360F1FDCB32 /* Pods-KumpeApps.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -104,6 +134,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F645F6322C2F51F0054A71B /* Build configuration list for PBXNativeTarget "KumpeApps" */;
 			buildPhases = (
+				C92F2C72AC5C27AC7046DB92 /* [CP] Check Pods Manifest.lock */,
 				0F645F4A22C2F51F0054A71B /* Headers */,
 				0F645F4B22C2F51F0054A71B /* Sources */,
 				0F645F4C22C2F51F0054A71B /* Frameworks */,
@@ -148,6 +179,7 @@
 				TargetAttributes = {
 					0F645F4E22C2F51F0054A71B = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1020;
 					};
 					0F645F5722C2F51F0054A71B = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -189,11 +221,38 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C92F2C72AC5C27AC7046DB92 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KumpeApps-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0F645F4B22C2F51F0054A71B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F645F6C22C446900054A71B /* KumpeAppsSSO.swift in Sources */,
+				0F645F6A22C2F9070054A71B /* KumpeAppsAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,7 +399,9 @@
 		};
 		0F645F6422C2F51F0054A71B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 28BC46124E06F409CAF8DD12 /* Pods-KumpeApps.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -358,6 +419,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kumpeapps.ios.pod.KumpeApps;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -365,7 +427,9 @@
 		};
 		0F645F6522C2F51F0054A71B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 716CA37231D76360F1FDCB32 /* Pods-KumpeApps.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -391,6 +455,7 @@
 		0F645F6722C2F51F0054A71B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2T42Z3DM34;
 				INFOPLIST_FILE = KumpeAppsTests/Info.plist;
@@ -409,6 +474,7 @@
 		0F645F6822C2F51F0054A71B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2T42Z3DM34;
 				INFOPLIST_FILE = KumpeAppsTests/Info.plist;

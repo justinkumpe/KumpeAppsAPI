@@ -1,0 +1,40 @@
+PODS:
+  - Alamofire (4.8.2)
+  - Alamofire-SwiftyJSON (3.0.0):
+    - Alamofire (~> 4.5)
+    - SwiftyJSON (~> 4.0.0)
+  - Base32 (1.1.2)
+  - Buglife (2.10.1)
+  - OneTimePassword (3.1.5):
+    - Base32 (~> 1.1.2)
+  - SwiftKeychainWrapper (3.3.0)
+  - SwiftyJSON (4.0.0)
+
+DEPENDENCIES:
+  - Alamofire-SwiftyJSON
+  - Buglife
+  - OneTimePassword
+  - SwiftKeychainWrapper
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - Alamofire-SwiftyJSON
+    - Base32
+    - Buglife
+    - OneTimePassword
+    - SwiftKeychainWrapper
+    - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  Alamofire-SwiftyJSON: 2b3649d57dc7bb2880fb8b86f8bb969397666916
+  Base32: 163c298644d184e89ca4e00a996bad6bf5166390
+  Buglife: bc8e4931ebe37b2901c6dbcb0ca6dd76f62a98c3
+  OneTimePassword: 247500f67ab074f10501bb1c46bd1596c57bdb2a
+  SwiftKeychainWrapper: ef5ad793bc0e08e24a5913f28345b8f7bc8e4123
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+
+PODFILE CHECKSUM: e21197e7d8f36fe0bf7d6ded71dacbb336cc00fa
+
+COCOAPODS: 1.7.2
