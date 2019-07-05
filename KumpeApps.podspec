@@ -4,11 +4,11 @@ Pod::Spec.new do |s|
 s.platform = :ios
 s.ios.deployment_target = '12.0'
 s.name = "KumpeApps"
-s.summary = "API and SSO settings for KumpeApps ios apps"
+s.summary = "KumpeApps API Settings."
 s.requires_arc = true
 
 # 2
-s.version = "0.1.0"
+s.version = "0.2.0"
 
 # 3
 s.license = { :type => "MIT", :file => "LICENSE" }
