@@ -23,8 +23,8 @@ public class KumpeAppsAPI: UIViewController {
     public let url = "https://sql.kumpedns.us/API/mysql_v2.php"
     
     public func sqlUser() -> String{
-    if UserDefaults.standard.string(forKey: "sqlUser") != nil{
-        return UserDefaults.standard.string(forKey: "sqlUser")!
+    if let sqlUser = UserDefaults.standard.string(forKey: "sqlUser"){
+        return sqlUser
     } else {
         return ""
         }
