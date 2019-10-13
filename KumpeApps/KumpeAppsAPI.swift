@@ -22,8 +22,21 @@ public class KumpeAppsAPI: UIViewController {
     public static let shared = KumpeAppsAPI()
     public let url = "https://sql.kumpedns.us/API/mysql_v2.php"
     
-    public let sqlUser = UserDefaults.standard.string(forKey: "sqlUser")!
-    public let sqlPass = UserDefaults.standard.string(forKey: "sqlPass")!
+    public func sqlUser() -> String{
+    if UserDefaults.standard.string(forKey: "sqlUser") != nil{
+        return UserDefaults.standard.string(forKey: "sqlUser")!
+    } else {
+        return ""
+        }
+    }
+    
+    public func sqlPass() -> String{
+    if UserDefaults.standard.string(forKey: "sqlPass") != nil{
+        return UserDefaults.standard.string(forKey: "sqlPass")!
+    } else {
+        return ""
+        }
+    }
     
     var username = ""
     
