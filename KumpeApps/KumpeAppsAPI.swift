@@ -18,8 +18,8 @@ import OneTimePassword
 //import SwiftyJSON
 //import Alamofire_SwiftyJSON
 
-class KumpeAppsAPI: UIViewController {
-    
+public class KumpeAppsAPI: UIViewController {
+    public static let shared = KumpeAppsAPI()
     let url = "https://sql.kumpedns.us/API/mysql_v2.php"
     
     let sqlUser = UserDefaults.standard.string(forKey: "sqlUser")!
@@ -37,7 +37,7 @@ class KumpeAppsAPI: UIViewController {
     
     
     
-    func getOTP() -> String{
+    public func getOTP() -> String{
         
         let OTP_Secret = UserDefaults.standard.string(forKey: "OTP_Secret")!
         let name = UserDefaults.standard.string(forKey: "App_Name")!
