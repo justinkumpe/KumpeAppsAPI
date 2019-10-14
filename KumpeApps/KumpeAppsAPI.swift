@@ -19,34 +19,23 @@ import OneTimePassword
 //import Alamofire_SwiftyJSON
 
 public class KumpeAppsAPI: UIViewController {
-    public static let shared = KumpeAppsAPI()
-    public let url = "https://sql.kumpedns.us/API/mysql_v2.php"
-    
-    public func sqlUser() -> String{
-    if let sqlUser = UserDefaults.standard.string(forKey: "sqlUser"){
-        return sqlUser
-    } else {
-        return ""
-        }
-    }
-    
-    public func sqlPass() -> String{
-    if UserDefaults.standard.string(forKey: "sqlPass") != nil{
-        return UserDefaults.standard.string(forKey: "sqlPass")!
-    } else {
-        return ""
-        }
-    }
-    
-    var username = ""
-    
-    public func setParams(sqlUser: String, sqlPass: String, otpSecret: String, appName: String){
-        //KumpeApps API Settings
-         UserDefaults.standard.set(sqlUser, forKey: "sqlUser")
-         UserDefaults.standard.set(sqlPass, forKey: "sqlPass")
-         UserDefaults.standard.set(otpSecret, forKey: "OTP_Secret")
-         UserDefaults.standard.set(sqlPass, forKey: "App_Name")
-    }
+public static let shared = KumpeAppsAPI()
+public let url = "https://sql.kumpedns.us/API/mysql_v2.php"
+
+public func setParams(sqlUser: String, sqlPass: String, otpSecret: String, appName: String){
+    //KumpeApps API Settings
+     UserDefaults.standard.set(sqlUser, forKey: "sqlUser")
+     UserDefaults.standard.set(sqlPass, forKey: "sqlPass")
+     UserDefaults.standard.set(otpSecret, forKey: "OTP_Secret")
+     UserDefaults.standard.set(sqlPass, forKey: "App_Name")
+    params.sqlUser = sqlUser
+    params.sqlPass = sqlPass
+}
+
+public struct params {
+    public static var sqlUser = ""
+    public static var sqlPass = ""
+}
     
     
     
