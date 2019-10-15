@@ -26,11 +26,11 @@ import Alamofire_SwiftyJSON
 public class KumpeAppsSSO: UIViewController {
 public static let shared = KumpeAppsAPI()
 public let url = "https://sql.kumpedns.us/API/mysql_v2.php"
-    let keychainSSOLegacy = KeychainWrapper(serviceName: "KumpeAppsSSO", accessGroup: "2T42Z3DM34.com.kumpeapps.ios.sso")
-    let keychainSSOOTP = KeychainWrapper(serviceName: "KumpeAppsSSO_OTP", accessGroup: "2T42Z3DM34.com.kumpeapps.ios.sso.otp")
-    let keychainSSOSecure = KeychainWrapper(serviceName: "KumpeAppsSSO_Secure", accessGroup: "2T42Z3DM34.com.kumpeapps.ios.sso.secure")
-    let keychainSSOAccess = KeychainWrapper(serviceName: "KumpeAppsSSO_Access", accessGroup: "2T42Z3DM34.com.kumpeapps.ios.sso.access")
-    let keychainSSOUser = KeychainWrapper(serviceName: "KumpeAppsSSO_User", accessGroup: "2T42Z3DM34.com.kumpeapps.ios.sso.user")
+public static let keychainSSOLegacy = KeychainWrapper(serviceName: "KumpeAppsSSO", accessGroup: "2T42Z3DM34.com.kumpeapps.ios.sso")
+public static let keychainSSOOTP = KeychainWrapper(serviceName: "KumpeAppsSSO_OTP", accessGroup: "2T42Z3DM34.com.kumpeapps.ios.sso.otp")
+public static let keychainSSOSecure = KeychainWrapper(serviceName: "KumpeAppsSSO_Secure", accessGroup: "2T42Z3DM34.com.kumpeapps.ios.sso.secure")
+public static let keychainSSOAccess = KeychainWrapper(serviceName: "KumpeAppsSSO_Access", accessGroup: "2T42Z3DM34.com.kumpeapps.ios.sso.access")
+public static let keychainSSOUser = KeychainWrapper(serviceName: "KumpeAppsSSO_User", accessGroup: "2T42Z3DM34.com.kumpeapps.ios.sso.user")
 
     public func setParams(apikey: String){
     //KumpeApps API Settings
@@ -104,28 +104,28 @@ public struct params {
     }
     
     public func logoff(){
-        _ = keychainSSOAccess.removeAllKeys()
+        _ = KumpeAppsSSO.keychainSSOAccess.removeAllKeys()
     }
     
     func AccessGranted(username: String, password: String){
      // _ = keychainSSOLegacy.removeAllKeys()
-     _ = keychainSSOAccess.removeAllKeys()
+        _ = KumpeAppsSSO.keychainSSOAccess.removeAllKeys()
      
      //Start SecureSSO Keychain
-     keychainSSOSecure.set("\(username)", forKey: "Username")
-     keychainSSOSecure.set("\(password)", forKey: "Password")
-     keychainSSOSecure.set("\(params.CurrentDate)", forKey: "AuthDate")
+        KumpeAppsSSO.keychainSSOSecure.set("\(username)", forKey: "Username")
+        KumpeAppsSSO.keychainSSOSecure.set("\(password)", forKey: "Password")
+        KumpeAppsSSO.keychainSSOSecure.set("\(params.CurrentDate)", forKey: "AuthDate")
      //End SecureSSO Keychain
      
      //Start SSOUser Keychain
-     keychainSSOUser.set("\(username)", forKey: "Username")
-     keychainSSOUser.set("\(params.FirstName)", forKey: "FirstName")
-     keychainSSOUser.set("\(params.LastName)", forKey: "LastName")
-     keychainSSOUser.set("\(params.CurrentDate)", forKey: "AuthDate")
+     KumpeAppsSSO.keychainSSOUser.set("\(username)", forKey: "Username")
+     KumpeAppsSSO.keychainSSOUser.set("\(params.FirstName)", forKey: "FirstName")
+     KumpeAppsSSO.keychainSSOUser.set("\(params.LastName)", forKey: "LastName")
+     KumpeAppsSSO.keychainSSOUser.set("\(params.CurrentDate)", forKey: "AuthDate")
      //End SSOUser Keychain
      
      //Start SSOAccess Keychain
-     keychainSSOAccess.set("\(params.CurrentDate)", forKey: "AuthDate")
+     KumpeAppsSSO.keychainSSOAccess.set("\(params.CurrentDate)", forKey: "AuthDate")
      let sqlDatabase = "Apps_SSO"
      let sqlTable = "SSO_Access_List"
      let sqlSelect = "*"
@@ -147,9 +147,9 @@ public struct params {
                  print("Count: \(JSONArray.count)")
                  //JSONArray[i]["Product_Name"].stringValue
                  
-                 self.keychainSSOAccess.set(true, forKey: "\(SSOAccessTag)")
+                 KumpeAppsSSO.keychainSSOAccess.set(true, forKey: "\(SSOAccessTag)")
                  print("AccessTo\(AccessTag)")
-                 print("\(self.keychainSSOAccess.bool(forKey: "\(SSOAccessTag)")!)")
+                 print("\(KumpeAppsSSO.keychainSSOAccess.bool(forKey: "\(SSOAccessTag)")!)")
 //                 self.keychainSSOSecure.set("\(OTP_Secret)", forKey: "OTP_Secret")
                  
              }
