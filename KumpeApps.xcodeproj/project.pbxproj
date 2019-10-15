@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F5C74FE2353FEE500881377 /* KumpeAppsSSO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C74FD2353FEE500881377 /* KumpeAppsSSO.swift */; };
 		0F645F5922C2F51F0054A71B /* KumpeApps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F645F4F22C2F51F0054A71B /* KumpeApps.framework */; };
 		0F645F5E22C2F51F0054A71B /* KumpeAppsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F645F5D22C2F51F0054A71B /* KumpeAppsTests.swift */; };
 		0F645F6022C2F51F0054A71B /* KumpeApps.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F645F5222C2F51F0054A71B /* KumpeApps.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		0E6820587EC00F011744C339 /* Pods_KumpeApps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KumpeApps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F5C74FD2353FEE500881377 /* KumpeAppsSSO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KumpeAppsSSO.swift; sourceTree = "<group>"; };
 		0F645F4F22C2F51F0054A71B /* KumpeApps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KumpeApps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F645F5222C2F51F0054A71B /* KumpeApps.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KumpeApps.h; sourceTree = "<group>"; };
 		0F645F5322C2F51F0054A71B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				0F645F5222C2F51F0054A71B /* KumpeApps.h */,
 				0F645F5322C2F51F0054A71B /* Info.plist */,
 				0F645F6922C2F9070054A71B /* KumpeAppsAPI.swift */,
+				0F5C74FD2353FEE500881377 /* KumpeAppsSSO.swift */,
 			);
 			path = KumpeApps;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F5C74FE2353FEE500881377 /* KumpeAppsSSO.swift in Sources */,
 				0F645F6A22C2F9070054A71B /* KumpeAppsAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -417,7 +421,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.5;
+				CURRENT_PROJECT_VERSION = 1.0.6;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2T42Z3DM34;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -431,7 +435,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.5;
+				MARKETING_VERSION = 1.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kumpeapps.ios.pod.KumpeApps;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -449,7 +453,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.5;
+				CURRENT_PROJECT_VERSION = 1.0.6;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2T42Z3DM34;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -463,7 +467,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.5;
+				MARKETING_VERSION = 1.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kumpeapps.ios.pod.KumpeApps;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

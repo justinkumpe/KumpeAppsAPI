@@ -35,6 +35,7 @@ public func setParams(sqlUser: String, sqlPass: String, otpSecret: String, appNa
 public struct params {
     public static var sqlUser = ""
     public static var sqlPass = ""
+    public static let url = KumpeAppsAPI.shared.url
 }
     
     
