@@ -59,7 +59,7 @@ public struct params {
 }
     
     
-    func PollKumpeApps(username: String, password: String){
+    public func PollKumpeApps(username: String, password: String){
         sleep(1)
         let URL = "https://www.kumpeapps.com/api/check-access/by-login-pass"
         let parameters: Parameters = ["_key":"\(params.apikey)","login":"\(username)","pass":"\(password)"]
@@ -105,6 +105,8 @@ public struct params {
     
     public func logoff(){
         _ = KumpeAppsSSO.keychainSSOAccess.removeAllKeys()
+        _ = KumpeAppsSSO.keychainSSOUser.removeAllKeys()
+        _ = KumpeAppsSSO.keychainSSOSecure.removeAllKeys()
     }
     
     func AccessGranted(username: String, password: String){
