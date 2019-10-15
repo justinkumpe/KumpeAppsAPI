@@ -32,22 +32,6 @@ public static let keychainSSOSecure = KeychainWrapper(serviceName: "KumpeAppsSSO
 public static let keychainSSOAccess = KeychainWrapper(serviceName: "KumpeAppsSSO_Access", accessGroup: "2T42Z3DM34.com.kumpeapps.ios.sso.access")
 public static let keychainSSOUser = KeychainWrapper(serviceName: "KumpeAppsSSO_User", accessGroup: "2T42Z3DM34.com.kumpeapps.ios.sso.user")
 
-    public func setParams(apikey: String){
-    //KumpeApps API Settings
-     let formatter = DateFormatter()
-     // initially set the format based on your datepicker date / server String
-     formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-     
-     let myString = formatter.string(from: Date()) // string purpose I add here
-     // convert your string to date
-     let yourDate = formatter.date(from: myString)
-     //then again set the date format whhich type of output you need
-     formatter.dateFormat = "dd-MMM-yyyy"
-     // again convert your date to string
-    params.CurrentDate = formatter.string(from: yourDate!)
-        params.apikey = apikey
-
-}
 
 //    Parameters
 public struct params {
@@ -56,11 +40,13 @@ public struct params {
     public static var LastName = ""
     public static var CurrentDate = ""
     public static var apikey = ""
+    public static var pollMessage = ""
 }
     
     
     public func PollKumpeApps(username: String, password: String){
         sleep(1)
+        params.pollMessage = "Pending"
         let URL = "https://www.kumpeapps.com/api/check-access/by-login-pass"
         let parameters: Parameters = ["_key":"\(params.apikey)","login":"\(username)","pass":"\(password)"]
         Alamofire.request(URL, method: .get, parameters: parameters, encoding: URLEncoding.default)
@@ -76,26 +62,15 @@ public struct params {
                     self.AccessGranted(username: username, password: password)
                     self.view.endEditing(true)
                 }else{
-                    print("\nError: \(KappsArray["msg"].stringValue)\n")
-                    //Configure Alert
-                    let alertController = UIAlertController(title: "Login Error", message:
-                        "You have been denied access for the following reason(s): \(KappsArray["msg"]). \n\nPlease ensure you are using your KumpeApps username and password to login. If you need to reset your password please goto www.kumpeapps.com.", preferredStyle: UIAlertController.Style.alert)
-                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.destructive,handler: nil))
+                    params.pollMessage =
+                        "You have been denied access for the following reason(s): \(KappsArray["msg"]). \n\nPlease ensure you are using your KumpeApps username and password to login. If you need to reset your password please goto www.kumpeapps.com."
+                    print(params.pollMessage)
                     
-                    //Display Alert
-                    self.present(alertController, animated: true, completion: nil)
-                    
-                    //Initiate Logoff
-                    self.logoff()
                 }
                 self.view.endEditing(true)
                 }else{
-                    let alertController = UIAlertController(title: "Error", message:
-                        "KumpeApps SSO Servers are currently down.  Please try again in a few min.", preferredStyle: UIAlertController.Style.alert)
-                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.destructive,handler: nil))
-                    
-                    //Display Alert
-                    self.present(alertController, animated: true, completion: nil)
+                    params.pollMessage = "KumpeApps SSO Servers are currently down.  Please try again in a few min."
+                    print(params.pollMessage)
                 }
                 
         }
@@ -110,6 +85,18 @@ public struct params {
     }
     
     func AccessGranted(username: String, password: String){
+        let formatter = DateFormatter()
+            // initially set the format based on your datepicker date / server String
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            
+            let myString = formatter.string(from: Date()) // string purpose I add here
+            // convert your string to date
+            let yourDate = formatter.date(from: myString)
+            //then again set the date format whhich type of output you need
+            formatter.dateFormat = "dd-MMM-yyyy"
+            // again convert your date to string
+           params.CurrentDate = formatter.string(from: yourDate!)
+        
      // _ = keychainSSOLegacy.removeAllKeys()
         _ = KumpeAppsSSO.keychainSSOAccess.removeAllKeys()
      
@@ -153,18 +140,16 @@ public struct params {
                  print("AccessTo\(AccessTag)")
                  print("\(KumpeAppsSSO.keychainSSOAccess.bool(forKey: "\(SSOAccessTag)")!)")
 //                 self.keychainSSOSecure.set("\(OTP_Secret)", forKey: "OTP_Secret")
+                
+                params.pollMessage = "AccessGranted"
+                print(params.pollMessage)
                  
              }
              
              }else{
                 
-                let alertController = UIAlertController(title: "Error", message:
-                    "KumpeApps SSO Servers are currently down.  Please try again in a few min.", preferredStyle: UIAlertController.Style.alert)
-                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.destructive,handler: nil))
-                
-                //Display Alert
-                self.present(alertController, animated: true, completion: nil)
-                
+                params.pollMessage = "KumpeApps SSO Servers are currently down.  Please try again in a few min."
+                print(params.pollMessage)
              }
      }
      //End SSOAccess Keychain
