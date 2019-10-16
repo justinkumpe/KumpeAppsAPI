@@ -44,7 +44,7 @@ public struct params {
 }
     
     
-    public func PollKumpeApps(username: String, password: String){
+    public func PollKumpeApps(username: String, password: String, completion: @escaping() -> ()){
         sleep(1)
         params.pollMessage = "Pending"
         let URL = "https://www.kumpeapps.com/api/check-access/by-login-pass"
@@ -59,18 +59,91 @@ public struct params {
                 params.LastName = KappsArray["name_l"].stringValue
                 if(Authenticated == "true"){
                    //Access Granted
-                    self.AccessGranted(username: username, password: password)
-                    self.view.endEditing(true)
+                            let formatter = DateFormatter()
+                                // initially set the format based on your datepicker date / server String
+                                formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                                
+                                let myString = formatter.string(from: Date()) // string purpose I add here
+                                // convert your string to date
+                                let yourDate = formatter.date(from: myString)
+                                //then again set the date format whhich type of output you need
+                                formatter.dateFormat = "dd-MMM-yyyy"
+                                // again convert your date to string
+                               params.CurrentDate = formatter.string(from: yourDate!)
+                            
+                         // _ = keychainSSOLegacy.removeAllKeys()
+                            _ = KumpeAppsSSO.keychainSSOAccess.removeAllKeys()
+                         
+                         //Start SecureSSO Keychain
+                            KumpeAppsSSO.keychainSSOSecure.set("\(username)", forKey: "Username")
+                            KumpeAppsSSO.keychainSSOSecure.set("\(password)", forKey: "Password")
+                            KumpeAppsSSO.keychainSSOSecure.set("\(params.CurrentDate)", forKey: "AuthDate")
+                         //End SecureSSO Keychain
+                         
+                         //Start SSOUser Keychain
+                         KumpeAppsSSO.keychainSSOUser.set("\(username)", forKey: "Username")
+                         KumpeAppsSSO.keychainSSOUser.set("\(params.FirstName)", forKey: "FirstName")
+                         KumpeAppsSSO.keychainSSOUser.set("\(params.LastName)", forKey: "LastName")
+                         KumpeAppsSSO.keychainSSOUser.set("\(params.CurrentDate)", forKey: "AuthDate")
+                         //End SSOUser Keychain
+                         
+                         //Start SSOAccess Keychain
+                         KumpeAppsSSO.keychainSSOAccess.set("\(params.CurrentDate)", forKey: "AuthDate")
+                         let sqlDatabase = "Apps_SSO"
+                         let sqlTable = "SSO_Access_List"
+                         let sqlSelect = "*"
+                         let sqlWhere = "username = '\(username)'"
+                         let sqlQuery = "SELECT \(sqlSelect) FROM \(sqlTable) WHERE \(sqlWhere)"
+                            let parameters: Parameters = ["sql_username":KumpeAppsAPI.params.sqlUser,"password":KumpeAppsAPI.params.sqlPass,"database":"\(sqlDatabase)","sql":"\(sqlQuery)","app_username":"\(username)","otp":KumpeAppsAPI.shared.getOTP()]
+                            Alamofire.request(KumpeAppsAPI.params.url, method: .post, parameters: parameters, encoding: URLEncoding.default)
+                             .responseSwiftyJSON { dataResponse in
+                                 if dataResponse.value != nil{
+                                     let JSONArray = dataResponse.value!
+                                 print("Response: \(JSONArray)")
+                                 for i in 0 ..< JSONArray.count
+                                 {
+                                     //Builds Access for each app pulled from KumpeApps with SSO Tag
+                                     let AccessTag = JSONArray[i]["product_id"].stringValue
+                    //                 let OTP_Secret = JSONArray[i]["OTP_Secret"].stringValue
+
+                                     let SSOAccessTag = "AccessTo\(AccessTag)"
+                                     print("Count: \(JSONArray.count)")
+                                     //JSONArray[i]["Product_Name"].stringValue
+                                     
+                                     KumpeAppsSSO.keychainSSOAccess.set(true, forKey: "\(SSOAccessTag)")
+                                     print("AccessTo\(AccessTag)")
+                                     print("\(KumpeAppsSSO.keychainSSOAccess.bool(forKey: "\(SSOAccessTag)")!)")
+                    //                 self.keychainSSOSecure.set("\(OTP_Secret)", forKey: "OTP_Secret")
+                                    
+                                    
+                                     
+                                 }
+                                 params.pollMessage = "AccessGranted"
+                                 print(params.pollMessage)
+                                    completion()
+                                    
+                                 }else{
+                                    
+                                    params.pollMessage = "KumpeApps SSO Servers are currently down.  Please try again in a few min."
+                                    print(params.pollMessage)
+                                    completion()
+                                 }
+                            }
+                         //End SSOAccess Keychain
+                        
+                        
                 }else{
                     params.pollMessage =
                         "You have been denied access for the following reason(s): \(KappsArray["msg"]). \n\nPlease ensure you are using your KumpeApps username and password to login. If you need to reset your password please goto www.kumpeapps.com."
                     print(params.pollMessage)
+                    completion()
                     
                 }
                 self.view.endEditing(true)
                 }else{
                     params.pollMessage = "KumpeApps SSO Servers are currently down.  Please try again in a few min."
                     print(params.pollMessage)
+                    completion()
                 }
                 
         }
@@ -141,17 +214,18 @@ public struct params {
                  print("\(KumpeAppsSSO.keychainSSOAccess.bool(forKey: "\(SSOAccessTag)")!)")
 //                 self.keychainSSOSecure.set("\(OTP_Secret)", forKey: "OTP_Secret")
                 
-                params.pollMessage = "AccessGranted"
-                print(params.pollMessage)
+                
                  
              }
-             
+             params.pollMessage = "AccessGranted"
+             print(params.pollMessage)
+                
              }else{
                 
                 params.pollMessage = "KumpeApps SSO Servers are currently down.  Please try again in a few min."
                 print(params.pollMessage)
              }
-     }
+        }
      //End SSOAccess Keychain
     
     
