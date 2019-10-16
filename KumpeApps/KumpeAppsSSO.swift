@@ -41,10 +41,13 @@ public struct params {
     public static var CurrentDate = ""
     public static var apikey = ""
     public static var pollMessage = ""
+    public static var password = ""
 }
     
     
-    public func PollKumpeApps(username: String, password: String, completion: @escaping() -> ()){
+    public func PollKumpeApps(completion: @escaping() -> ()){
+        let username = params.username
+        let password = params.password
         sleep(1)
         params.pollMessage = "Pending"
         let URL = "https://www.kumpeapps.com/api/check-access/by-login-pass"
