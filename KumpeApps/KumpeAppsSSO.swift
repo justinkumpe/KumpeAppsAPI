@@ -32,6 +32,22 @@ public static let keychainSSOSecure = KeychainWrapper(serviceName: "KumpeAppsSSO
 public static let keychainSSOAccess = KeychainWrapper(serviceName: "KumpeAppsSSO_Access", accessGroup: "2T42Z3DM34.com.kumpeapps.ios.sso.access")
 public static let keychainSSOUser = KeychainWrapper(serviceName: "KumpeAppsSSO_User", accessGroup: "2T42Z3DM34.com.kumpeapps.ios.sso.user")
     
+    
+    //    Parameters
+    public struct params {
+        public static var username = ""
+        public static var FirstName = ""
+        public static var LastName = ""
+        public static var CurrentDate = ""
+        public static var apikey = ""
+        public static var pollMessage = ""
+        public static var vc = KumpeAppsSSO()
+    }
+    
+}
+
+class KumpeAppsSSOLogin: UIViewController {
+    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var fieldUsername: UITextField!
@@ -40,18 +56,9 @@ public static let keychainSSOUser = KeychainWrapper(serviceName: "KumpeAppsSSO_U
     @IBOutlet weak var buttonLogin: UIButton!
     
 
-//    Parameters
-public struct params {
-    public static var username = ""
-    public static var FirstName = ""
-    public static var LastName = ""
-    public static var CurrentDate = ""
-    public static var apikey = ""
-    public static var pollMessage = ""
-    public static var vc = KumpeAppsSSO()
-}
+
     
-    override public func viewDidLoad() {
+    override func viewDidLoad() {
         _ = KumpeAppsSSO.keychainSSOAccess.removeAllKeys()
         self.activityIndicator.stopAnimating()
     }
@@ -73,17 +80,17 @@ public struct params {
     
     public func PollKumpeApps(username: String, password: String){
         sleep(1)
-        params.pollMessage = "Pending"
+        KumpeAppsSSO.params.pollMessage = "Pending"
         let URL = "https://www.kumpeapps.com/api/check-access/by-login-pass"
-        let parameters: Parameters = ["_key":"\(params.apikey)","login":"\(username)","pass":"\(password)"]
+        let parameters: Parameters = ["_key":"\(KumpeAppsSSO.params.apikey)","login":"\(username)","pass":"\(password)"]
         Alamofire.request(URL, method: .get, parameters: parameters, encoding: URLEncoding.default)
             .responseSwiftyJSON { dataResponse in
                 if dataResponse.value != nil{
                     let KappsArray = dataResponse.value!
                 print(KappsArray)
                 let Authenticated = KappsArray["ok"].stringValue
-                params.FirstName = KappsArray["name_f"].stringValue
-                params.LastName = KappsArray["name_l"].stringValue
+                KumpeAppsSSO.params.FirstName = KappsArray["name_f"].stringValue
+                KumpeAppsSSO.params.LastName = KappsArray["name_l"].stringValue
                 if(Authenticated == "true"){
                    //Access Granted
                             let formatter = DateFormatter()
@@ -96,7 +103,7 @@ public struct params {
                                 //then again set the date format whhich type of output you need
                                 formatter.dateFormat = "dd-MMM-yyyy"
                                 // again convert your date to string
-                               params.CurrentDate = formatter.string(from: yourDate!)
+                               KumpeAppsSSO.params.CurrentDate = formatter.string(from: yourDate!)
                             
                          // _ = keychainSSOLegacy.removeAllKeys()
                             _ = KumpeAppsSSO.keychainSSOAccess.removeAllKeys()
@@ -104,18 +111,18 @@ public struct params {
                          //Start SecureSSO Keychain
                             KumpeAppsSSO.keychainSSOSecure.set("\(username)", forKey: "Username")
                             KumpeAppsSSO.keychainSSOSecure.set("\(password)", forKey: "Password")
-                            KumpeAppsSSO.keychainSSOSecure.set("\(params.CurrentDate)", forKey: "AuthDate")
+                            KumpeAppsSSO.keychainSSOSecure.set("\(KumpeAppsSSO.params.CurrentDate)", forKey: "AuthDate")
                          //End SecureSSO Keychain
                          
                          //Start SSOUser Keychain
                          KumpeAppsSSO.keychainSSOUser.set("\(username)", forKey: "Username")
-                         KumpeAppsSSO.keychainSSOUser.set("\(params.FirstName)", forKey: "FirstName")
-                         KumpeAppsSSO.keychainSSOUser.set("\(params.LastName)", forKey: "LastName")
-                         KumpeAppsSSO.keychainSSOUser.set("\(params.CurrentDate)", forKey: "AuthDate")
+                         KumpeAppsSSO.keychainSSOUser.set("\(KumpeAppsSSO.params.FirstName)", forKey: "FirstName")
+                         KumpeAppsSSO.keychainSSOUser.set("\(KumpeAppsSSO.params.LastName)", forKey: "LastName")
+                         KumpeAppsSSO.keychainSSOUser.set("\(KumpeAppsSSO.params.CurrentDate)", forKey: "AuthDate")
                          //End SSOUser Keychain
                          
                          //Start SSOAccess Keychain
-                         KumpeAppsSSO.keychainSSOAccess.set("\(params.CurrentDate)", forKey: "AuthDate")
+                         KumpeAppsSSO.keychainSSOAccess.set("\(KumpeAppsSSO.params.CurrentDate)", forKey: "AuthDate")
                          let sqlDatabase = "Apps_SSO"
                          let sqlTable = "SSO_Access_List"
                          let sqlSelect = "*"
@@ -145,17 +152,17 @@ public struct params {
                                     
                                      
                                  }
-                                 params.pollMessage = "AccessGranted"
-                                 print(params.pollMessage)
+                                 KumpeAppsSSO.params.pollMessage = "AccessGranted"
+                                 print(KumpeAppsSSO.params.pollMessage)
                                     self.navigationController?.popViewController(animated: true)
                                     self.dismiss(animated: true, completion: nil)
                                     
                                  }else{
                                     
-                                    params.pollMessage = "KumpeApps SSO Servers are currently down.  Please try again in a few min."
+                                    KumpeAppsSSO.params.pollMessage = "KumpeApps SSO Servers are currently down.  Please try again in a few min."
                                     self.activityIndicator.stopAnimating()
-                                    self.alert(title: "Error", message: params.pollMessage)
-                                    print(params.pollMessage)
+                                    self.alert(title: "Error", message: KumpeAppsSSO.params.pollMessage)
+                                    print(KumpeAppsSSO.params.pollMessage)
                                     
                                  }
                             }
@@ -163,22 +170,22 @@ public struct params {
                         
                         
                 }else{
-                    params.pollMessage =
+                    KumpeAppsSSO.params.pollMessage =
                         "You have been denied access for the following reason(s): \(KappsArray["msg"]). \n\nPlease ensure you are using your KumpeApps username and password to login. If you need to reset your password please goto www.kumpeapps.com."
-                    print(params.pollMessage)
+                    print(KumpeAppsSSO.params.pollMessage)
                     _ = KumpeAppsSSO.keychainSSOAccess.removeAllKeys()
                     _ = KumpeAppsSSO.keychainSSOUser.removeAllKeys()
                     _ = KumpeAppsSSO.keychainSSOSecure.removeAllKeys()
                     self.activityIndicator.stopAnimating()
-                    self.alert(title: "Access Denied", message: params.pollMessage)
+                    self.alert(title: "Access Denied", message: KumpeAppsSSO.params.pollMessage)
                     
                 }
                 self.view.endEditing(true)
                 }else{
-                    params.pollMessage = "KumpeApps SSO Servers are currently down.  Please try again in a few min."
-                    print(params.pollMessage)
+                    KumpeAppsSSO.params.pollMessage = "KumpeApps SSO Servers are currently down.  Please try again in a few min."
+                    print(KumpeAppsSSO.params.pollMessage)
                     self.activityIndicator.stopAnimating()
-                   self.alert(title: "Error", message: params.pollMessage)
+                   self.alert(title: "Error", message: KumpeAppsSSO.params.pollMessage)
                 }
                 
         }
