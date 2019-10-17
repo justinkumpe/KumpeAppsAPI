@@ -185,12 +185,12 @@ public struct params {
         
     }
     
-    public func login(caller: UIViewController){
+    public func login() -> UIViewController{
         let s = UIStoryboard (
             name: "Main", bundle: Bundle(for: KumpeAppsSSO.self)
         )
-        let vc = s.instantiateInitialViewController()!
-        show(vc, sender: caller)
+        return s.instantiateInitialViewController()!
+        
     }
     
     public func alert(title: String, message: String){
