@@ -60,7 +60,7 @@ public struct params {
         self.fieldPassword.text = ""
     }
     
-    func viewDidAppear() {
+    public func viewDidAppear() {
         print("SSO View Did Appear")
 //        _ = KumpeAppsSSO.keychainSSOAccess.removeAllKeys()
         self.activityIndicator.stopAnimating()
