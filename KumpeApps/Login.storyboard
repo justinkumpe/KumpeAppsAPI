@@ -16,18 +16,59 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="A16-6R-QVn">
-                                <rect key="frame" x="188.5" y="434.5" width="37" height="37"/>
-                                <color key="color" cocoaTouchSystemColor="darkTextColor"/>
-                            </activityIndicatorView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Eit-nB-nhj">
+                                <rect key="frame" x="0.0" y="391" width="414" height="124"/>
+                                <subviews>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="A16-6R-QVn">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
+                                        <color key="color" cocoaTouchSystemColor="darkTextColor"/>
+                                    </activityIndicatorView>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ora-Xn-3W0">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="next" textContentType="username"/>
+                                        <connections>
+                                            <action selector="actionUsername:" destination="xR4-wg-kqo" eventType="primaryActionTriggered" id="gJF-Bf-rkG"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Pb-By-1jj">
+                                        <rect key="frame" x="0.0" y="41" width="414" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="go"/>
+                                        <connections>
+                                            <action selector="actionPassword:" destination="xR4-wg-kqo" eventType="primaryActionTriggered" id="iJ3-EY-sM1"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fv5-2x-3Mi">
+                                        <rect key="frame" x="0.0" y="82" width="414" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="Login">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="pressedLogin:" destination="xR4-wg-kqo" eventType="touchUpInside" id="JLl-b6-uz6"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="818" id="GYG-jC-hd9"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="A16-6R-QVn" firstAttribute="centerY" secondItem="cYg-W8-c67" secondAttribute="centerY" id="fUb-sK-xuU"/>
-                            <constraint firstItem="A16-6R-QVn" firstAttribute="centerX" secondItem="cYg-W8-c67" secondAttribute="centerX" id="udQ-rW-Ypr"/>
+                            <constraint firstItem="Eit-nB-nhj" firstAttribute="centerY" secondItem="cYg-W8-c67" secondAttribute="centerY" id="PyL-nF-JP7"/>
+                            <constraint firstItem="Eit-nB-nhj" firstAttribute="width" secondItem="cYg-W8-c67" secondAttribute="width" id="cfZ-Hv-nPt"/>
+                            <constraint firstItem="Eit-nB-nhj" firstAttribute="centerX" secondItem="cYg-W8-c67" secondAttribute="centerX" id="sAF-25-9Ij"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cYg-W8-c67"/>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="A16-6R-QVn" id="mPz-qy-jWl"/>
+                        <outlet property="buttonLogin" destination="Fv5-2x-3Mi" id="m1R-H3-gFe"/>
+                        <outlet property="fieldPassword" destination="0Pb-By-1jj" id="aYi-pT-wmf"/>
+                        <outlet property="fieldUsername" destination="ora-Xn-3W0" id="DVE-ZG-LfA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wx2-y3-0bA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

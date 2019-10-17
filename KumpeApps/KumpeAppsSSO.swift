@@ -31,7 +31,14 @@ public static let keychainSSOOTP = KeychainWrapper(serviceName: "KumpeAppsSSO_OT
 public static let keychainSSOSecure = KeychainWrapper(serviceName: "KumpeAppsSSO_Secure", accessGroup: "2T42Z3DM34.com.kumpeapps.ios.sso.secure")
 public static let keychainSSOAccess = KeychainWrapper(serviceName: "KumpeAppsSSO_Access", accessGroup: "2T42Z3DM34.com.kumpeapps.ios.sso.access")
 public static let keychainSSOUser = KeychainWrapper(serviceName: "KumpeAppsSSO_User", accessGroup: "2T42Z3DM34.com.kumpeapps.ios.sso.user")
-
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    @IBOutlet weak var fieldUsername: UITextField!
+    @IBOutlet weak var fieldPassword: UITextField!
+    
+    @IBOutlet weak var buttonLogin: UIButton!
+    
 
 //    Parameters
 public struct params {
@@ -43,6 +50,25 @@ public struct params {
     public static var pollMessage = ""
     public static var vc = KumpeAppsSSO()
 }
+    
+    override public func viewDidLoad() {
+        _ = KumpeAppsSSO.keychainSSOAccess.removeAllKeys()
+        self.activityIndicator.stopAnimating()
+    }
+    
+    @IBAction func actionUsername(_ sender: Any) {
+        self.fieldPassword.becomeFirstResponder()
+    }
+    
+    @IBAction func actionPassword(_ sender: Any) {
+        self.activityIndicator.startAnimating()
+        PollKumpeApps(username: self.fieldUsername.text!, password: self.fieldPassword.text!)
+    }
+    
+    @IBAction func pressedLogin(_ sender: Any) {
+        self.activityIndicator.startAnimating()
+        PollKumpeApps(username: self.fieldUsername.text!, password: self.fieldPassword.text!)
+    }
     
     
     public func PollKumpeApps(username: String, password: String){
@@ -121,13 +147,16 @@ public struct params {
                                  }
                                  params.pollMessage = "AccessGranted"
                                  print(params.pollMessage)
-                                    params.vc.AccessGranted()
-                                    return ()
+                                    self.navigationController?.popViewController(animated: true)
+                                    self.dismiss(animated: true, completion: nil)
+                                    
                                  }else{
                                     
                                     params.pollMessage = "KumpeApps SSO Servers are currently down.  Please try again in a few min."
+                                    self.activityIndicator.stopAnimating()
+                                    self.alert(title: "Error", message: params.pollMessage)
                                     print(params.pollMessage)
-                                    return ()
+                                    
                                  }
                             }
                          //End SSOAccess Keychain
@@ -137,14 +166,19 @@ public struct params {
                     params.pollMessage =
                         "You have been denied access for the following reason(s): \(KappsArray["msg"]). \n\nPlease ensure you are using your KumpeApps username and password to login. If you need to reset your password please goto www.kumpeapps.com."
                     print(params.pollMessage)
-                    return ()
+                    _ = KumpeAppsSSO.keychainSSOAccess.removeAllKeys()
+                    _ = KumpeAppsSSO.keychainSSOUser.removeAllKeys()
+                    _ = KumpeAppsSSO.keychainSSOSecure.removeAllKeys()
+                    self.activityIndicator.stopAnimating()
+                    self.alert(title: "Access Denied", message: params.pollMessage)
                     
                 }
                 self.view.endEditing(true)
                 }else{
                     params.pollMessage = "KumpeApps SSO Servers are currently down.  Please try again in a few min."
                     print(params.pollMessage)
-                    return ()
+                    self.activityIndicator.stopAnimating()
+                   self.alert(title: "Error", message: params.pollMessage)
                 }
                 
         }
@@ -152,15 +186,36 @@ public struct params {
         
     }
     
+    public func login(){
+        present(KumpeAppsSSO(), animated: true, completion: nil)
+    }
+    
+    public func alert(title: String, message: String){
+        let alertController = UIAlertController(title: title, message:
+            message, preferredStyle: UIAlertController.Style.alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.destructive,handler: nil))
+        
+        //Display Alert
+        self.present(alertController, animated: true, completion: nil)
+    }
     public func logoff(){
         _ = KumpeAppsSSO.keychainSSOAccess.removeAllKeys()
         _ = KumpeAppsSSO.keychainSSOUser.removeAllKeys()
         _ = KumpeAppsSSO.keychainSSOSecure.removeAllKeys()
     }
     
-    func AccessGranted(){
-        
-        }
+    //MARK: Hide Keyboard
+       //Hides Keyboard when user touches outside of text field
+    override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+           self.view.endEditing(true)
+       }
+       
+       func schemeAvailable(scheme: String) -> Bool {
+           if let url = URL(string: scheme) {
+               return UIApplication.shared.canOpenURL(url)
+           }
+           return false
+       }
      
     
 }
