@@ -8,7 +8,7 @@ s.summary = "KumpeApps API and SSO Settings."
 #s.requires_arc = true
 
 # 2
-s.version = "1.1.8"
+s.version = "2.0"
 
 # 3
 s.license = { :type => "MIT", :file => "LICENSE"}
@@ -30,7 +30,7 @@ s.dependency 'Buglife'
 s.dependency 'OneTimePassword'
 
 # 8
-s.source_files = "KumpeApps/**/*.{swift,storyboard,xib}"
+s.source_files = "KumpeApps/**/*.{swift,storyboard,xib,png}"
 
 # 9
 #s.resources = "KumpeApps/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}"

@@ -18,5 +18,10 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>kumpeappssso</string>
+		<string>KSSO</string>
+	</array>
 </dict>
 </plist>
