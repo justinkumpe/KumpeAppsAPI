@@ -41,7 +41,7 @@ public struct params {
     public static var CurrentDate = ""
     public static var apikey = ""
     public static var pollMessage = ""
-    public static var vc = shared
+    public static var vc = KumpeAppsSSO()
 }
     
     
