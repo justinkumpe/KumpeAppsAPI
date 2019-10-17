@@ -80,7 +80,8 @@ public struct params {
     }
     
     @IBAction public func pressedLogin(_ sender: Any) {
-        
+        self.activityIndicator.startAnimating()
+        self.activityIndicator.isHidden = false
         PollKumpeApps(username: self.fieldUsername.text!, password: self.fieldPassword.text!)
     }
     
