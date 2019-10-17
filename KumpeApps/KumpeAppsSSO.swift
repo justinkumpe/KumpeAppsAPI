@@ -186,7 +186,11 @@ public struct params {
     }
     
     public func login(){
-        present(KumpeAppsSSO(), animated: true, completion: nil)
+        let s = UIStoryboard (
+            name: "Main", bundle: Bundle(for: KumpeAppsSSO.self)
+        )
+        let vc = s.instantiateInitialViewController()!
+        show(vc, sender: self)
     }
     
     public func alert(title: String, message: String){
