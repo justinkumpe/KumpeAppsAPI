@@ -224,8 +224,6 @@ public struct params {
         _ = KumpeAppsSSO.keychainSSOAccess.removeAllKeys()
         _ = KumpeAppsSSO.keychainSSOUser.removeAllKeys()
         _ = KumpeAppsSSO.keychainSSOSecure.removeAllKeys()
-        self.fieldPassword.text = ""
-        self.activityIndicator.stopAnimating()
     }
     
     //MARK: Hide Keyboard
