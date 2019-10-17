@@ -57,6 +57,11 @@ public struct params {
     public func viewDidAppear() {
 //        _ = KumpeAppsSSO.keychainSSOAccess.removeAllKeys()
         self.activityIndicator.stopAnimating()
+        if params.apikey == "Disable"{
+            alert(title: "KumpeAppsSSO API Key is missing.", message: "The developer of this app has not set the apikey parameter. This parameter must be set to utilize KumpeApps signon")
+            sleep(3)
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     @IBAction public func actionUsername(_ sender: Any) {

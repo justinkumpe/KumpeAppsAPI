@@ -22,7 +22,7 @@ public class KumpeAppsAPI: UIViewController {
 public static let shared = KumpeAppsAPI()
 public let url = "https://sql.kumpedns.us/API/mysql_v2.php"
 
-    public func setParams(sqlUser: String, sqlPass: String, otpSecret: String, appName: String, apikey: String){
+    public func setParams(sqlUser: String, sqlPass: String, otpSecret: String, appName: String, apikey: String = "Disable"){
     //KumpeApps API Settings
      UserDefaults.standard.set(sqlUser, forKey: "sqlUser")
      UserDefaults.standard.set(sqlPass, forKey: "sqlPass")
