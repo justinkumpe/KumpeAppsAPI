@@ -26,8 +26,6 @@ import Alamofire_SwiftyJSON
 public class KumpeAppsSSO: UIViewController {
 public static let shared = KumpeAppsSSO()
 public let url = "https://sql.kumpedns.us/API/mysql_v2.php"
-public static let keychainSSOLegacy = KeychainWrapper(serviceName: "KumpeAppsSSO", accessGroup: "2T42Z3DM34.com.kumpeapps.ios.sso")
-public static let keychainSSOOTP = KeychainWrapper(serviceName: "KumpeAppsSSO_OTP", accessGroup: "2T42Z3DM34.com.kumpeapps.ios.sso.otp")
 public static let keychainSSOSecure = KeychainWrapper(serviceName: "KumpeAppsSSO_Secure", accessGroup: "2T42Z3DM34.com.kumpeapps.ios.sso.secure")
 public static let keychainSSOAccess = KeychainWrapper(serviceName: "KumpeAppsSSO_Access", accessGroup: "2T42Z3DM34.com.kumpeapps.ios.sso.access")
 public static let keychainSSOUser = KeychainWrapper(serviceName: "KumpeAppsSSO_User", accessGroup: "2T42Z3DM34.com.kumpeapps.ios.sso.user")
@@ -50,10 +48,9 @@ public struct params {
     public static var CurrentDate = ""
     public static var apikey = ""
     public static var pollMessage = ""
-    public static var vc = KumpeAppsSSO()
 }
     
-    override public func viewDidLoad() {
+    public func viewDidAppear() {
         _ = KumpeAppsSSO.keychainSSOAccess.removeAllKeys()
         self.activityIndicator.stopAnimating()
     }
