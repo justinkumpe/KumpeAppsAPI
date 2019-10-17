@@ -54,6 +54,11 @@ public struct params {
     public static let loginvc = s.instantiateInitialViewController()!
 }
     
+    override public func viewDidLoad() {
+        self.activityIndicator.stopAnimating()
+        self.fieldPassword.text = ""
+    }
+    
     public func viewDidAppear() {
 //        _ = KumpeAppsSSO.keychainSSOAccess.removeAllKeys()
         self.activityIndicator.stopAnimating()
@@ -70,7 +75,7 @@ public struct params {
     }
     
     @IBAction public func actionPassword(_ sender: Any) {
-        self.activityIndicator.startAnimating()
+//        self.activityIndicator.startAnimating()
         PollKumpeApps(username: self.fieldUsername.text!, password: self.fieldPassword.text!)
     }
     
@@ -81,6 +86,7 @@ public struct params {
     
     
     public func PollKumpeApps(username: String, password: String){
+        self.activityIndicator.startAnimating()
         sleep(1)
         params.pollMessage = "Pending"
         let URL = "https://www.kumpeapps.com/api/check-access/by-login-pass"
