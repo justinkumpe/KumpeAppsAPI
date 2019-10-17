@@ -58,9 +58,14 @@ public struct params {
         print("SSO View Did Load")
         self.activityIndicator.stopAnimating()
         self.fieldPassword.text = ""
+        if params.apikey == "Disable"{
+            alert(title: "KumpeAppsSSO API Key is missing.", message: "The developer of this app has not set the apikey parameter. This parameter must be set to utilize KumpeApps signon")
+            sleep(3)
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
-    public func viewDidAppear() {
+    public func viewWillAppear() {
         print("SSO View Did Appear")
 //        _ = KumpeAppsSSO.keychainSSOAccess.removeAllKeys()
         self.activityIndicator.stopAnimating()
@@ -166,6 +171,8 @@ public struct params {
                                  params.pollMessage = "AccessGranted"
                                  print(params.pollMessage)
                                     self.navigationController?.popViewController(animated: true)
+                                    self.activityIndicator.stopAnimating()
+                                    self.fieldPassword.text = ""
                                     self.dismiss(animated: true, completion: nil)
                                     
                                  }else{
@@ -204,13 +211,6 @@ public struct params {
         
     }
     
-    public func login(caller: UIViewController){
-        let s = UIStoryboard (
-            name: "Main", bundle: Bundle(for: KumpeAppsSSO.self)
-        )
-        let vc = s.instantiateInitialViewController()!
-        show(vc, sender: self)
-    }
     
     public func alert(title: String, message: String){
         let alertController = UIAlertController(title: title, message:
@@ -224,6 +224,8 @@ public struct params {
         _ = KumpeAppsSSO.keychainSSOAccess.removeAllKeys()
         _ = KumpeAppsSSO.keychainSSOUser.removeAllKeys()
         _ = KumpeAppsSSO.keychainSSOSecure.removeAllKeys()
+        self.fieldPassword.text = ""
+        self.activityIndicator.stopAnimating()
     }
     
     //MARK: Hide Keyboard
