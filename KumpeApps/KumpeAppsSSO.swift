@@ -122,10 +122,12 @@ public struct params {
                                  params.pollMessage = "AccessGranted"
                                  print(params.pollMessage)
                                     params.vc.AccessGranted()
+                                    return ()
                                  }else{
                                     
                                     params.pollMessage = "KumpeApps SSO Servers are currently down.  Please try again in a few min."
                                     print(params.pollMessage)
+                                    return ()
                                  }
                             }
                          //End SSOAccess Keychain
@@ -135,12 +137,14 @@ public struct params {
                     params.pollMessage =
                         "You have been denied access for the following reason(s): \(KappsArray["msg"]). \n\nPlease ensure you are using your KumpeApps username and password to login. If you need to reset your password please goto www.kumpeapps.com."
                     print(params.pollMessage)
+                    return ()
                     
                 }
                 self.view.endEditing(true)
                 }else{
                     params.pollMessage = "KumpeApps SSO Servers are currently down.  Please try again in a few min."
                     print(params.pollMessage)
+                    return ()
                 }
                 
         }
