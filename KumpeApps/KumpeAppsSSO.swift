@@ -48,6 +48,10 @@ public struct params {
     public static var CurrentDate = ""
     public static var apikey = ""
     public static var pollMessage = ""
+    public static let s = UIStoryboard (
+        name: "Main", bundle: Bundle(for: KumpeAppsSSO.self)
+    )
+    public static let loginvc = s.instantiateInitialViewController()!
 }
     
     public func viewDidAppear() {
@@ -185,12 +189,12 @@ public struct params {
         
     }
     
-    public func login() -> UIViewController{
+    public func login(caller: UIViewController){
         let s = UIStoryboard (
             name: "Main", bundle: Bundle(for: KumpeAppsSSO.self)
         )
-        return s.instantiateInitialViewController()!
-        
+        let vc = s.instantiateInitialViewController()!
+        show(vc, sender: self)
     }
     
     public func alert(title: String, message: String){
