@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0F11E2032356B4CB00F24EF4 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F11E2022356B4CB00F24EF4 /* Login.storyboard */; };
+		0F11E2032356B4CB00F24EF4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F11E2022356B4CB00F24EF4 /* Main.storyboard */; };
 		0F5C74FE2353FEE500881377 /* KumpeAppsSSO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C74FD2353FEE500881377 /* KumpeAppsSSO.swift */; };
 		0F645F5922C2F51F0054A71B /* KumpeApps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F645F4F22C2F51F0054A71B /* KumpeApps.framework */; };
 		0F645F5E22C2F51F0054A71B /* KumpeAppsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F645F5D22C2F51F0054A71B /* KumpeAppsTests.swift */; };
@@ -43,7 +43,7 @@
 
 /* Begin PBXFileReference section */
 		0E6820587EC00F011744C339 /* Pods_KumpeApps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KumpeApps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0F11E2022356B4CB00F24EF4 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		0F11E2022356B4CB00F24EF4 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		0F5C74FD2353FEE500881377 /* KumpeAppsSSO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KumpeAppsSSO.swift; sourceTree = "<group>"; };
 		0F645F4F22C2F51F0054A71B /* KumpeApps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KumpeApps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F645F5222C2F51F0054A71B /* KumpeApps.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KumpeApps.h; sourceTree = "<group>"; };
@@ -103,7 +103,7 @@
 				0F645F5322C2F51F0054A71B /* Info.plist */,
 				0F645F6922C2F9070054A71B /* KumpeAppsAPI.swift */,
 				0F5C74FD2353FEE500881377 /* KumpeAppsSSO.swift */,
-				0F11E2022356B4CB00F24EF4 /* Login.storyboard */,
+				0F11E2022356B4CB00F24EF4 /* Main.storyboard */,
 			);
 			path = KumpeApps;
 			sourceTree = "<group>";
@@ -229,7 +229,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F11E2032356B4CB00F24EF4 /* Login.storyboard in Resources */,
+				0F11E2032356B4CB00F24EF4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,7 +425,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.23;
+				CURRENT_PROJECT_VERSION = 1.0.24;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2T42Z3DM34;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -439,7 +439,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.23;
+				MARKETING_VERSION = 1.0.24;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kumpeapps.ios.pod.KumpeApps;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -457,7 +457,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.23;
+				CURRENT_PROJECT_VERSION = 1.0.24;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2T42Z3DM34;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -471,7 +471,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.23;
+				MARKETING_VERSION = 1.0.24;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kumpeapps.ios.pod.KumpeApps;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

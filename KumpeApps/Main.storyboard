@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Kumpe AppsSSO-->
+        <!--Login-->
         <scene sceneID="2tA-Hw-hVi">
             <objects>
-                <viewController id="xR4-wg-kqo" customClass="KumpeAppsSSO" customModule="KumpeApps" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Login" id="xR4-wg-kqo" customClass="KumpeAppsSSO" customModule="KumpeApps" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zpu-HM-tzU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -34,7 +34,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Pb-By-1jj">
                                         <rect key="frame" x="0.0" y="41" width="414" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="go"/>
+                                        <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="go" secureTextEntry="YES" textContentType="password"/>
                                         <connections>
                                             <action selector="actionPassword:" destination="xR4-wg-kqo" eventType="primaryActionTriggered" id="iJ3-EY-sM1"/>
                                         </connections>

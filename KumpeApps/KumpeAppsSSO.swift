@@ -51,7 +51,7 @@ public struct params {
 }
     
     public func viewDidAppear() {
-        _ = KumpeAppsSSO.keychainSSOAccess.removeAllKeys()
+//        _ = KumpeAppsSSO.keychainSSOAccess.removeAllKeys()
         self.activityIndicator.stopAnimating()
     }
     
