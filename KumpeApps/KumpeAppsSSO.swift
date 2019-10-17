@@ -32,12 +32,12 @@ public static let keychainSSOUser = KeychainWrapper(serviceName: "KumpeAppsSSO_U
     
     
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak public var activityIndicator: UIActivityIndicatorView!
     
-    @IBOutlet weak var fieldUsername: UITextField!
-    @IBOutlet weak var fieldPassword: UITextField!
+    @IBOutlet weak public var fieldUsername: UITextField!
+    @IBOutlet weak public var fieldPassword: UITextField!
     
-    @IBOutlet weak var buttonLogin: UIButton!
+    @IBOutlet weak public var buttonLogin: UIButton!
     
 
 //    Parameters
@@ -55,16 +55,16 @@ public struct params {
         self.activityIndicator.stopAnimating()
     }
     
-    @IBAction func actionUsername(_ sender: Any) {
+    @IBAction public func actionUsername(_ sender: Any) {
         self.fieldPassword.becomeFirstResponder()
     }
     
-    @IBAction func actionPassword(_ sender: Any) {
+    @IBAction public func actionPassword(_ sender: Any) {
         self.activityIndicator.startAnimating()
         PollKumpeApps(username: self.fieldUsername.text!, password: self.fieldPassword.text!)
     }
     
-    @IBAction func pressedLogin(_ sender: Any) {
+    @IBAction public func pressedLogin(_ sender: Any) {
         self.activityIndicator.startAnimating()
         PollKumpeApps(username: self.fieldUsername.text!, password: self.fieldPassword.text!)
     }
