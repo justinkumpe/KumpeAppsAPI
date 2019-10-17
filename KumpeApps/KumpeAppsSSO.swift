@@ -55,11 +55,13 @@ public struct params {
 }
     
     override public func viewDidLoad() {
+        print("SSO View Did Load")
         self.activityIndicator.stopAnimating()
         self.fieldPassword.text = ""
     }
     
-    public func viewDidAppear() {
+    func viewDidAppear() {
+        print("SSO View Did Appear")
 //        _ = KumpeAppsSSO.keychainSSOAccess.removeAllKeys()
         self.activityIndicator.stopAnimating()
         self.fieldPassword.text = ""
