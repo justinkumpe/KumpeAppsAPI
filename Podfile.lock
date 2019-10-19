@@ -4,7 +4,6 @@ PODS:
     - Alamofire (~> 4.5)
     - SwiftyJSON (~> 4.0.0)
   - Base32 (1.1.2)
-  - BiometricAuthentication (3.0)
   - Buglife (2.10.1)
   - OneTimePassword (3.2.0):
     - Base32 (~> 1.1.2)
@@ -13,7 +12,6 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire-SwiftyJSON
-  - BiometricAuthentication
   - Buglife
   - OneTimePassword
   - SwiftKeychainWrapper
@@ -23,7 +21,6 @@ SPEC REPOS:
     - Alamofire
     - Alamofire-SwiftyJSON
     - Base32
-    - BiometricAuthentication
     - Buglife
     - OneTimePassword
     - SwiftKeychainWrapper
@@ -33,12 +30,11 @@ SPEC CHECKSUMS:
   Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
   Alamofire-SwiftyJSON: 2b3649d57dc7bb2880fb8b86f8bb969397666916
   Base32: 163c298644d184e89ca4e00a996bad6bf5166390
-  BiometricAuthentication: e39b1a55040d679d5dbc4fa90d76e067c432de7f
   Buglife: bc8e4931ebe37b2901c6dbcb0ca6dd76f62a98c3
   OneTimePassword: c00ecc908e67e6c5bfda9d50b0b2e4696d0b066e
   SwiftKeychainWrapper: 6fc49fbf7d4a6b0772917acb0e53a1639f6078d6
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 6cc39d643b3f234d391217e7433e59c7d14b1959
+PODFILE CHECKSUM: 32d21ffd3fc690f31f1cead689c52d6f0407b5d3
 
 COCOAPODS: 1.8.4

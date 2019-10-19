@@ -12,11 +12,12 @@ import Foundation
 import UIKit
 import Base32
 import OneTimePassword
-import BiometricAuthentication
 import SwiftKeychainWrapper
 import Alamofire
 import SwiftyJSON
 import Alamofire_SwiftyJSON
+import LocalAuthentication
+@_exported import struct LocalAuthentication.LAError
 
 //Note: The below imports will be required on any view controller using the API
 //import Alamofire
@@ -41,6 +42,8 @@ public static let keychainSSOUser = KeychainWrapper(serviceName: "KumpeAppsSSO_U
     @IBOutlet weak public var buttonFaceID: UIButton!
     @IBOutlet weak public var buttonFingerPrint: UIButton!
     
+    public let bioAuth = BiometricAuthenticator()
+    
 
 //    Parameters
 public struct params {
@@ -61,12 +64,20 @@ public struct params {
     override public func viewDidLoad() {
         print("SSO View Did Load")
         
-        if BioMetricAuthenticator.shared.faceIDAvailable() &&  self.keychainSSOSecure.string(forKey: "Username") != nil &&  self.keychainSSOSecure.string(forKey: "Password") != nil{
-            self.buttonFaceID.isHidden = false
+        // check if the feature exists on the device
+        if bioAuth.isTouchIdSupportedOnDevice() {
+            // check if the feature is enabled
+            if bioAuth.isTouchIdEnabledOnDevice() {
+                self.buttonFingerPrint.isHidden = false
+            }
         }
-        
-        if BioMetricAuthenticator.shared.touchIDAvailable() &&  self.keychainSSOSecure.string(forKey: "Username") != nil &&  self.keychainSSOSecure.string(forKey: "Password") != nil {
-            self.buttonFingerPrint.isHidden = false
+
+        // check if the feature exists on the device
+        if bioAuth.isFaceIdSupportedOnDevice() {
+            // check if the feature is enabled
+            if bioAuth.isFaceIdEnabledOnDevice() {
+                self.buttonFaceID.isHidden = false
+            }
         }
         
         self.activityIndicator.stopAnimating()
@@ -95,38 +106,23 @@ public struct params {
     }
     
     @IBAction public func pressedFaceID(_ sender: Any) {
-        if BioMetricAuthenticator.canAuthenticate() {
-
-            BioMetricAuthenticator.authenticateWithBioMetrics(reason: "") { (result) in
-                switch result {
-                case .success( _):
-                    let username = self.keychainSSOSecure.string(forKey: "Username")!
-                           let password = self.keychainSSOSecure.string(forKey: "Password")!
-                    self.PollKumpeApps(username: username, password: password)
-                    print("Authentication Successful")
-                case .failure(let error):
-                    print("Authentication Failed \(error)")
-                }
-            }
+        let authenticated:Bool = bioAuth.authenticateWithBiometrics(localizedReason: "Authenticate via FaceID")
+        if authenticated{
+            alert(title: "Test", message: "FaceID Success")
+        }else{
+            alert(title: "Test", message: "FaceID Failure")
         }
     }
     
     @IBAction public func pressedFingerPrint(_ sender: Any) {
-       if BioMetricAuthenticator.canAuthenticate() {
-
-            BioMetricAuthenticator.authenticateWithBioMetrics(reason: "") { (result) in
-                switch result {
-                case .success( _):
-                    let username = self.keychainSSOSecure.string(forKey: "Username")!
-                           let password = self.keychainSSOSecure.string(forKey: "Password")!
-                    self.PollKumpeApps(username: username, password: password)
-                    print("Authentication Successful")
-                case .failure(let error):
-                    print("Authentication Failed \(error)")
-                }
-            }
+        let authenticated:Bool = bioAuth.authenticateWithBiometrics(localizedReason: "Authenticate via Finger")
+        if authenticated{
+            alert(title: "Test", message: "Finger Success")
+        }else{
+            alert(title: "Test", message: "Finger Failure")
         }
     }
+    
     
     
     public func PollKumpeApps(username: String, password: String){
@@ -315,10 +311,7 @@ public struct params {
     
     public  func open(scheme: String) {
         if let url = URL(string: scheme) {
-            UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: {
-                (success) in
-                print("Open \(scheme): \(success)")
-            })
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
     
@@ -334,10 +327,111 @@ public struct params {
     override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
            self.view.endEditing(true)
        }
+        
+        
+}
 
-     
-     // Helper function inserted by Swift 4.2 migrator.
-    public func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
-        return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
+
+
+
+
+public class BiometricAuthenticator {
+    
+    public init() {}
+    
+    /// The localized reason presented to the user for authentication.
+    public var defaultAuthenticationReason: String = "Use Biometrics!"
+    
+    /// The localized title for the fallback button in the dialog presented to the user during authentication.
+    /// - Note:
+    ///     This attribute will only be applied when running on iOS 10 or higher
+    public var defaultFallbackButtonTitle: String? = nil
+    
+    /// The localized title for the fallback dialog presented to the user during authentication.
+    public var defaultFallbackAlertTitle: String? = nil
+    
+    /// Checks if the current device model can support Touch ID.
+    ///
+    /// - Returns: True if the device is known to support Touch ID.
+    public func isTouchIdSupportedOnDevice() -> Bool {
+        return UIDevice.current.supportsTouchId()
     }
+    
+    /// CHecks if the device can support Touch ID and whether or not Touch ID is enabled.
+    ///
+    /// - Returns: True if the device can support Touch ID and the feature is enabled.
+    public func isTouchIdEnabledOnDevice() -> Bool {
+        let context = LAContext()
+        return context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) && isTouchIdSupportedOnDevice()
+    }
+    
+    /// Checks if the current device model can support Face ID.
+    ///
+    /// - Returns: True if the device is known to support Face ID.
+    public func isFaceIdSupportedOnDevice() -> Bool {
+        return UIDevice.current.supportsFaceId()
+    }
+    
+    /// CHecks if the device can support Face ID and whether or not Face ID is enabled.
+    ///
+    /// - Returns: True if the device can support Face ID and the feature is enabled.
+    public func isFaceIdEnabledOnDevice() -> Bool {
+        let context = LAContext()
+        return context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) && isFaceIdSupportedOnDevice()
+    }
+    
+    /// Use this function to authenticate a user if biometric authentication is enabled on the user's phone.
+    ///
+    /// - Parameters:
+    ///   - localizedReason: The string displayed to the user explaining why the application is requesting authentication (defaults to `defaultAuthenticationReason`).
+    ///   - successBlock: A function or block of code executed if authentication succeeds.
+    ///   - failureBlock: A function or block of code executed if authentication fails. The function takes a single LAError as
+    ///                   a parameter. Use the error code provided in the LAError object to handle the authentication failure
+    ///                   appropriately.
+    public func authenticateWithBiometrics(localizedReason: String? = nil) -> Bool {
+        var authResponse:Bool = false
+        let context = LAContext()
+        if #available(iOS 10, *) {
+            context.localizedCancelTitle = defaultFallbackButtonTitle
+        }
+        context.localizedFallbackTitle = defaultFallbackAlertTitle
+        context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: localizedReason ?? defaultAuthenticationReason) { (success, error) in
+            authResponse = success
+        }
+        return authResponse
+    }
+    
+    /// Use this function to authenticate a user if biometric authentication isn't enabled on the user's phone.
+    ///
+    /// - Note:
+    ///     If the provided functions for determining whether or not biometric capabilities are available on the device
+    ///     return true, ```authenticateWithBiometrics``` should be called instead.
+    ///
+    /// - Parameters:
+    ///   - localizedReason: The string displayed to the user explaining why the application is requesting authentication (defaults to `defaultAuthenticationReason`).
+    ///   - successBlock: A function or block of code executed if authentication succeeds.
+    ///   - failureBlock: A function or block of code executed if authentication fails. The function takes a single LAError as
+    ///                   a parameter. Use the error code provided in the LAError object to handle the authentication failure
+    ///                   appropriately.
+    public func authenticateWithPasscode(localizedReason: String? = nil) -> Bool {
+           var authResponse:Bool = false
+        let context = LAContext()
+        if #available(iOS 10, *) {
+            context.localizedCancelTitle = defaultFallbackButtonTitle
+        }
+        context.localizedFallbackTitle = defaultFallbackAlertTitle
+        context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: localizedReason ?? defaultAuthenticationReason) { (success, error) in
+            authResponse = success
+        }
+        return authResponse
+    }
+    
+    /// Invalidates the current authentication context and cancels any pending authentication requests.
+    /// - Note:
+    ///     The cancelled evaluation will fail with the `systemCancelled` error code.
+    public func invalidateAuthenticationContext() {
+        let context = LAContext()
+        context.invalidate()
+    }
+    
 }

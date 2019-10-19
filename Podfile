@@ -7,5 +7,4 @@ pod 'Alamofire-SwiftyJSON'
 pod 'SwiftKeychainWrapper'
 pod 'Buglife'
 pod 'OneTimePassword'
-pod 'BiometricAuthentication'
 end
