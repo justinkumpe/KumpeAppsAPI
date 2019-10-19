@@ -17,7 +17,11 @@ import Alamofire
 import SwiftyJSON
 import Alamofire_SwiftyJSON
 import LocalAuthentication
+
 @_exported import struct LocalAuthentication.LAError
+
+public typealias BAFailureBlock = ((_ error: LAError?) -> Void)?
+public typealias BASuccessBlock = (() -> Void)?
 
 //Note: The below imports will be required on any view controller using the API
 //import Alamofire
@@ -71,12 +75,14 @@ public struct params {
             // check if the feature is enabled
             if bioAuth.isFaceIdEnabledOnDevice() {
                 self.buttonFaceID.isHidden = false
+                self.buttonFingerPrint.isHidden = true
             }
         }else if bioAuth.isTouchIdSupportedOnDevice() {
                     // check if the feature exists on the device
             // check if the feature is enabled
             if bioAuth.isTouchIdEnabledOnDevice() {
                 self.buttonFingerPrint.isHidden = false
+                self.buttonFaceID.isHidden = true
             }
         }
         
@@ -106,21 +112,31 @@ public struct params {
     }
     
     @IBAction public func pressedFaceID(_ sender: Any) {
-        
-        if bioAuth.authenticateWithBiometrics(localizedReason: "Authenticate via FaceID"){
-            alert(title: "Test", message: "FaceID Success")
-        }else{
-            alert(title: "Test", message: "FaceID Failure")
-        }
+        bioAuth.authenticateWithBiometrics(localizedReason: "Let's authenticate with biometrics!", successBlock: {
+            self.alert(title: "Success", message: "FaceID")
+        }, failureBlock: { (error) in
+            if let error = error {
+                switch error {
+                default:
+                // use the LAError code to handle the different error scenarios
+                print("error: \(error.code)")
+                }
+            }
+        })
     }
     
     @IBAction public func pressedFingerPrint(_ sender: Any) {
-        
-        if bioAuth.authenticateWithBiometrics(localizedReason: "Authenticate via Finger"){
-            alert(title: "Test", message: "Finger Success")
-        }else{
-            alert(title: "Test", message: "Finger Failure")
-        }
+      bioAuth.authenticateWithBiometrics(localizedReason: "Let's authenticate with biometrics!", successBlock: {
+          self.alert(title: "Success", message: "FingerPrint")
+      }, failureBlock: { (error) in
+          if let error = error {
+              switch error {
+              default:
+              // use the LAError code to handle the different error scenarios
+              print("error: \(error.code)")
+              }
+          }
+      })
     }
     
     
@@ -388,17 +404,23 @@ public class BiometricAuthenticator {
     ///   - failureBlock: A function or block of code executed if authentication fails. The function takes a single LAError as
     ///                   a parameter. Use the error code provided in the LAError object to handle the authentication failure
     ///                   appropriately.
-    public func authenticateWithBiometrics(localizedReason: String? = nil) -> Bool {
-        var authResponse:Bool = false
+    public func authenticateWithBiometrics(localizedReason: String? = nil, successBlock: BASuccessBlock, failureBlock: BAFailureBlock) {
         let context = LAContext()
         if #available(iOS 10, *) {
             context.localizedCancelTitle = defaultFallbackButtonTitle
         }
         context.localizedFallbackTitle = defaultFallbackAlertTitle
         context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: localizedReason ?? defaultAuthenticationReason) { (success, error) in
-            authResponse = success
+            if success {
+                successBlock?()
+            } else {
+                guard let error = error as? LAError else {
+                    failureBlock?(nil)
+                    return
+                }
+                failureBlock?(error)
+            }
         }
-        return authResponse
     }
     
     /// Use this function to authenticate a user if biometric authentication isn't enabled on the user's phone.
@@ -413,17 +435,23 @@ public class BiometricAuthenticator {
     ///   - failureBlock: A function or block of code executed if authentication fails. The function takes a single LAError as
     ///                   a parameter. Use the error code provided in the LAError object to handle the authentication failure
     ///                   appropriately.
-    public func authenticateWithPasscode(localizedReason: String? = nil) -> Bool {
-           var authResponse:Bool = false
+    public func authenticateWithPasscode(localizedReason: String? = nil, successBlock: BASuccessBlock, failureBlock: BAFailureBlock) {
         let context = LAContext()
         if #available(iOS 10, *) {
             context.localizedCancelTitle = defaultFallbackButtonTitle
         }
         context.localizedFallbackTitle = defaultFallbackAlertTitle
         context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: localizedReason ?? defaultAuthenticationReason) { (success, error) in
-            authResponse = success
+            if success {
+                successBlock?()
+            } else {
+                guard let error = error as? LAError else {
+                    failureBlock?(nil)
+                    return
+                }
+                failureBlock?(error)
+            }
         }
-        return authResponse
     }
     
     /// Invalidates the current authentication context and cancels any pending authentication requests.
