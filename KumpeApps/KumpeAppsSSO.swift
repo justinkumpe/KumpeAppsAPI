@@ -46,7 +46,7 @@ public static let keychainSSOUser = KeychainWrapper(serviceName: "KumpeAppsSSO_U
     @IBOutlet weak public var buttonFaceID: UIButton!
     @IBOutlet weak public var buttonFingerPrint: UIButton!
     
-    public let bioAuth = BiometricAuthenticator()
+
     
 
 //    Parameters
@@ -71,16 +71,16 @@ public struct params {
 
 
         // check if the feature exists on the device
-        if bioAuth.isFaceIdSupportedOnDevice() {
+        if isFaceIdSupportedOnDevice() {
             // check if the feature is enabled
-            if bioAuth.isFaceIdEnabledOnDevice() {
+            if isFaceIdEnabledOnDevice() {
                 self.buttonFaceID.isHidden = false
                 self.buttonFingerPrint.isHidden = true
             }
-        }else if bioAuth.isTouchIdSupportedOnDevice() {
+        }else if isTouchIdSupportedOnDevice() {
                     // check if the feature exists on the device
             // check if the feature is enabled
-            if bioAuth.isTouchIdEnabledOnDevice() {
+            if isTouchIdEnabledOnDevice() {
                 self.buttonFingerPrint.isHidden = false
                 self.buttonFaceID.isHidden = true
             }
@@ -112,7 +112,7 @@ public struct params {
     }
     
     @IBAction public func pressedFaceID(_ sender: Any) {
-        bioAuth.authenticateWithBiometrics(localizedReason: "Let's authenticate with biometrics!", successBlock: {
+        authenticateWithBiometrics(localizedReason: "Let's authenticate with biometrics!", successBlock: {
             self.alert(title: "Success", message: "FaceID")
         }, failureBlock: { (error) in
             if let error = error {
@@ -126,7 +126,7 @@ public struct params {
     }
     
     @IBAction public func pressedFingerPrint(_ sender: Any) {
-      bioAuth.authenticateWithBiometrics(localizedReason: "Let's authenticate with biometrics!", successBlock: {
+      authenticateWithBiometrics(localizedReason: "Let's authenticate with biometrics!", successBlock: {
           self.alert(title: "Success", message: "FingerPrint")
       }, failureBlock: { (error) in
           if let error = error {
@@ -345,15 +345,11 @@ public struct params {
        }
         
         
-}
 
 
 
-
-
-public class BiometricAuthenticator {
     
-    public init() {}
+
     
     /// The localized reason presented to the user for authentication.
     public var defaultAuthenticationReason: String = "Use Biometrics!"
