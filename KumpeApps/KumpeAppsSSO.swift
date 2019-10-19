@@ -64,19 +64,19 @@ public struct params {
     override public func viewDidLoad() {
         print("SSO View Did Load")
         
-        // check if the feature exists on the device
-        if bioAuth.isTouchIdSupportedOnDevice() {
-            // check if the feature is enabled
-            if bioAuth.isTouchIdEnabledOnDevice() {
-                self.buttonFingerPrint.isHidden = false
-            }
-        }
+
 
         // check if the feature exists on the device
         if bioAuth.isFaceIdSupportedOnDevice() {
             // check if the feature is enabled
             if bioAuth.isFaceIdEnabledOnDevice() {
                 self.buttonFaceID.isHidden = false
+            }
+        }else if bioAuth.isTouchIdSupportedOnDevice() {
+                    // check if the feature exists on the device
+            // check if the feature is enabled
+            if bioAuth.isTouchIdEnabledOnDevice() {
+                self.buttonFingerPrint.isHidden = false
             }
         }
         
@@ -106,8 +106,8 @@ public struct params {
     }
     
     @IBAction public func pressedFaceID(_ sender: Any) {
-        let authenticated:Bool = bioAuth.authenticateWithBiometrics(localizedReason: "Authenticate via FaceID")
-        if authenticated{
+        
+        if bioAuth.authenticateWithBiometrics(localizedReason: "Authenticate via FaceID"){
             alert(title: "Test", message: "FaceID Success")
         }else{
             alert(title: "Test", message: "FaceID Failure")
@@ -115,8 +115,8 @@ public struct params {
     }
     
     @IBAction public func pressedFingerPrint(_ sender: Any) {
-        let authenticated:Bool = bioAuth.authenticateWithBiometrics(localizedReason: "Authenticate via Finger")
-        if authenticated{
+        
+        if bioAuth.authenticateWithBiometrics(localizedReason: "Authenticate via Finger"){
             alert(title: "Test", message: "Finger Success")
         }else{
             alert(title: "Test", message: "Finger Failure")
