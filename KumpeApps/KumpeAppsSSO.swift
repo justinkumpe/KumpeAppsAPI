@@ -113,7 +113,17 @@ public struct params {
     
     @IBAction public func pressedFaceID(_ sender: Any) {
         authenticateWithBiometrics(localizedReason: "Let's authenticate with biometrics!", successBlock: {
-            self.alert(title: "Success", message: "FaceID")
+            
+            DispatchQueue.global(qos: .background).async {
+
+                // Background Thread
+
+                DispatchQueue.main.async {
+                   self.alert(title: "Success", message: "FaceID")
+                }
+            }
+            
+            
         }, failureBlock: { (error) in
             if let error = error {
                 switch error {
@@ -127,7 +137,14 @@ public struct params {
     
     @IBAction public func pressedFingerPrint(_ sender: Any) {
       authenticateWithBiometrics(localizedReason: "Let's authenticate with biometrics!", successBlock: {
-          self.alert(title: "Success", message: "FingerPrint")
+            DispatchQueue.global(qos: .background).async {
+
+                        // Background Thread
+
+                        DispatchQueue.main.async {
+                           self.alert(title: "Success", message: "FingerPrint")
+                        }
+                    }
       }, failureBlock: { (error) in
           if let error = error {
               switch error {
