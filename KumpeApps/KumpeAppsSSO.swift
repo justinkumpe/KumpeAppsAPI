@@ -242,7 +242,7 @@ public struct params {
                                  {
                                      //Builds Access for each app pulled from KumpeApps with SSO Tag
                                      let AccessTag = JSONArray[i]["product_id"].stringValue
-                    //                 let OTP_Secret = JSONArray[i]["OTP_Secret"].stringValue
+                                     let OTP_Secret = JSONArray[i]["OTP_Secret"].stringValue
 
                                      let SSOAccessTag = "AccessTo\(AccessTag)"
                                      print("Count: \(JSONArray.count)")
@@ -251,7 +251,7 @@ public struct params {
                                      KumpeAppsSSO.keychainSSOAccess.set(true, forKey: "\(SSOAccessTag)")
                                      print("AccessTo\(AccessTag)")
                                      print("\(KumpeAppsSSO.keychainSSOAccess.bool(forKey: "\(SSOAccessTag)")!)")
-                    //                 self.keychainSSOSecure.set("\(OTP_Secret)", forKey: "OTP_Secret")
+                                     self.keychainSSOSecure.set("\(OTP_Secret)", forKey: "OTP_Secret")
                                     
                                     
                                      
@@ -299,7 +299,7 @@ public struct params {
         
     }
     
-    public func confirmAccess(productCode: String = params.productCode, appScheme: String = params.appScheme) -> String{
+    public func confirmAccess(ignoreDate: Bool = false, productCode: String = params.productCode, appScheme: String = params.appScheme) -> String{
         let formatter = DateFormatter()
          // initially set the format based on your datepicker date / server String
          formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -329,14 +329,17 @@ public struct params {
             SSOAccessGranted = KumpeAppsSSO.keychainSSOUser.bool(forKey: "AccessTo\(productCode)")!
         }
         
-        if username != "" && SSOAuthDate == CurrentDate && SSOAccessGranted{
+        if username != "" && (SSOAuthDate == CurrentDate || ignoreDate) && SSOAccessGranted{
 //            AccessGranted
             returnMessage = "AccessGranted"
         //If User is signed in to KumpeApps SSO and session not expired but Access to This App is not approved then Deny Access
-        } else if username != "" && SSOAuthDate == CurrentDate{
+        } else if username != "" && (SSOAuthDate == CurrentDate || ignoreDate){
 //            AccessDenied
             returnMessage = "AccessDenied"
-        //If User is not signed in to KumpeApps SSO or session is expired then open KumpeApps SSO
+//        Session Expired
+        }else if username != "" && SSOAuthDate != CurrentDate{
+            returnMessage = "SessionExpired"
+        //If User is not signed in to KumpeApps SSO
         } else if enableSSO{
             returnMessage = "NotLoggedIn"
             self.launchSSO(appScheme: appScheme)

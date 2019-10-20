@@ -8,7 +8,7 @@ s.summary = "KumpeApps API and SSO Settings."
 #s.requires_arc = true
 
 # 2
-s.version = "2.0.9"
+s.version = "2.0.10"
 
 # 3
 s.license = { :type => "MIT", :file => "LICENSE"}
@@ -36,6 +36,6 @@ s.source_files = "KumpeApps/**/*.{swift,storyboard,xib,png}"
 #s.resources = "KumpeApps/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}"
 
 # 10
-s.swift_version = "4"
+s.swift_version = "5"
 
 end
