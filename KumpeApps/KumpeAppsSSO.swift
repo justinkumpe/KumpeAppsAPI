@@ -321,12 +321,12 @@ public struct params {
             username = KumpeAppsSSO.keychainSSOUser.string(forKey: "Username")!
         }
         
-        if self.keychainSSOSecure.string(forKey: "AuthDate") != nil{
+        if KumpeAppsSSO.keychainSSOUser.string(forKey: "AuthDate") != nil{
             SSOAuthDate = KumpeAppsSSO.keychainSSOUser.string(forKey: "Authdate")!
         }
         
         if KumpeAppsSSO.keychainSSOAccess.bool(forKey: "AccessTo\(productCode)") != nil{
-            SSOAccessGranted = KumpeAppsSSO.keychainSSOUser.bool(forKey: "AccessTo\(productCode)")!
+            SSOAccessGranted = KumpeAppsSSO.keychainSSOAccess.bool(forKey: "AccessTo\(productCode)")!
         }
         
         if username != "" && (SSOAuthDate == CurrentDate || ignoreDate) && SSOAccessGranted{
