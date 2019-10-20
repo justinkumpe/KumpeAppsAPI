@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Eit-nB-nhj">
-                                <rect key="frame" x="0.0" y="391" width="414" height="124"/>
+                                <rect key="frame" x="0.0" y="366.5" width="414" height="173"/>
                                 <subviews>
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="A16-6R-QVn">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
@@ -50,17 +50,28 @@
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7jN-WX-0YR" userLabel="FaceIdButton">
-                                        <rect key="frame" x="0.0" y="124" width="414" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="127.5" width="414" height="0.0"/>
                                         <state key="normal" image="icons8-face_id.png"/>
                                         <connections>
                                             <action selector="pressedFaceID:" destination="xR4-wg-kqo" eventType="touchUpInside" id="A44-dv-xgr"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fBJ-Pc-2xv" userLabel="FingerPrintButton">
-                                        <rect key="frame" x="0.0" y="124" width="414" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="127.5" width="414" height="0.0"/>
                                         <state key="normal" image="icons8-fingerprint.png"/>
                                         <connections>
                                             <action selector="pressedFingerPrint:" destination="xR4-wg-kqo" eventType="touchUpInside" id="Mdq-tC-VtW"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cCu-cH-pH2">
+                                        <rect key="frame" x="0.0" y="131" width="414" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="Reset Credentials">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="pressedLogin:" destination="xR4-wg-kqo" eventType="touchUpInside" id="bcj-Jy-tt8"/>
+                                            <action selector="pressedResetCredentials:" destination="xR4-wg-kqo" eventType="touchUpInside" id="wDJ-4c-j3b"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -69,7 +80,7 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Eit-nB-nhj" firstAttribute="centerY" secondItem="cYg-W8-c67" secondAttribute="centerY" id="PyL-nF-JP7"/>
                             <constraint firstItem="Eit-nB-nhj" firstAttribute="width" secondItem="cYg-W8-c67" secondAttribute="width" id="cfZ-Hv-nPt"/>

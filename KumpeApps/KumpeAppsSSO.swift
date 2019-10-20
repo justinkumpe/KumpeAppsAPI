@@ -179,6 +179,9 @@ public struct params {
       }
     }
     
+    @IBAction public func pressedResetCredentials(_ sender: Any) {
+        self.logoff(resetCreds: true)
+    }
     
     
     public func PollKumpeApps(username: String, password: String){
@@ -362,10 +365,12 @@ public struct params {
         self.present(alertController, animated: true, completion: nil)
     }
     
-    public func logoff(){
+    public func logoff(resetCreds: Bool = false){
         _ = KumpeAppsSSO.keychainSSOAccess.removeAllKeys()
         _ = KumpeAppsSSO.keychainSSOUser.removeAllKeys()
-        _ = self.keychainSSOSecure.removeAllKeys()
+        if resetCreds{
+            _ = self.keychainSSOSecure.removeAllKeys()
+        }
     }
     
     public  func open(scheme: String) {
