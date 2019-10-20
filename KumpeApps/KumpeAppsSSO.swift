@@ -322,7 +322,7 @@ public struct params {
         }
         
         if KumpeAppsSSO.keychainSSOUser.string(forKey: "AuthDate") != nil{
-            SSOAuthDate = KumpeAppsSSO.keychainSSOUser.string(forKey: "Authdate")!
+            SSOAuthDate = KumpeAppsSSO.keychainSSOUser.string(forKey: "AuthDate")!
         }
         
         if KumpeAppsSSO.keychainSSOAccess.bool(forKey: "AccessTo\(productCode)") != nil{
