@@ -112,48 +112,71 @@ public struct params {
     }
     
     @IBAction public func pressedFaceID(_ sender: Any) {
-        authenticateWithBiometrics(localizedReason: "Let's authenticate with biometrics!", successBlock: {
-            
-            DispatchQueue.global(qos: .background).async {
-
-                // Background Thread
-
-                DispatchQueue.main.async {
-                   self.alert(title: "Success", message: "FaceID")
-                }
-            }
-            
-            
-        }, failureBlock: { (error) in
-            if let error = error {
-                switch error {
-                default:
-                // use the LAError code to handle the different error scenarios
-                print("error: \(error.code)")
-                }
-            }
-        })
-    }
-    
-    @IBAction public func pressedFingerPrint(_ sender: Any) {
-      authenticateWithBiometrics(localizedReason: "Let's authenticate with biometrics!", successBlock: {
-            DispatchQueue.global(qos: .background).async {
+        var username = ""
+        var password = ""
+        if self.keychainSSOSecure.string(forKey: "Username") != nil{
+            username = self.keychainSSOSecure.string(forKey: "Username")!
+            if self.keychainSSOSecure.string(forKey: "Password") != nil{
+                password = self.keychainSSOSecure.string(forKey: "Password")!
+                authenticateWithBiometrics(localizedReason: "Let's authenticate with biometrics!", successBlock: {
+                    
+                    DispatchQueue.global(qos: .background).async {
 
                         // Background Thread
 
                         DispatchQueue.main.async {
-                           self.alert(title: "Success", message: "FingerPrint")
+                            self.PollKumpeApps(username: username, password: password)
                         }
                     }
-      }, failureBlock: { (error) in
-          if let error = error {
-              switch error {
-              default:
-              // use the LAError code to handle the different error scenarios
-              print("error: \(error.code)")
-              }
+                    
+                    
+                }, failureBlock: { (error) in
+                    if let error = error {
+                        switch error {
+                        default:
+                        // use the LAError code to handle the different error scenarios
+                        print("error: \(error.code)")
+                        }
+                    }
+                })
+            }else{
+                self.alert(title: "Error", message: "Please login first. FaceID can be used for future logins provided you do not click logout.")
+            }
+        }
+    }
+    
+    @IBAction public func pressedFingerPrint(_ sender: Any) {
+      var username = ""
+      var password = ""
+      if self.keychainSSOSecure.string(forKey: "Username") != nil{
+          username = self.keychainSSOSecure.string(forKey: "Username")!
+          if self.keychainSSOSecure.string(forKey: "Password") != nil{
+              password = self.keychainSSOSecure.string(forKey: "Password")!
+              authenticateWithBiometrics(localizedReason: "Let's authenticate with biometrics!", successBlock: {
+                  
+                  DispatchQueue.global(qos: .background).async {
+
+                      // Background Thread
+
+                      DispatchQueue.main.async {
+                          self.PollKumpeApps(username: username, password: password)
+                      }
+                  }
+                  
+                  
+              }, failureBlock: { (error) in
+                  if let error = error {
+                      switch error {
+                      default:
+                      // use the LAError code to handle the different error scenarios
+                      print("error: \(error.code)")
+                      }
+                  }
+              })
+          }else{
+              self.alert(title: "Error", message: "Please login first. Biometrics can be used for future logins provided you do not click logout.")
           }
-      })
+      }
     }
     
     
