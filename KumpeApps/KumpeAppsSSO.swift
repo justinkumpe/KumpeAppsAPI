@@ -39,14 +39,19 @@ public static let keychainSSOUser = KeychainWrapper(serviceName: "KumpeAppsSSO_U
     
     @IBOutlet weak public var activityIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak public var fieldEmail: UITextField!
+    @IBOutlet weak public var fieldLastName: UITextField!
+    @IBOutlet weak public var fieldFirstName: UITextField!
     @IBOutlet weak public var fieldUsername: UITextField!
     @IBOutlet weak public var fieldPassword: UITextField!
     
     @IBOutlet weak public var buttonLogin: UIButton!
     @IBOutlet weak public var buttonFaceID: UIButton!
     @IBOutlet weak public var buttonFingerPrint: UIButton!
+    @IBOutlet weak public var buttonResetCreds: UIButton!
+    @IBOutlet weak public var buttonRegister: UIButton!
+    @IBOutlet weak public var buttonNewUser: UIButton!
     
-
     
 
 //    Parameters
@@ -63,21 +68,45 @@ public struct params {
         name: "Main", bundle: Bundle(for: KumpeAppsSSO.self)
     )
     public static let loginvc = s.instantiateInitialViewController()!
+    public static var enableRegistration:Bool = false
+    public static var enableBiometrics:Bool = true
+    public static var enableResetCreds:Bool = true
 }
     
     override public func viewDidLoad() {
         print("SSO View Did Load")
+        self.buttonRegister.isHidden = true
+        self.fieldEmail.isHidden = true
+        self.fieldLastName.isHidden = true
+        self.fieldFirstName.isHidden = true
+        self.buttonLogin.isHidden = false
+        self.buttonResetCreds.isHidden = false
+        self.buttonNewUser.isHidden = false
         
+        if !params.enableRegistration{
+            self.buttonNewUser.isHidden = true
+            self.buttonNewUser.isEnabled = false
+            self.buttonRegister.isEnabled = false
+        }
+        
+        if !params.enableResetCreds{
+            self.buttonResetCreds.isHidden = true
+            self.buttonResetCreds.isEnabled = false
+        }
+        
+        if self.keychainSSOSecure.string(forKey: "Username") != nil && self.keychainSSOSecure.string(forKey: "Username") != "apple"{
+            self.buttonNewUser.isHidden = true
+        }
 
 
         // check if the feature exists on the device
-        if isFaceIdSupportedOnDevice() {
+        if isFaceIdSupportedOnDevice() && params.enableBiometrics{
             // check if the feature is enabled
             if isFaceIdEnabledOnDevice() {
                 self.buttonFaceID.isHidden = false
                 self.buttonFingerPrint.isHidden = true
             }
-        }else if isTouchIdSupportedOnDevice() {
+        }else if isTouchIdSupportedOnDevice() && params.enableBiometrics{
                     // check if the feature exists on the device
             // check if the feature is enabled
             if isTouchIdEnabledOnDevice() {
@@ -101,8 +130,9 @@ public struct params {
     }
     
     @IBAction public func actionPassword(_ sender: Any) {
-//        self.activityIndicator.startAnimating()
-        PollKumpeApps(username: self.fieldUsername.text!, password: self.fieldPassword.text!)
+        if !self.buttonLogin.isHidden && self.buttonRegister.isHidden{
+            PollKumpeApps(username: self.fieldUsername.text!, password: self.fieldPassword.text!)
+        }
     }
     
     @IBAction public func pressedLogin(_ sender: Any) {
@@ -183,6 +213,64 @@ public struct params {
         self.logoff(resetCreds: true)
     }
     
+    @IBAction func actionFirstName(_ sender: Any) {
+        self.fieldLastName.becomeFirstResponder()
+    }
+    
+    @IBAction func actionLastName(_ sender: Any) {
+        self.fieldEmail.becomeFirstResponder()
+    }
+    
+    @IBAction func actionEmail(_ sender: Any) {
+        self.fieldUsername.becomeFirstResponder()
+    }
+    
+    @IBAction func pressedRegister(_ sender: Any) {
+        if self.fieldFirstName.text! != "" && self.fieldLastName.text! != "" && self.fieldUsername.text! != "" && self.fieldEmail.text! != "" && self.fieldPassword.text! != ""{
+            self.Register(firstName: self.fieldFirstName.text!, lastName: self.fieldLastName.text!, email: self.fieldEmail.text!, password: self.fieldPassword.text!, username: self.fieldUsername.text!)
+        }
+    }
+    
+    @IBAction func pressedNewUser(_ sender: Any) {
+        self.fieldFirstName.isHidden = false
+        self.fieldLastName.isHidden = false
+        self.fieldEmail.isHidden = false
+        self.buttonNewUser.isHidden = true
+        self.buttonLogin.isHidden = true
+        self.buttonResetCreds.isHidden = true
+        self.buttonRegister.isHidden = false
+    }
+    
+    public func Register(firstName: String, lastName: String, email:String, password: String, username: String){
+        self.fieldFirstName.isHidden = true
+        self.fieldLastName.isHidden = true
+        self.fieldEmail.isHidden = true
+        self.buttonNewUser.isHidden = false
+        self.buttonLogin.isHidden = false
+        self.buttonResetCreds.isHidden = false
+        self.buttonRegister.isHidden = true
+        
+        
+        let url = "https://www.kumpeapps.com/api/users _key=\(params.apikey)&login=\(username)&pass=\(password)&email=\(email)&name_f=\(firstName)&name_l=\(lastName)&_format=json"
+               
+        let parameters: Parameters = ["":""]
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default)
+                   .responseSwiftyJSON { dataResponse in
+                       if dataResponse.value != nil{
+                           let JSON = dataResponse.value!
+                           print(JSON)
+                           
+                       }else{
+                           let alertController = UIAlertController(title: "Error", message:
+                              "No Data Found", preferredStyle: UIAlertController.Style.alert)
+                           alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.destructive,handler: nil))
+        
+                           //Display Alert
+                           self.present(alertController, animated: true, completion: nil)
+                       }
+               }
+
+    }
     
     public func PollKumpeApps(username: String, password: String){
         self.activityIndicator.startAnimating()

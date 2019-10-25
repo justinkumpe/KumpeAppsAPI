@@ -17,16 +17,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Eit-nB-nhj">
-                                <rect key="frame" x="0.0" y="366.5" width="414" height="173"/>
+                                <rect key="frame" x="0.0" y="342" width="414" height="222"/>
                                 <subviews>
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="A16-6R-QVn">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
                                         <color key="color" cocoaTouchSystemColor="darkTextColor"/>
                                     </activityIndicatorView>
+                                    <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First name" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="uj4-JL-PAS">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" keyboardAppearance="alert" returnKeyType="next" textContentType="given-name"/>
+                                        <connections>
+                                            <action selector="actionFirstName:" destination="xR4-wg-kqo" eventType="primaryActionTriggered" id="HMd-Ph-wYF"/>
+                                        </connections>
+                                    </textField>
+                                    <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dco-pa-zzD">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" keyboardAppearance="alert" returnKeyType="next" textContentType="family-name"/>
+                                        <connections>
+                                            <action selector="actionLastName:" destination="xR4-wg-kqo" eventType="primaryActionTriggered" id="xRb-jm-VaP"/>
+                                        </connections>
+                                    </textField>
+                                    <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p3F-SW-5jY">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" keyboardAppearance="alert" returnKeyType="next" textContentType="email"/>
+                                        <connections>
+                                            <action selector="actionEmail:" destination="xR4-wg-kqo" eventType="primaryActionTriggered" id="Dob-ef-cZK"/>
+                                        </connections>
+                                    </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ora-Xn-3W0">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="next" textContentType="username"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardAppearance="alert" returnKeyType="next" textContentType="username"/>
                                         <connections>
                                             <action selector="actionUsername:" destination="xR4-wg-kqo" eventType="primaryActionTriggered" id="gJF-Bf-rkG"/>
                                         </connections>
@@ -34,7 +58,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0Pb-By-1jj">
                                         <rect key="frame" x="0.0" y="41" width="414" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="go" secureTextEntry="YES" textContentType="password"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardAppearance="alert" returnKeyType="go" secureTextEntry="YES" textContentType="password"/>
                                         <connections>
                                             <action selector="actionPassword:" destination="xR4-wg-kqo" eventType="primaryActionTriggered" id="iJ3-EY-sM1"/>
                                         </connections>
@@ -49,22 +73,42 @@
                                             <action selector="pressedLogin:" destination="xR4-wg-kqo" eventType="touchUpInside" id="JLl-b6-uz6"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7jN-WX-0YR" userLabel="FaceIdButton">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TWF-99-9zQ">
                                         <rect key="frame" x="0.0" y="127.5" width="414" height="0.0"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="Register">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="pressedRegister:" destination="xR4-wg-kqo" eventType="touchUpInside" id="pIf-Qj-isM"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y6u-yP-eJ8">
+                                        <rect key="frame" x="0.0" y="131" width="414" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="New User">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="pressedNewUser:" destination="xR4-wg-kqo" eventType="touchUpInside" id="LCf-bF-vAu"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7jN-WX-0YR" userLabel="FaceIdButton">
+                                        <rect key="frame" x="0.0" y="176.5" width="414" height="0.0"/>
                                         <state key="normal" image="icons8-face_id.png"/>
                                         <connections>
                                             <action selector="pressedFaceID:" destination="xR4-wg-kqo" eventType="touchUpInside" id="A44-dv-xgr"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fBJ-Pc-2xv" userLabel="FingerPrintButton">
-                                        <rect key="frame" x="0.0" y="127.5" width="414" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="176.5" width="414" height="0.0"/>
                                         <state key="normal" image="icons8-fingerprint.png"/>
                                         <connections>
                                             <action selector="pressedFingerPrint:" destination="xR4-wg-kqo" eventType="touchUpInside" id="Mdq-tC-VtW"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cCu-cH-pH2">
-                                        <rect key="frame" x="0.0" y="131" width="414" height="42"/>
+                                        <rect key="frame" x="0.0" y="180" width="414" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Reset Credentials">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -93,6 +137,12 @@
                         <outlet property="buttonFaceID" destination="7jN-WX-0YR" id="nYP-aX-VXe"/>
                         <outlet property="buttonFingerPrint" destination="fBJ-Pc-2xv" id="ZWl-6j-nB9"/>
                         <outlet property="buttonLogin" destination="Fv5-2x-3Mi" id="m1R-H3-gFe"/>
+                        <outlet property="buttonNewUser" destination="Y6u-yP-eJ8" id="yzi-Sb-ytP"/>
+                        <outlet property="buttonRegister" destination="TWF-99-9zQ" id="o9G-7J-OLW"/>
+                        <outlet property="buttonResetCreds" destination="cCu-cH-pH2" id="yoy-Ll-n8L"/>
+                        <outlet property="fieldEmail" destination="p3F-SW-5jY" id="j86-SL-YXO"/>
+                        <outlet property="fieldFirstName" destination="uj4-JL-PAS" id="rku-ao-Y6T"/>
+                        <outlet property="fieldLastName" destination="dco-pa-zzD" id="JrP-QR-IXD"/>
                         <outlet property="fieldPassword" destination="0Pb-By-1jj" id="aYi-pT-wmf"/>
                         <outlet property="fieldUsername" destination="ora-Xn-3W0" id="DVE-ZG-LfA"/>
                     </connections>
