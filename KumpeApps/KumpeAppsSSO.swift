@@ -259,10 +259,14 @@ public struct params {
                        if dataResponse.value != nil{
                            let JSON = dataResponse.value!
                            print(JSON)
-                           
+                        if JSON["error"].stringValue == "true"{
+                            self.alert(title: "Error", message: "An Error Occured. This is probably because your username or email is already in use!")
+                        }else{
+                            self.alert(title: "Success", message: "Your KumpeApps SSO account has been created")
+                        }
                        }else{
                            let alertController = UIAlertController(title: "Error", message:
-                              "No Data Found", preferredStyle: UIAlertController.Style.alert)
+                              "An Unknown Error Occurred", preferredStyle: UIAlertController.Style.alert)
                            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.destructive,handler: nil))
         
                            //Display Alert
