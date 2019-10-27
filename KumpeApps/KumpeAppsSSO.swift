@@ -251,9 +251,9 @@ public struct params {
         self.buttonRegister.isHidden = true
         
         
-        let url = "https://www.kumpeapps.com/api/users _key=\(params.apikey)&login=\(username)&pass=\(password)&email=\(email)&name_f=\(firstName)&name_l=\(lastName)&_format=json"
+        let url = "https://www.kumpeapps.com/api/users"
                
-        let parameters: Parameters = ["":""]
+        let parameters: Parameters = ["_key":params.apikey,"login":username,"pass":password,"email":email,"name_f":firstName,"name_l":lastName,"_format":"json"]
         Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default)
                    .responseSwiftyJSON { dataResponse in
                        if dataResponse.value != nil{
