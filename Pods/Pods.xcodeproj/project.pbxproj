@@ -400,7 +400,7 @@
 		0B12C10FDB3CE4A4B79ACF4026631066 /* MF_Base32Additions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MF_Base32Additions.m; path = Base32/MF_Base32Additions.m; sourceTree = "<group>"; };
 		0B16FC7BD8034C627C912E5CB82A30A8 /* LIFEAlertActionView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEAlertActionView.h; path = "Source/Controllers/Alert View/LIFEAlertActionView.h"; sourceTree = "<group>"; };
 		0B5D8D8FB4FF22730077F2FEC113D056 /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
-		0D1CFEEB921D83ACC2E923E9D813E3E3 /* Pods_KumpeApps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_KumpeApps.framework; path = "Pods-KumpeApps.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D1CFEEB921D83ACC2E923E9D813E3E3 /* Pods_KumpeApps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KumpeApps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D2A3860E43F008C955F0999564C04BC /* LIFEAttachmentView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEAttachmentView.h; path = Source/Views/LIFEAttachmentView.h; sourceTree = "<group>"; };
 		0D4FCDE21C845492C7E559D96323C6F7 /* LIFEReportView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEReportView.m; path = Source/Views/LIFEReportView.m; sourceTree = "<group>"; };
 		0D8D7189FA2FAFA7EE21102604BA92A2 /* UIDevice+LIFEAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIDevice+LIFEAdditions.h"; path = "Source/Additions/UIDevice+LIFEAdditions.h"; sourceTree = "<group>"; };
@@ -484,7 +484,7 @@
 		4CA1D526DF47186F2176ABB85A64D2E3 /* LIFEImageProcessor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEImageProcessor.m; path = Source/Services/LIFEImageProcessor.m; sourceTree = "<group>"; };
 		4CCCDCB502FC7530BBE23ACA47DFAD72 /* LIFEWhatHappenedTextView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEWhatHappenedTextView.m; path = Source/Views/LIFEWhatHappenedTextView.m; sourceTree = "<group>"; };
 		4F36E05799DDC1969B402E5D10043091 /* Buglife.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Buglife.xcconfig; sourceTree = "<group>"; };
-		5069D199AB328CCD047E61C632CD7C32 /* SwiftKeychainWrapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftKeychainWrapper.framework; path = SwiftKeychainWrapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5069D199AB328CCD047E61C632CD7C32 /* SwiftKeychainWrapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftKeychainWrapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50D80136C3DFA3899082AD9B6A2A4330 /* LIFEReproStep.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEReproStep.h; path = Source/Models/LIFEReproStep.h; sourceTree = "<group>"; };
 		50EEFD4873E56A3155EF975C6655D5B6 /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
 		51E98E97AA533966ACA4EC9FBC411D26 /* LIFEAppInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEAppInfo.h; path = Source/Models/LIFEAppInfo.h; sourceTree = "<group>"; };
@@ -505,7 +505,7 @@
 		5A92DA28248D0A849FF1C4863DADABD6 /* LIFEAlertAnimator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEAlertAnimator.h; path = "Source/Controllers/Alert View/LIFEAlertAnimator.h"; sourceTree = "<group>"; };
 		5AF018A9526A2684FE46ED58C29D3275 /* LIFEAwesomeLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEAwesomeLogger.h; path = Source/LIFEAwesomeLogger.h; sourceTree = "<group>"; };
 		5D49DC8DC98172BDB529851F4FD1DDAF /* Token+URL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Token+URL.swift"; path = "Sources/Token+URL.swift"; sourceTree = "<group>"; };
-		5D797E9A5C5782CE845840781FA1CC81 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D797E9A5C5782CE845840781FA1CC81 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E91F1E4A3F558543FEF4D68951E331B /* LIFEJelloLayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEJelloLayer.m; path = "Source/Views/Jello View/LIFEJelloLayer.m"; sourceTree = "<group>"; };
 		5E91F79B4EB942825F4568625BA6B848 /* Base32.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Base32.xcconfig; sourceTree = "<group>"; };
 		5EC99A8996471011A66E1104270879CD /* LIFEFileLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEFileLogger.h; path = Source/Services/Logging/LIFEFileLogger.h; sourceTree = "<group>"; };
@@ -597,7 +597,7 @@
 		99E6677E0600112C19C2D2B6B3D8608F /* LIFELocalizedStringProvider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFELocalizedStringProvider.h; path = Source/Views/LIFELocalizedStringProvider.h; sourceTree = "<group>"; };
 		9B3BA4621C3A70CD4919BFD6E1750C37 /* PersistentToken.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PersistentToken.swift; path = Sources/PersistentToken.swift; sourceTree = "<group>"; };
 		9C3B0EB7DD03CF929CE26FBE3E335AA3 /* LIFEPickerInputField+Protected.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "LIFEPickerInputField+Protected.h"; path = "Source/Protected/LIFEPickerInputField+Protected.h"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9E48C42AC7636930BBD0172817E339FB /* NSMutableDictionary+LIFEAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMutableDictionary+LIFEAdditions.m"; path = "Source/Additions/NSMutableDictionary+LIFEAdditions.m"; sourceTree = "<group>"; };
 		9E8E98DF0BF0168F899D1FE36B92224B /* LIFEContainerTransitionContext.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEContainerTransitionContext.h; path = "Source/Views/Container Window/LIFEContainerTransitionContext.h"; sourceTree = "<group>"; };
 		9E994CCA43FAA8E34D1AEC643EB9599E /* LIFEScreenshotAnnotatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEScreenshotAnnotatorView.m; path = Source/Views/LIFEScreenshotAnnotatorView.m; sourceTree = "<group>"; };
@@ -605,10 +605,10 @@
 		A01A638674F510BE6BB9B898BFB835F1 /* MF_Base32Additions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MF_Base32Additions.h; path = Base32/MF_Base32Additions.h; sourceTree = "<group>"; };
 		A05866E9E129B3D9E2D4D29D3D5AFBFD /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
 		A37A844A052A22F12520F312A411A67E /* LIFEContainerViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEContainerViewController.m; path = "Source/Views/Container Window/LIFEContainerViewController.m"; sourceTree = "<group>"; };
-		A4017453F0D883FE4FF6D749B3BB6EB1 /* Buglife.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Buglife.framework; path = Buglife.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4017453F0D883FE4FF6D749B3BB6EB1 /* Buglife.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Buglife.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A432F5147F18AEBD626ADA6DD1E2D62C /* SwiftyJSON.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyJSON.xcconfig; sourceTree = "<group>"; };
 		A77321B4209A784779758EDF17E17919 /* LIFETextInputViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFETextInputViewController.h; path = Source/Controllers/LIFETextInputViewController.h; sourceTree = "<group>"; };
-		A7FC6E9384C0645805FE2930F120ED93 /* Base32.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Base32.framework; path = Base32.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7FC6E9384C0645805FE2930F120ED93 /* Base32.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Base32.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8D7789FB13C4288347CD0A81FA7033F /* LIFEAnnotatedImage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEAnnotatedImage.m; path = Source/Models/LIFEAnnotatedImage.m; sourceTree = "<group>"; };
 		A8F187B353769F1AC75BF01263830AEE /* Base32-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Base32-prefix.pch"; sourceTree = "<group>"; };
 		A98FFB36E75CA5C59CEFBEF8D539B190 /* LIFEStepsToReproduceCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEStepsToReproduceCell.h; path = Source/Views/LIFEStepsToReproduceCell.h; sourceTree = "<group>"; };
@@ -637,7 +637,7 @@
 		BC129DF706ACE2886890DA99AEF49FAE /* Token.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Token.swift; path = Sources/Token.swift; sourceTree = "<group>"; };
 		BC4D7014FE29814DFC97EF04546C8D47 /* UITextView+LIFEAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITextView+LIFEAdditions.h"; path = "Source/Additions/UITextView+LIFEAdditions.h"; sourceTree = "<group>"; };
 		BD6A04758AEF713558A353596EE956A2 /* Buglife-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Buglife-dummy.m"; sourceTree = "<group>"; };
-		BDF6136650C912756E10B2E3F289789C /* Alamofire_SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire_SwiftyJSON.framework; path = "Alamofire-SwiftyJSON.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDF6136650C912756E10B2E3F289789C /* Alamofire_SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire_SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE0DD8EAB7FC9A70D399EEAA53A1B4E8 /* LIFEAppInfoProvider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEAppInfoProvider.h; path = Source/Services/LIFEAppInfoProvider.h; sourceTree = "<group>"; };
 		BEFAB71EFE76A4DDD3405E095F6368AC /* LIFEAttachmentManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LIFEAttachmentManager.h; path = Source/Services/LIFEAttachmentManager.h; sourceTree = "<group>"; };
 		BFBC7CD78FC627E4C56A7E1752F9C869 /* OneTimePassword-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "OneTimePassword-Info.plist"; sourceTree = "<group>"; };
@@ -678,9 +678,9 @@
 		D9D8A2F1C3DF4D58CD6B61064523C20D /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
 		DAE89F3E5F5E86B8905581A2CDBB580C /* LIFEPoweredByBuglifeView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEPoweredByBuglifeView.m; path = Source/Views/LIFEPoweredByBuglifeView.m; sourceTree = "<group>"; };
 		DC4E9A1537883C81FF1CA5FD72D65D12 /* SwiftKeychainWrapper.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SwiftKeychainWrapper.modulemap; sourceTree = "<group>"; };
-		DC67FC8D16BFAF646F28DF2719456F60 /* OneTimePassword.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = OneTimePassword.framework; path = OneTimePassword.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC67FC8D16BFAF646F28DF2719456F60 /* OneTimePassword.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OneTimePassword.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1AC3011AE4A0E56C42ED794A994A6E3 /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
-		E23C076BA70925415F490FEDB215DA92 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftyJSON.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E23C076BA70925415F490FEDB215DA92 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2896A1C968168FF41CC564B53EB0A15 /* LIFERecordingShrinker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFERecordingShrinker.m; path = Source/Services/LIFERecordingShrinker.m; sourceTree = "<group>"; };
 		E31B51993116CE47C3E8B775B95157A1 /* LIFEAttribute.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LIFEAttribute.m; path = Source/Models/LIFEAttribute.m; sourceTree = "<group>"; };
 		E33DCC330329477D2EAF8DEE0E058E64 /* Buglife-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Buglife-Info.plist"; sourceTree = "<group>"; };
@@ -833,7 +833,6 @@
 				5D49DC8DC98172BDB529851F4FD1DDAF /* Token+URL.swift */,
 				116093F3FAE9719BE9D024F9FE46D1C0 /* Support Files */,
 			);
-			name = OneTimePassword;
 			path = OneTimePassword;
 			sourceTree = "<group>";
 		};
@@ -859,7 +858,6 @@
 				CD3D4F27304E16A3827856C6A0CEFE5D /* SwiftKeychainWrapper.h */,
 				01F860836BDD325A1FD8536A9D8AF8C8 /* Support Files */,
 			);
-			name = SwiftKeychainWrapper;
 			path = SwiftKeychainWrapper;
 			sourceTree = "<group>";
 		};
@@ -896,7 +894,6 @@
 				0B12C10FDB3CE4A4B79ACF4026631066 /* MF_Base32Additions.m */,
 				E8854FFE0A34993B03BE7B16275FE76F /* Support Files */,
 			);
-			name = Base32;
 			path = Base32;
 			sourceTree = "<group>";
 		};
@@ -922,7 +919,6 @@
 				12015C9A6FC98C0BDB6FAAB8FDA936A2 /* Validation.swift */,
 				0470C7A8FD7217A8D0FF68B6829A4DF2 /* Support Files */,
 			);
-			name = Alamofire;
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
@@ -970,7 +966,6 @@
 				4AC37B15128E9C13A54F91BFCD9D1297 /* Alamofire-SwiftyJSON.swift */,
 				A9C9893BF173F836C5C8D7D5BF1D228E /* Support Files */,
 			);
-			name = "Alamofire-SwiftyJSON";
 			path = "Alamofire-SwiftyJSON";
 			sourceTree = "<group>";
 		};
@@ -988,7 +983,6 @@
 				34D706DA5BAAEB9A09B82AF4883F7F40 /* SwiftyJSON.swift */,
 				4FF425061B355C9060917FF6A6FC2293 /* Support Files */,
 			);
-			name = SwiftyJSON;
 			path = SwiftyJSON;
 			sourceTree = "<group>";
 		};
@@ -1283,7 +1277,6 @@
 				F70D5751C977FAA28768BA08F2DE3F49 /* UIWindow+LIFEAdditions.m */,
 				C7108F61E084BE872321A74517906E29 /* Support Files */,
 			);
-			name = Buglife;
 			path = Buglife;
 			sourceTree = "<group>";
 		};
@@ -1680,6 +1673,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
 			productRefGroup = 2BFEC4A7E69CA3F2C759A3B2DCB5B6D0 /* Products */;
