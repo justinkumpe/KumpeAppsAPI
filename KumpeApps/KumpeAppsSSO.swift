@@ -94,6 +94,10 @@ public struct params {
             self.buttonResetCreds.isEnabled = false
         }
         
+        if schemeAvailable(scheme: "kumpeappssso://"){
+            self.launchSSO(appScheme: params.appScheme)
+        }
+        
         if self.keychainSSOSecure.string(forKey: "Username") != nil && self.keychainSSOSecure.string(forKey: "Username") != "apple"{
             self.buttonNewUser.isHidden = true
         }
@@ -322,6 +326,14 @@ public struct params {
                          
                          //Start SSOAccess Keychain
                          KumpeAppsSSO.keychainSSOAccess.set("\(params.CurrentDate)", forKey: "AuthDate")
+                    
+                        for (key, value) in KappsArray["subscriptions"] {
+
+                            print("key \(key) value \(value)")
+
+                        }
+                    
+                    
                          let sqlDatabase = "Apps_SSO"
                          let sqlTable = "SSO_Access_List"
                          let sqlSelect = "*"
