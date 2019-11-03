@@ -268,14 +268,28 @@ public struct params {
                             self.alert(title: "Error", message: "An Error Occured. This is probably because your username or email is already in use!")
                         }else{
                             if params.enableFreeAccessWithRegistration{
+                                let formatter = DateFormatter()
+                                 // initially set the format based on your datepicker date / server String
+                                 formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                                 
+                                 let myString = formatter.string(from: Date()) // string purpose I add here
+                                 // convert your string to date
+                                 let yourDate = formatter.date(from: myString)
+                                 //then again set the date format whhich type of output you need
+                                 formatter.dateFormat = "dd-MMM-yyyy"
+                                 // again convert your date to string
+                                params.CurrentDate = formatter.string(from: yourDate!)
+                                
                                 let userid = JSON[0]["user_id"].stringValue
-                                let url = "https://scripts.kumpeapps.com/KumpeApps_Add_Access_Lifetime.php"
+                                let url = "https://www.kumpeapps.com/api/access"
                                        
-                                let parameters: Parameters = ["userID":userid,"productID":params.productCode]
+                                let parameters: Parameters = ["_key":params.apikey,"user_id":userid,"product_id":params.productCode,"begin_date":params.CurrentDate,"expire_date":"2037-12-31"]
                                 Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default)
                                            .responseSwiftyJSON { dataResponse in
                                             if dataResponse.value != nil{
+                                                let JSON = dataResponse.value!
                                                 self.alert(title: "Success", message: "Your KumpeApps SSO account has been created")
+                                                print(JSON)
                                             }
                                 }
                                 
