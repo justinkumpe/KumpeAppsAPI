@@ -269,6 +269,7 @@ public struct params {
                             self.alert(title: "Error", message: "An Error Occured. This is probably because your username or email is already in use!")
                         }else{
                             if params.enableFreeAccessWithRegistration{
+                                print("Free Access")
                                 let formatter = DateFormatter()
                                  // initially set the format based on your datepicker date / server String
                                  formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -283,7 +284,9 @@ public struct params {
                                 
                                 let userid = JSON[0]["user_id"].stringValue
                                 let url = "https://scripts.kumpeapps.com/KumpeApps_Add_Access_Lifetime.php?userID=\(userid)&productID=\(params.productCode)"
-                                       
+                                
+                                print(url)
+                                
                                 let parameters: Parameters = ["_key":params.apikey,"user_id":userid,"product_id":params.productCode,"begin_date":params.CurrentDate,"expire_date":"2037-12-31"]
                                 Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default)
                                            .responseSwiftyJSON { dataResponse in
