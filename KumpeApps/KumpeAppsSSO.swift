@@ -71,6 +71,7 @@ public struct params {
     public static var enableRegistration:Bool = false
     public static var enableBiometrics:Bool = true
     public static var enableResetCreds:Bool = true
+    public static var enableFreeAccessWithRegistration:Bool = false
 }
     
     override public func viewDidLoad() {
@@ -266,7 +267,13 @@ public struct params {
                         if JSON["error"].stringValue == "true"{
                             self.alert(title: "Error", message: "An Error Occured. This is probably because your username or email is already in use!")
                         }else{
-                            self.alert(title: "Success", message: "Your KumpeApps SSO account has been created")
+                            if params.enableFreeAccessWithRegistration{
+                                let userid = JSON[0]["user_id"].stringValue
+                                print("User ID IS: \(userid)")
+                                self.alert(title: "Success", message: "Your KumpeApps SSO account has been created")
+                            }else{
+                                self.alert(title: "Success", message: "Your KumpeApps SSO account has been created")
+                            }
                         }
                        }else{
                            let alertController = UIAlertController(title: "Error", message:
@@ -328,58 +335,18 @@ public struct params {
                          KumpeAppsSSO.keychainSSOAccess.set("\(params.CurrentDate)", forKey: "AuthDate")
                     
                         for (key, value) in KappsArray["subscriptions"] {
-
-                            print("key \(key) value \(value)")
+                            
+                            KumpeAppsSSO.keychainSSOAccess.set("\(value.stringValue)", forKey: "\(key)Expiration")
+                            KumpeAppsSSO.keychainSSOAccess.set(true, forKey: "AccessTo\(key)")
 
                         }
                     
-                    
-                         let sqlDatabase = "Apps_SSO"
-                         let sqlTable = "SSO_Access_List"
-                         let sqlSelect = "*"
-                         let sqlWhere = "username = '\(username)'"
-                         let sqlQuery = "SELECT \(sqlSelect) FROM \(sqlTable) WHERE \(sqlWhere)"
-                            let parameters: Parameters = ["sql_username":KumpeAppsAPI.params.sqlUser,"password":KumpeAppsAPI.params.sqlPass,"database":"\(sqlDatabase)","sql":"\(sqlQuery)","app_username":"\(username)","otp":KumpeAppsAPI.shared.getOTP()]
-                            Alamofire.request(KumpeAppsAPI.params.url, method: .post, parameters: parameters, encoding: URLEncoding.default)
-                             .responseSwiftyJSON { dataResponse in
-                                 if dataResponse.value != nil{
-                                     let JSONArray = dataResponse.value!
-                                 print("Response: \(JSONArray)")
-                                 for i in 0 ..< JSONArray.count
-                                 {
-                                     //Builds Access for each app pulled from KumpeApps with SSO Tag
-                                     let AccessTag = JSONArray[i]["product_id"].stringValue
-                                     let OTP_Secret = JSONArray[i]["OTP_Secret"].stringValue
-
-                                     let SSOAccessTag = "AccessTo\(AccessTag)"
-                                     print("Count: \(JSONArray.count)")
-                                     //JSONArray[i]["Product_Name"].stringValue
-                                     
-                                     KumpeAppsSSO.keychainSSOAccess.set(true, forKey: "\(SSOAccessTag)")
-                                     print("AccessTo\(AccessTag)")
-                                     print("\(KumpeAppsSSO.keychainSSOAccess.bool(forKey: "\(SSOAccessTag)")!)")
-                                     self.keychainSSOSecure.set("\(OTP_Secret)", forKey: "OTP_Secret")
-                                    
-                                    
-                                     
-                                 }
                                  params.pollMessage = "AccessGranted"
                                  print(params.pollMessage)
                                     self.navigationController?.popViewController(animated: true)
                                     self.activityIndicator.stopAnimating()
                                     self.fieldPassword.text = ""
                                     self.dismiss(animated: true, completion: nil)
-                                    
-                                 }else{
-                                    
-                                    params.pollMessage = "KumpeApps SSO Servers are currently down.  Please try again in a few min."
-                                    self.activityIndicator.stopAnimating()
-                                    self.alert(title: "Error", message: params.pollMessage)
-                                    print(params.pollMessage)
-                                    
-                                 }
-                            }
-                         //End SSOAccess Keychain
                         
                         
                 }else{
@@ -474,6 +441,8 @@ public struct params {
         _ = KumpeAppsSSO.keychainSSOUser.removeAllKeys()
         if resetCreds{
             _ = self.keychainSSOSecure.removeAllKeys()
+            self.fieldUsername.text = ""
+            self.fieldPassword.text = ""
         }
     }
     
