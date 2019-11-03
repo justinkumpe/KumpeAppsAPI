@@ -60,6 +60,7 @@ public struct params {
     public static var FirstName = ""
     public static var LastName = ""
     public static var CurrentDate = ""
+    public static var CurrentDate2 = ""
     public static var apikey = ""
     public static var pollMessage = ""
     public static var appScheme = ""
@@ -75,6 +76,18 @@ public struct params {
 }
     
     override public func viewDidLoad() {
+    print("SSO View Did Load")
+    let formatter = DateFormatter()
+     // initially set the format based on your datepicker date / server String
+     formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+     
+     let myString = formatter.string(from: Date()) // string purpose I add here
+     // convert your string to date
+     let yourDate = formatter.date(from: myString)
+     //then again set the date format whhich type of output you need
+     formatter.dateFormat = "yyyy-MM-dd"
+     // again convert your date to string
+    params.CurrentDate2 = formatter.string(from: yourDate!)
         print("SSO View Did Load")
         self.buttonRegister.isHidden = true
         self.fieldEmail.isHidden = true
@@ -270,24 +283,14 @@ public struct params {
                         }else{
                             if params.enableFreeAccessWithRegistration{
                                 print("Free Access")
-                                let formatter = DateFormatter()
-                                 // initially set the format based on your datepicker date / server String
-                                 formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                                 
-                                 let myString = formatter.string(from: Date()) // string purpose I add here
-                                 // convert your string to date
-                                 let yourDate = formatter.date(from: myString)
-                                 //then again set the date format whhich type of output you need
-                                 formatter.dateFormat = "dd-MMM-yyyy"
-                                 // again convert your date to string
-                                params.CurrentDate = formatter.string(from: yourDate!)
                                 
                                 let userid = JSON[0]["user_id"].stringValue
-                                let url = "https://scripts.kumpeapps.com/KumpeApps_Add_Access_Lifetime.php?userID=\(userid)&productID=\(params.productCode)"
+                                let url = "https://www.kumpeapps.com/api/access"
                                 
                                 print(url)
+                                print(params.CurrentDate)
                                 
-                                let parameters: Parameters = ["_key":params.apikey,"user_id":userid,"product_id":params.productCode,"begin_date":params.CurrentDate,"expire_date":"2037-12-31"]
+                                let parameters: Parameters = ["_key":params.apikey,"user_id":userid,"product_id":params.productCode,"begin_date":params.CurrentDate2,"expire_date":"2037-12-31"]
                                 Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default)
                                            .responseSwiftyJSON { dataResponse in
                                             if dataResponse.value != nil{
