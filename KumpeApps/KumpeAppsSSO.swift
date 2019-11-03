@@ -247,6 +247,7 @@ public struct params {
     }
     
     public func Register(firstName: String, lastName: String, email:String, password: String, username: String){
+        self.activityIndicator.startAnimating()
         self.fieldFirstName.isHidden = true
         self.fieldLastName.isHidden = true
         self.fieldEmail.isHidden = true
@@ -281,7 +282,7 @@ public struct params {
                                 params.CurrentDate = formatter.string(from: yourDate!)
                                 
                                 let userid = JSON[0]["user_id"].stringValue
-                                let url = "https://www.kumpeapps.com/api/access"
+                                let url = "https://scripts.kumpeapps.com/KumpeApps_Add_Access_Lifetime.php?userID=\(userid)&productID=\(params.productCode)"
                                        
                                 let parameters: Parameters = ["_key":params.apikey,"user_id":userid,"product_id":params.productCode,"begin_date":params.CurrentDate,"expire_date":"2037-12-31"]
                                 Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default)
@@ -290,11 +291,13 @@ public struct params {
                                                 let JSON = dataResponse.value!
                                                 self.alert(title: "Success", message: "Your KumpeApps SSO account has been created")
                                                 print(JSON)
+                                                self.activityIndicator.stopAnimating()
                                             }
                                 }
                                 
                             }else{
                                 self.alert(title: "Success", message: "Your KumpeApps SSO account has been created")
+                                self.activityIndicator.stopAnimating()
                             }
                         }
                        }else{
