@@ -269,8 +269,16 @@ public struct params {
                         }else{
                             if params.enableFreeAccessWithRegistration{
                                 let userid = JSON[0]["user_id"].stringValue
-                                print("User ID IS: \(userid)")
-                                self.alert(title: "Success", message: "Your KumpeApps SSO account has been created")
+                                let url = "https://scripts.kumpeapps.com/KumpeApps_Add_Access_Lifetime.php"
+                                       
+                                let parameters: Parameters = ["userID":userid,"productID":params.productCode]
+                                Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default)
+                                           .responseSwiftyJSON { dataResponse in
+                                            if dataResponse.value != nil{
+                                                self.alert(title: "Success", message: "Your KumpeApps SSO account has been created")
+                                            }
+                                }
+                                
                             }else{
                                 self.alert(title: "Success", message: "Your KumpeApps SSO account has been created")
                             }
@@ -285,6 +293,24 @@ public struct params {
                        }
                }
 
+    }
+    
+    public func resetPassword(){
+        if self.fieldUsername.text != ""{
+            let url = "https://www.kumpeapps.com/api/check-access/sendpass"
+                          
+            let parameters: Parameters = ["_key":params.apikey,"login":self.fieldUsername.text!]
+                   Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default)
+                              .responseSwiftyJSON { dataResponse in
+                                  if dataResponse.value != nil{
+                                      let JSON = dataResponse.value!
+                                      print(JSON)
+                                    self.alert(title: "Password Reset", message: "If your username is valid then an email has been sent to you to reset your password.")
+                                }
+            }
+        }else{
+            alert(title: "Error", message: "Username is required to reset password")
+        }
     }
     
     public func PollKumpeApps(username: String, password: String){
