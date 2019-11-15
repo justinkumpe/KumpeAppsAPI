@@ -65,6 +65,7 @@ public struct params {
     public static var pollMessage = ""
     public static var appScheme = ""
     public static var productCode = ""
+    public static var UserID = ""
     public static let s = UIStoryboard (
         name: "Main", bundle: Bundle(for: KumpeAppsSSO.self)
     )
@@ -350,6 +351,7 @@ public struct params {
                 let Authenticated = KappsArray["ok"].stringValue
                 params.FirstName = KappsArray["name_f"].stringValue
                 params.LastName = KappsArray["name_l"].stringValue
+                params.UserID = KappsArray["user_id"].stringValue
                 if(Authenticated == "true"){
                    //Access Granted
                             let formatter = DateFormatter()
@@ -422,7 +424,7 @@ public struct params {
         
     }
     
-    public func confirmAccess(ignoreDate: Bool = false, productCode: String = params.productCode, appScheme: String = params.appScheme) -> String{
+    public func confirmAccess(ignoreDate: Bool = false, productCode: String = params.productCode, appScheme: String = params.appScheme, registerFreeIfDenied: Bool = false) -> String{
         let formatter = DateFormatter()
          // initially set the format based on your datepicker date / server String
          formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -458,7 +460,30 @@ public struct params {
         //If User is signed in to KumpeApps SSO and session not expired but Access to This App is not approved then Deny Access
         } else if username != "" && (SSOAuthDate == CurrentDate || ignoreDate){
 //            AccessDenied
-            returnMessage = "AccessDenied"
+            if registerFreeIfDenied{
+                print("Free Access")
+                
+                let userid = params.UserID
+                let url = "https://www.kumpeapps.com/api/access"
+                
+                print(url)
+                print(params.CurrentDate)
+                
+                let parameters: Parameters = ["_key":params.apikey,"user_id":userid,"product_id":productCode,"begin_date":params.CurrentDate2,"expire_date":"2037-12-31"]
+                Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default)
+                           .responseSwiftyJSON { dataResponse in
+                            if dataResponse.value != nil{
+                                let JSON = dataResponse.value!
+                                self.alert(title: "Success", message: "Your free access has been registered. Please login again.")
+                                print(JSON)
+                                returnMessage = "RegisteredFree"
+                                self.activityIndicator.stopAnimating()
+                            }
+                }
+                
+            }else{
+                returnMessage = "AccessDenied"
+            }
 //        Session Expired
         }else if username != "" && SSOAuthDate != CurrentDate{
             returnMessage = "SessionExpired"
