@@ -11,13 +11,13 @@ com.kumpeapps.ios.sso.user<br>
 <u><b>Add Following values in PList</b></u><br>
 <br>
 LSApplicationQueriesSchemes Type:Array<br>
-  Item0 Type:String Value: kumpeappssso<br>
+<ensp>  Item0 Type:String Value: kumpeappssso<br>
 Privacy - Face ID Usage Description Type: String Value: FaceID is requried for remembered passwords<br>
 URL types Type: Array<br>
-  Item 0 Type: Dictionary<br>
-    URL Identifier Type: String Value: your_app_identifier<br>
-    URL Schemes Type: Array<br>
-      Item 0 Type: String Value: your_app_scheme<br>
+<ensp>  Item 0 Type: Dictionary<br>
+<ensp><ensp>    URL Identifier Type: String Value: your_app_identifier<br>
+<ensp><ensp>    URL Schemes Type: Array<br>
+ <ensp><ensp><ensp>     Item 0 Type: String Value: your_app_scheme<br>
 <br>
 <br>
 <u><b>Set Parameters in AppDelegate under didFinishLaunchingWithOptions</b></u><br>
