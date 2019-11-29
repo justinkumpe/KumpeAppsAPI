@@ -24,6 +24,17 @@ URL types Type: Array<br>
 <br>
 KumpeAppsAPI.shared.setParams(sqlUser: "yourAppSqlUser", sqlPass: "yourAppSqlPass", otpSecret: "yourAppOTPSecret", appName: "yourAppName", apikey: "yourAppAPIKey", appScheme: "yourAppURLScheme", productCode: "yourAppsProductCode In KumpeApps") <br>
 NOTE: apikey, appScheme, and productCode parameters is optional and only required if using KumpeApps SSO for login <br>
+<br>
+<br>
+<br>
+<u><b>KumpeApps SSO</u></b><br>
 
-
-
+Place This in viewDidAppear<br>
+        let access = KumpeAppsSSO.shared.confirmAccess()<br>
+        if access == "AccessGranted"{<br>
+            self.AccessGranted()<br>
+        }else if access == "AccessDenied"{<br>
+            self.AccessDenied()<br>
+        }else{<br>
+            show(KumpeAppsSSO.params.loginvc, sender: self)<br>
+        }<br>
