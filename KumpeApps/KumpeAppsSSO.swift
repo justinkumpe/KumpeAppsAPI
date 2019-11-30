@@ -137,7 +137,7 @@ public struct params {
         self.activityIndicator.stopAnimating()
         self.fieldPassword.text = ""
         if params.apikey == "Disable"{
-            alert(title: "KumpeAppsSSO API Key is missing.", message: "The developer of this app has not set the apikey parameter. This parameter must be set to utilize KumpeApps signon")
+            _ = SweetAlert().showAlert("KumpeAppsSSO API Key is missing.", subTitle: "The developer of this app has not set the apikey parameter. This parameter must be set to utilize KumpeApps signon", style: AlertStyle.error)
             sleep(3)
             self.dismiss(animated: true, completion: nil)
         }
@@ -189,7 +189,7 @@ public struct params {
                     }
                 })
             }else{
-                self.alert(title: "Error", message: "Please login first. FaceID can be used for future logins provided you do not click logout.")
+                _ = SweetAlert().showAlert("Error", subTitle: "Please login first. FaceID can be used for future logins provided you do not click logout.", style: AlertStyle.error)
             }
         }
     }
@@ -223,7 +223,7 @@ public struct params {
                   }
               })
           }else{
-              self.alert(title: "Error", message: "Please login first. Biometrics can be used for future logins provided you do not click logout.")
+            _ = SweetAlert().showAlert("Error", subTitle: "Please login first. Biometrics can be used for future logins provided you do not click logout.", style: AlertStyle.error)
           }
       }
     }
@@ -296,24 +296,19 @@ public struct params {
                                            .responseSwiftyJSON { dataResponse in
                                             if dataResponse.value != nil{
                                                 let JSON = dataResponse.value!
-                                                self.alert(title: "Success", message: "Your KumpeApps SSO account has been created")
+                                                self.successAlert(title: "Success", message: "Your KumpeApps SSO account has been created")
                                                 print(JSON)
                                                 self.activityIndicator.stopAnimating()
                                             }
                                 }
                                 
                             }else{
-                                self.alert(title: "Success", message: "Your KumpeApps SSO account has been created")
+                                self.successAlert(title: "Success", message: "Your KumpeApps SSO account has been created")
                                 self.activityIndicator.stopAnimating()
                             }
                         }
                        }else{
-                           let alertController = UIAlertController(title: "Error", message:
-                              "An Unknown Error Occurred", preferredStyle: UIAlertController.Style.alert)
-                           alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.destructive,handler: nil))
-        
-                           //Display Alert
-                           self.present(alertController, animated: true, completion: nil)
+                        _ = SweetAlert().showAlert("Error", subTitle: "An Unknown Error Occurred", style: AlertStyle.error)
                        }
                }
 
@@ -329,11 +324,11 @@ public struct params {
                                   if dataResponse.value != nil{
                                       let JSON = dataResponse.value!
                                       print(JSON)
-                                    self.alert(title: "Password Reset", message: "If your username is valid then an email has been sent to you to reset your password.")
+                                    _ = SweetAlert().showAlert("Password Reset", subTitle: "If your username is valid then an email has been sent to you to reset your password.", style: AlertStyle.error)
                                 }
             }
         }else{
-            alert(title: "Error", message: "Username is required to reset password")
+            _ = SweetAlert().showAlert("Error", subTitle: "Username is required to reset password", style: AlertStyle.error)
         }
     }
     
@@ -416,7 +411,7 @@ public struct params {
                     params.pollMessage = "KumpeApps SSO Servers are currently down.  Please try again in a few min."
                     print(params.pollMessage)
                     self.activityIndicator.stopAnimating()
-                   self.alert(title: "Error", message: params.pollMessage)
+                   _ = SweetAlert().showAlert("Access Denied!", subTitle: params.pollMessage, style: AlertStyle.error)
                 }
                 
         }
@@ -501,12 +496,15 @@ public struct params {
     }
     
     public func alert(title: String, message: String){
-        let alertController = UIAlertController(title: title, message:
-            message, preferredStyle: UIAlertController.Style.alert)
-        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.destructive,handler: nil))
-        
-        //Display Alert
-        self.present(alertController, animated: true, completion: nil)
+        _ = SweetAlert().showAlert(message)
+    }
+    
+    public func errorAlert(title: String, message: String){
+        _ = SweetAlert().showAlert(title, subTitle: message, style: AlertStyle.error)
+    }
+    
+    public func successAlert(title: String, message: String){
+        _ = SweetAlert().showAlert(title, subTitle: message, style: AlertStyle.success)
     }
     
     public func logoff(resetCreds: Bool = false){

@@ -75,7 +75,7 @@ open class SweetAlert: UIViewController {
         subTitleTextView.text = ""
         subTitleTextView.textAlignment = .center
         subTitleTextView.font = UIFont(name: kFont, size:16)
-        subTitleTextView.textColor = UIColor.colorFromRGB(0x797979)
+        subTitleTextView.textColor = UIColor.colorFromRGB(0xFFFFFF)
         subTitleTextView.isEditable = false
     }
     
@@ -240,7 +240,7 @@ open class SweetAlert: UIViewController {
     open func showAlert(_ title: String, subTitle: String?, style: AlertStyle,buttonTitle: String,buttonColor: UIColor,otherButtonTitle:
         String?, otherButtonColor: UIColor?,action: ((_ isOtherButton: Bool) -> Void)? = nil) {
             userAction = action
-            let window: UIWindow = UIApplication.shared.keyWindow! 
+            let window: UIWindow = UIApplication.shared.keyWindow!
             window.addSubview(view)
             window.bringSubviewToFront(view)
             view.frame = window.bounds
@@ -325,9 +325,9 @@ open class SweetAlert: UIViewController {
                             }, completion: { (Bool) -> Void in
 
                                 self.contentView.transform = previousTransform
-                        }) 
-                }) 
-        }) 
+                        })
+                })
+        })
     }
     
     fileprivate struct SweetAlertContext {
