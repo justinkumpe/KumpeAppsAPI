@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xR4-wg-kqo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xR4-wg-kqo">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -122,12 +122,28 @@
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="818" id="GYG-jC-hd9"/>
                                 </constraints>
                             </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="JK_512x512.png" translatesAutoresizingMaskIntoConstraints="NO" id="C4r-cG-hdC">
+                                <rect key="frame" x="87" y="128" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Please login with your current KumpeApps username and password" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6pn-i1-MRI">
+                                <rect key="frame" x="0.0" y="621" width="414" height="122"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="nfh-R1-ihc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Eit-nB-nhj" firstAttribute="centerY" secondItem="cYg-W8-c67" secondAttribute="centerY" id="PyL-nF-JP7"/>
+                            <constraint firstItem="6pn-i1-MRI" firstAttribute="top" secondItem="Eit-nB-nhj" secondAttribute="bottom" constant="57" id="Vtl-NQ-SYi"/>
                             <constraint firstItem="Eit-nB-nhj" firstAttribute="width" secondItem="cYg-W8-c67" secondAttribute="width" id="cfZ-Hv-nPt"/>
+                            <constraint firstItem="6pn-i1-MRI" firstAttribute="width" secondItem="cYg-W8-c67" secondAttribute="width" multiplier="0.101449" constant="372" id="nyj-gz-ysc"/>
                             <constraint firstItem="Eit-nB-nhj" firstAttribute="centerX" secondItem="cYg-W8-c67" secondAttribute="centerX" id="sAF-25-9Ij"/>
+                            <constraint firstItem="6pn-i1-MRI" firstAttribute="centerX" secondItem="cYg-W8-c67" secondAttribute="centerX" id="thB-ic-a2V"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cYg-W8-c67"/>
                     </view>
@@ -148,10 +164,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wx2-y3-0bA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="117"/>
+            <point key="canvasLocation" x="137.68115942028987" y="116.51785714285714"/>
         </scene>
     </scenes>
     <resources>
+        <image name="JK_512x512.png" width="288" height="288"/>
         <image name="icons8-face_id.png" width="50" height="50"/>
         <image name="icons8-fingerprint.png" width="50" height="50"/>
     </resources>

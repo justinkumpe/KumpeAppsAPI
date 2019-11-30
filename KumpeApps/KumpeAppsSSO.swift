@@ -280,7 +280,7 @@ public struct params {
                            let JSON = dataResponse.value!
                            print(JSON)
                         if JSON["error"].stringValue == "true"{
-                            self.alert(title: "Error", message: "An Error Occured. This is probably because your username or email is already in use!")
+                            _ = SweetAlert().showAlert("Error!", subTitle: "An Error Occured. This is probably because your username or email is already in use!", style: AlertStyle.error)
                         }else{
                             if params.enableFreeAccessWithRegistration{
                                 print("Free Access")
@@ -408,7 +408,7 @@ public struct params {
                     _ = KumpeAppsSSO.keychainSSOUser.removeAllKeys()
                     _ = self.keychainSSOSecure.removeAllKeys()
                     self.activityIndicator.stopAnimating()
-                    self.alert(title: "Access Denied", message: params.pollMessage)
+                    _ = SweetAlert().showAlert("Access Denied!", subTitle: params.pollMessage, style: AlertStyle.error)
                     
                 }
                 self.view.endEditing(true)
@@ -458,7 +458,7 @@ public struct params {
 //            AccessGranted
             returnMessage = "AccessGranted"
         //If User is signed in to KumpeApps SSO and session not expired but Access to This App is not approved then Deny Access
-        } else if username != "" && (SSOAuthDate == CurrentDate || ignoreDate){
+        } else if username != "" && SSOAuthDate == CurrentDate && !SSOAccessGranted{
 //            AccessDenied
             if registerFreeIfDenied{
                 print("Free Access")
@@ -474,7 +474,6 @@ public struct params {
                            .responseSwiftyJSON { dataResponse in
                             if dataResponse.value != nil{
                                 let JSON = dataResponse.value!
-                                self.alert(title: "Success", message: "Your free access has been registered. Please login again.")
                                 print(JSON)
                                 returnMessage = "RegisteredFree"
                                 self.activityIndicator.stopAnimating()
