@@ -59,7 +59,7 @@ open class SweetAlert: UIViewController {
         contentView.addSubview(titleLabel)
         contentView.addSubview(subTitleTextView)
         contentView.backgroundColor = UIColor.colorFromRGB(0xFFFFFF)
-        contentView.layer.borderColor = UIColor.colorFromRGB(0xCCCCCC).cgColor
+        contentView.layer.borderColor = UIColor.colorFromRGB(0xCDCDCD).cgColor
         view.addSubview(contentView)
     }
 
