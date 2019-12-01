@@ -59,7 +59,7 @@ open class SweetAlert: UIViewController {
         contentView.addSubview(titleLabel)
         contentView.addSubview(subTitleTextView)
         contentView.backgroundColor = UIColor.colorFromRGB(0xFFFFFF)
-        contentView.layer.borderColor = UIColor.colorFromRGB(0xCDCDCD).cgColor
+        contentView.layer.borderColor = UIColor.colorFromRGB(0xCCCCCC).cgColor
         view.addSubview(contentView)
     }
 
@@ -75,7 +75,7 @@ open class SweetAlert: UIViewController {
         subTitleTextView.text = ""
         subTitleTextView.textAlignment = .center
         subTitleTextView.font = UIFont(name: kFont, size:16)
-        subTitleTextView.textColor = UIColor.colorFromRGB(0xFFFFFF)
+        subTitleTextView.textColor = UIColor.colorFromRGB(0xCDCDCD)
         subTitleTextView.isEditable = false
     }
     
