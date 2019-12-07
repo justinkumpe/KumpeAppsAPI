@@ -452,6 +452,7 @@ public struct params {
         if username != "" && (SSOAuthDate == CurrentDate || ignoreDate) && SSOAccessGranted{
 //            AccessGranted
             returnMessage = "AccessGranted"
+            self.recordLogin(section: "KumpeApps Login")
         //If User is signed in to KumpeApps SSO and session not expired but Access to This App is not approved then Deny Access
         } else if username != "" && SSOAuthDate == CurrentDate && !SSOAccessGranted{
 //            AccessDenied
@@ -515,6 +516,35 @@ public struct params {
             self.fieldUsername.text = ""
             self.fieldPassword.text = ""
         }
+    }
+    
+    public func recordLogin(section: String){
+        let referrer = "\(KumpeAppsSSO.params.appScheme)://"
+        let userID = KumpeAppsSSO.params.UserID
+        let url = URL(string: "https://api.ipify.org")
+        var ip = ""
+        do {
+            if let url = url {
+                let ipAddress = try String(contentsOf: url)
+                print("My public IP address is: " + ipAddress)
+                ip = ipAddress
+            }
+        } catch let error {
+            print(error)
+        }
+        
+        
+        
+                let sqlDatabase = "Core_KumpeApps"
+                let sqlTable = "am_access_log"
+                let sqlQuery = "INSERT INTO \(sqlTable) SET user_id = '\(userID)', url = '\(section)', time = NOW(), referrer = '\(referrer)', remote_addr = '\(ip)'"
+                print(sqlQuery)
+        let parameters: Parameters = ["sql_username":KumpeAppsAPI.params.sqlUser,"password":KumpeAppsAPI.params.sqlPass,"database":"\(sqlDatabase)","sql":"\(sqlQuery)","app_username":"API_Access_Log","otp":KumpeAppsAPI.shared.getOTP()]
+        Alamofire.request(KumpeAppsAPI.params.url, method: .post, parameters: parameters, encoding: URLEncoding.default)
+                   .responseSwiftyJSON { dataResponse in
+                       
+               }
+        
     }
     
     public  func open(scheme: String) {
