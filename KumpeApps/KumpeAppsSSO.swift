@@ -439,6 +439,7 @@ public struct params {
         
         if KumpeAppsSSO.keychainSSOUser.string(forKey: "Username") != nil{
             username = KumpeAppsSSO.keychainSSOUser.string(forKey: "Username")!
+            KumpeAppsSSO.params.username = KumpeAppsSSO.keychainSSOUser.string(forKey: "Username")!
         }
         
         if KumpeAppsSSO.keychainSSOUser.string(forKey: "AuthDate") != nil{
