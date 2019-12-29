@@ -368,6 +368,7 @@ public struct params {
                             self.keychainSSOSecure.set("\(username)", forKey: "Username")
                             self.keychainSSOSecure.set("\(password)", forKey: "Password")
                             self.keychainSSOSecure.set("\(params.CurrentDate)", forKey: "AuthDate")
+                            self.keychainSSOSecure.set("\(params.UserID)", forKey: "UserID")
                          //End SecureSSO Keychain
                          
                          //Start SSOUser Keychain
@@ -375,6 +376,7 @@ public struct params {
                          KumpeAppsSSO.keychainSSOUser.set("\(params.FirstName)", forKey: "FirstName")
                          KumpeAppsSSO.keychainSSOUser.set("\(params.LastName)", forKey: "LastName")
                          KumpeAppsSSO.keychainSSOUser.set("\(params.CurrentDate)", forKey: "AuthDate")
+                         KumpeAppsSSO.keychainSSOUser.set("\(params.UserID)", forKey: "UserID")
                          //End SSOUser Keychain
                          
                          //Start SSOAccess Keychain
@@ -444,6 +446,10 @@ public struct params {
         
         if KumpeAppsSSO.keychainSSOUser.string(forKey: "AuthDate") != nil{
             SSOAuthDate = KumpeAppsSSO.keychainSSOUser.string(forKey: "AuthDate")!
+        }
+        
+        if KumpeAppsSSO.keychainSSOUser.string(forKey: "UserID") != nil{
+            KumpeAppsSSO.params.UserID = KumpeAppsSSO.keychainSSOUser.string(forKey: "UserID")!
         }
         
         if KumpeAppsSSO.keychainSSOAccess.bool(forKey: "AccessTo\(productCode)") != nil{
