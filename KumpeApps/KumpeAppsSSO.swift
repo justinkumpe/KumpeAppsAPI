@@ -421,7 +421,7 @@ public struct params {
         
     }
     
-    public func confirmAccess(ignoreDate: Bool = false, productCode: String = params.productCode, appScheme: String = params.appScheme, registerFreeIfDenied: Bool = false) -> String{
+    public func confirmAccess(ignoreDate: Bool = false, productCode: String = params.productCode, appScheme: String = params.appScheme, registerFreeIfDenied: Bool = false, reAuth: Bool = false) -> String{
         let formatter = DateFormatter()
          // initially set the format based on your datepicker date / server String
          formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -451,6 +451,125 @@ public struct params {
         if KumpeAppsSSO.keychainSSOUser.string(forKey: "UserID") != nil{
             KumpeAppsSSO.params.UserID = KumpeAppsSSO.keychainSSOUser.string(forKey: "UserID")!
         }
+        
+        if reAuth{
+            params.pollMessage = "Pending"
+            let URL = "https://www.kumpeapps.com/api/check-access/by-login"
+            let parameters: Parameters = ["_key":"\(params.apikey)","login":"\(username)"]
+            Alamofire.request(URL, method: .get, parameters: parameters, encoding: URLEncoding.default)
+                .responseSwiftyJSON { dataResponse in
+                    if dataResponse.value != nil{
+                        let KappsArray = dataResponse.value!
+                    print(KappsArray)
+                    let Authenticated = KappsArray["ok"].stringValue
+                    params.FirstName = KappsArray["name_f"].stringValue
+                    params.LastName = KappsArray["name_l"].stringValue
+                    params.UserID = KappsArray["user_id"].stringValue
+                    if(Authenticated == "true"){
+                       //Access Granted
+                                let formatter = DateFormatter()
+                                    // initially set the format based on your datepicker date / server String
+                                    formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                                    
+                                    let myString = formatter.string(from: Date()) // string purpose I add here
+                                    // convert your string to date
+                                    let yourDate = formatter.date(from: myString)
+                                    //then again set the date format whhich type of output you need
+                                    formatter.dateFormat = "dd-MMM-yyyy"
+                                    // again convert your date to string
+                                   params.CurrentDate = formatter.string(from: yourDate!)
+                                
+                             // _ = keychainSSOLegacy.removeAllKeys()
+                                _ = KumpeAppsSSO.keychainSSOAccess.removeAllKeys()
+                             
+                             //Start SSOUser Keychain
+                             KumpeAppsSSO.keychainSSOUser.set("\(username)", forKey: "Username")
+                             KumpeAppsSSO.keychainSSOUser.set("\(params.FirstName)", forKey: "FirstName")
+                             KumpeAppsSSO.keychainSSOUser.set("\(params.LastName)", forKey: "LastName")
+                             KumpeAppsSSO.keychainSSOUser.set("\(params.CurrentDate)", forKey: "AuthDate")
+                             KumpeAppsSSO.keychainSSOUser.set("\(params.UserID)", forKey: "UserID")
+                             //End SSOUser Keychain
+                             
+                             //Start SSOAccess Keychain
+                             KumpeAppsSSO.keychainSSOAccess.set("\(params.CurrentDate)", forKey: "AuthDate")
+                        
+                            for (key, value) in KappsArray["subscriptions"] {
+                                
+                                KumpeAppsSSO.keychainSSOAccess.set("\(value.stringValue)", forKey: "\(key)Expiration")
+                                KumpeAppsSSO.keychainSSOAccess.set(true, forKey: "AccessTo\(key)")
+
+                            }
+                        
+                                     
+                                             
+                                             if KumpeAppsSSO.keychainSSOAccess.bool(forKey: "AccessTo\(productCode)") != nil{
+                                                 SSOAccessGranted = KumpeAppsSSO.keychainSSOAccess.bool(forKey: "AccessTo\(productCode)")!
+                                             }
+                                             
+                                             if username != "" && (SSOAuthDate == CurrentDate || ignoreDate) && SSOAccessGranted{
+                                     //            AccessGranted
+                                                 returnMessage = "AccessGranted"
+                                                 self.recordLogin(section: "KumpeApps Login")
+                                             //If User is signed in to KumpeApps SSO and session not expired but Access to This App is not approved then Deny Access
+                                             } else if username != "" && SSOAuthDate == CurrentDate && !SSOAccessGranted{
+                                     //            AccessDenied
+                                                 if registerFreeIfDenied{
+                                                     print("Free Access")
+                                                     
+                                                     let userid = params.UserID
+                                                     let url = "https://www.kumpeapps.com/api/access"
+                                                     
+                                                     print(url)
+                                                     print(params.CurrentDate)
+                                                     
+                                                     let parameters: Parameters = ["_key":params.apikey,"user_id":userid,"product_id":productCode,"begin_date":params.CurrentDate2,"expire_date":"2037-12-31"]
+                                                     Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default)
+                                                                .responseSwiftyJSON { dataResponse in
+                                                                 if dataResponse.value != nil{
+                                                                     let JSON = dataResponse.value!
+                                                                     print(JSON)
+                                                                     returnMessage = "RegisteredFree"
+                                                                     self.activityIndicator.stopAnimating()
+                                                                 }
+                                                     }
+                                                     
+                                                 }else{
+                                                     returnMessage = "AccessDenied"
+                                                 }
+                                                 
+                                     //        Session Expired
+                                             }else if username != "" && SSOAuthDate != CurrentDate{
+                                                 returnMessage = "SessionExpired"
+                                             //If User is not signed in to KumpeApps SSO
+                                             } else if enableSSO{
+                                                 returnMessage = "NotLoggedIn"
+                                                 self.launchSSO(appScheme: appScheme)
+                                             } else if !enableSSO{
+                                                 returnMessage = "NotLoggedIn"
+                                             }
+                            
+                            
+                    }else{
+                        params.pollMessage =
+                            "You have been denied access for the following reason(s): \(KappsArray["msg"]). \n\nPlease ensure you are using your KumpeApps username and password to login. If you need to reset your password please goto www.kumpeapps.com."
+                        print(params.pollMessage)
+                        _ = KumpeAppsSSO.keychainSSOAccess.removeAllKeys()
+                        _ = KumpeAppsSSO.keychainSSOUser.removeAllKeys()
+                        _ = self.keychainSSOSecure.removeAllKeys()
+                        self.activityIndicator.stopAnimating()
+                        _ = SweetAlert().showAlert("Access Denied!", subTitle: params.pollMessage, style: AlertStyle.error)
+                        
+                    }
+                    self.view.endEditing(true)
+                    }else{
+                        params.pollMessage = "KumpeApps SSO Servers are currently down.  Please try again in a few min."
+                        print(params.pollMessage)
+                        self.activityIndicator.stopAnimating()
+                       _ = SweetAlert().showAlert("Access Denied!", subTitle: params.pollMessage, style: AlertStyle.error)
+                    }
+                    
+            }
+        }else{
         
         if KumpeAppsSSO.keychainSSOAccess.bool(forKey: "AccessTo\(productCode)") != nil{
             SSOAccessGranted = KumpeAppsSSO.keychainSSOAccess.bool(forKey: "AccessTo\(productCode)")!
@@ -486,6 +605,7 @@ public struct params {
             }else{
                 returnMessage = "AccessDenied"
             }
+            
 //        Session Expired
         }else if username != "" && SSOAuthDate != CurrentDate{
             returnMessage = "SessionExpired"
@@ -496,7 +616,10 @@ public struct params {
         } else if !enableSSO{
             returnMessage = "NotLoggedIn"
         }
+            
+        }
         return returnMessage
+        
     }
     
     public func launchSSO(appScheme: String = params.appScheme, productCode: String = params.productCode){
