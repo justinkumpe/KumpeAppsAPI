@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F015075245526A200CB9C2B /* KumpeAppsNFC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F015074245526A200CB9C2B /* KumpeAppsNFC.swift */; };
 		0F11E2032356B4CB00F24EF4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F11E2022356B4CB00F24EF4 /* Main.storyboard */; };
 		0F11E205235929F900F24EF4 /* icons8-face_id.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F11E204235929F900F24EF4 /* icons8-face_id.png */; };
 		0F11E20723592A0C00F24EF4 /* icons8-fingerprint.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F11E20623592A0C00F24EF4 /* icons8-fingerprint.png */; };
@@ -48,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		0E6820587EC00F011744C339 /* Pods_KumpeApps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KumpeApps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F015074245526A200CB9C2B /* KumpeAppsNFC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KumpeAppsNFC.swift; sourceTree = "<group>"; };
 		0F11E2022356B4CB00F24EF4 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		0F11E204235929F900F24EF4 /* icons8-face_id.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-face_id.png"; sourceTree = "<group>"; };
 		0F11E20623592A0C00F24EF4 /* icons8-fingerprint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-fingerprint.png"; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				0F645F5322C2F51F0054A71B /* Info.plist */,
 				0F645F6922C2F9070054A71B /* KumpeAppsAPI.swift */,
 				0F5C74FD2353FEE500881377 /* KumpeAppsSSO.swift */,
+				0F015074245526A200CB9C2B /* KumpeAppsNFC.swift */,
 				0F7023B02391EF9F00A62436 /* SweetAlert.swift */,
 				0F11E2022356B4CB00F24EF4 /* Main.storyboard */,
 			);
@@ -294,6 +297,7 @@
 				0F3DDE5B235B60D300F40081 /* UIDeviceExtension.swift in Sources */,
 				0F645F6A22C2F9070054A71B /* KumpeAppsAPI.swift in Sources */,
 				0F7023B12391EF9F00A62436 /* SweetAlert.swift in Sources */,
+				0F015075245526A200CB9C2B /* KumpeAppsNFC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,7 +449,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5.0.4;
+				CURRENT_PROJECT_VERSION = 6.0;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2T42Z3DM34;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -453,13 +457,13 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = KumpeApps/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.0.4;
+				MARKETING_VERSION = 6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kumpeapps.ios.pod.KumpeApps;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -477,7 +481,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5.0.4;
+				CURRENT_PROJECT_VERSION = 6.0;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2T42Z3DM34;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -485,13 +489,13 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = KumpeApps/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.0.4;
+				MARKETING_VERSION = 6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kumpeapps.ios.pod.KumpeApps;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

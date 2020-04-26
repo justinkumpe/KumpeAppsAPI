@@ -1,5 +1,5 @@
 
-platform :ios, '12.2'
+platform :ios, '12.4'
 use_frameworks!
 
 target 'KumpeApps' do
