@@ -30,7 +30,7 @@ public typealias BASuccessBlock = (() -> Void)?
 
 public class KumpeAppsSSO: UIViewController {
 public static let shared = KumpeAppsSSO()
-public let url = "https://sql.kumpedns.us/API/mysql_v2.php"
+public let url = "https://sql.kumpedns.us/API/mysql_v3.php"
 let keychainSSOSecure = KeychainWrapper(serviceName: "KumpeAppsSSO_Secure", accessGroup: "2T42Z3DM34.com.kumpeapps.ios.sso.secure")
 public static let keychainSSOAccess = KeychainWrapper(serviceName: "KumpeAppsSSO_Access", accessGroup: "2T42Z3DM34.com.kumpeapps.ios.sso.access")
 public static let keychainSSOUser = KeychainWrapper(serviceName: "KumpeAppsSSO_User", accessGroup: "2T42Z3DM34.com.kumpeapps.ios.sso.user")
@@ -74,6 +74,7 @@ public struct params {
     public static var enableBiometrics:Bool = true
     public static var enableResetCreds:Bool = true
     public static var enableFreeAccessWithRegistration:Bool = false
+    public static var enableRememberPassword:Bool = false
 }
     
     override public func viewDidLoad() {
@@ -140,6 +141,13 @@ public struct params {
             _ = SweetAlert().showAlert("KumpeAppsSSO API Key is missing.", subTitle: "The developer of this app has not set the apikey parameter. This parameter must be set to utilize KumpeApps signon", style: AlertStyle.error)
             sleep(3)
             self.dismiss(animated: true, completion: nil)
+        }
+        
+        if self.keychainSSOSecure.string(forKey: "Username") != nil{
+            self.fieldUsername.text = self.keychainSSOSecure.string(forKey: "Username")!
+            if self.keychainSSOSecure.string(forKey: "Password") != nil && params.enableRememberPassword{
+                self.fieldPassword.text = self.keychainSSOSecure.string(forKey: "Password")!
+            }
         }
     }
     

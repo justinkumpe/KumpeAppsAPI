@@ -20,9 +20,9 @@ import OneTimePassword
 
 public class KumpeAppsAPI: UIViewController {
 public static let shared = KumpeAppsAPI()
-public let url = "https://sql.kumpedns.us/API/mysql_v2.php"
+public let url = "https://sql.kumpedns.us/API/mysql_v3.php"
 
-    public func setParams(sqlUser: String, sqlPass: String, otpSecret: String, appName: String, apikey: String = "Disable", appScheme: String = "", productCode: String = ""){
+    public func setParams(sqlUser: String, sqlPass: String, otpSecret: String, appName: String, appScheme: String = "", productCode: String = ""){
         //KumpeApps API Settings
         UserDefaults.standard.set(sqlUser, forKey: "sqlUser")
         UserDefaults.standard.set(sqlPass, forKey: "sqlPass")
@@ -30,6 +30,7 @@ public let url = "https://sql.kumpedns.us/API/mysql_v2.php"
         UserDefaults.standard.set(sqlPass, forKey: "App_Name")
         params.sqlUser = sqlUser
         params.sqlPass = sqlPass
+        let apikey = otpSecret
         KumpeAppsSSO.params.apikey = apikey
         KumpeAppsSSO.params.appScheme = appScheme
         KumpeAppsSSO.params.productCode = productCode
