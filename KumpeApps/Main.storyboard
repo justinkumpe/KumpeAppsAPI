@@ -100,11 +100,14 @@
                                             <action selector="pressedFaceID:" destination="xR4-wg-kqo" eventType="touchUpInside" id="A44-dv-xgr"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Td-K0-Jh0">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GbI-UH-apn">
                                         <rect key="frame" x="0.0" y="176.5" width="414" height="0.0"/>
                                         <state key="normal" title="1Password" image="onepassword-button">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
+                                        <connections>
+                                            <action selector="pressed1Password:" destination="xR4-wg-kqo" eventType="touchUpInside" id="Fey-a3-Xqs"/>
+                                        </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fBJ-Pc-2xv" userLabel="FingerPrintButton">
                                         <rect key="frame" x="0.0" y="176.5" width="414" height="0.0"/>
@@ -155,7 +158,7 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="A16-6R-QVn" id="mPz-qy-jWl"/>
-                        <outlet property="button1Password" destination="4Td-K0-Jh0" id="wKo-Mo-tzp"/>
+                        <outlet property="button1Password" destination="GbI-UH-apn" id="fl0-ze-lik"/>
                         <outlet property="buttonFaceID" destination="7jN-WX-0YR" id="nYP-aX-VXe"/>
                         <outlet property="buttonFingerPrint" destination="fBJ-Pc-2xv" id="ZWl-6j-nB9"/>
                         <outlet property="buttonLogin" destination="Fv5-2x-3Mi" id="m1R-H3-gFe"/>

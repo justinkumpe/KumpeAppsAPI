@@ -17,6 +17,7 @@ import Alamofire
 import SwiftyJSON
 import Alamofire_SwiftyJSON
 import LocalAuthentication
+import OnePasswordExtension
 
 @_exported import struct LocalAuthentication.LAError
 
@@ -76,6 +77,7 @@ public struct params {
     public static var enableResetCreds:Bool = true
     public static var enableFreeAccessWithRegistration:Bool = false
     public static var enableRememberPassword:Bool = false
+    public static var enable1Password:Bool = false
 }
     
     override public func viewDidLoad() {
@@ -117,6 +119,18 @@ public struct params {
         
         if self.keychainSSOSecure.string(forKey: "Username") != nil && self.keychainSSOSecure.string(forKey: "Username") != "apple"{
             self.buttonNewUser.isHidden = true
+        }
+        
+        if params.enable1Password{
+            
+            if OnePasswordExtension.shared().isAppExtensionAvailable() == false {
+                self.button1Password.isHidden = true
+            }else{
+                self.button1Password.isHidden = false
+            }
+            
+        }else{
+            self.button1Password.isHidden = true
         }
 
 
@@ -235,6 +249,24 @@ public struct params {
             _ = SweetAlert().showAlert("Error", subTitle: "Please login first. Biometrics can be used for future logins provided you do not click logout.", style: AlertStyle.error)
           }
       }
+    }
+    
+    @IBAction func pressed1Password(_ sender: Any) {
+        OnePasswordExtension.shared().findLogin(forURLString: "https://www.acme.com", for: self, sender: sender, completion: { (loginDictionary, error) in
+            guard let loginDictionary = loginDictionary else {
+                if let error = error as NSError?, error.code != AppExtensionErrorCode.cancelledByUser.rawValue {
+                    print("Error invoking 1Password App Extension for find login: \(String(describing: error))")
+                }
+                return
+            }
+            
+            self.fieldUsername.text = loginDictionary[AppExtensionUsernameKey] as? String
+            self.fieldPassword.text = loginDictionary[AppExtensionPasswordKey] as? String
+            self.PollKumpeApps(username: self.fieldUsername.text!, password: self.fieldPassword.text!)
+
+            
+        })
+        
     }
     
     @IBAction public func pressedResetCredentials(_ sender: Any) {
