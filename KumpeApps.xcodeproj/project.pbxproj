@@ -58,7 +58,7 @@
 		0F645F5322C2F51F0054A71B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F645F5822C2F51F0054A71B /* KumpeAppsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KumpeAppsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F645F5D22C2F51F0054A71B /* KumpeAppsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KumpeAppsTests.swift; sourceTree = "<group>"; };
-		0F645F5F22C2F51F0054A71B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0F645F5F22C2F51F0054A71B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = KumpeAppsTests/Info.plist; sourceTree = SOURCE_ROOT; };
 		0F645F6922C2F9070054A71B /* KumpeAppsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KumpeAppsAPI.swift; sourceTree = "<group>"; };
 		0F7023AE2391EE4300A62436 /* JK_512x512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JK_512x512.png; sourceTree = "<group>"; };
 		0F7023B02391EF9F00A62436 /* SweetAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SweetAlert.swift; sourceTree = "<group>"; };
@@ -445,7 +445,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6.0.2;
+				CURRENT_PROJECT_VERSION = 6.0.3;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2T42Z3DM34;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -459,7 +459,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.0.2;
+				MARKETING_VERSION = 6.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kumpeapps.ios.pod.KumpeApps;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -477,7 +477,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6.0.2;
+				CURRENT_PROJECT_VERSION = 6.0.3;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2T42Z3DM34;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -491,7 +491,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.0.2;
+				MARKETING_VERSION = 6.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kumpeapps.ios.pod.KumpeApps;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

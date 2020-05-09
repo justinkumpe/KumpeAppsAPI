@@ -51,6 +51,7 @@ public static let keychainSSOUser = KeychainWrapper(serviceName: "KumpeAppsSSO_U
     @IBOutlet weak public var buttonResetCreds: UIButton!
     @IBOutlet weak public var buttonRegister: UIButton!
     @IBOutlet weak public var buttonNewUser: UIButton!
+    @IBOutlet weak public var button1Password: UIButton!
     
     
 

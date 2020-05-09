@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xR4-wg-kqo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xR4-wg-kqo">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -100,6 +100,12 @@
                                             <action selector="pressedFaceID:" destination="xR4-wg-kqo" eventType="touchUpInside" id="A44-dv-xgr"/>
                                         </connections>
                                     </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Td-K0-Jh0">
+                                        <rect key="frame" x="0.0" y="176.5" width="414" height="0.0"/>
+                                        <state key="normal" title="1Password" image="onepassword-button">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fBJ-Pc-2xv" userLabel="FingerPrintButton">
                                         <rect key="frame" x="0.0" y="176.5" width="414" height="0.0"/>
                                         <state key="normal" image="icons8-fingerprint.png"/>
@@ -149,6 +155,7 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="A16-6R-QVn" id="mPz-qy-jWl"/>
+                        <outlet property="button1Password" destination="4Td-K0-Jh0" id="wKo-Mo-tzp"/>
                         <outlet property="buttonFaceID" destination="7jN-WX-0YR" id="nYP-aX-VXe"/>
                         <outlet property="buttonFingerPrint" destination="fBJ-Pc-2xv" id="ZWl-6j-nB9"/>
                         <outlet property="buttonLogin" destination="Fv5-2x-3Mi" id="m1R-H3-gFe"/>
@@ -171,5 +178,6 @@
         <image name="JK_512x512.png" width="288" height="288"/>
         <image name="icons8-face_id.png" width="50" height="50"/>
         <image name="icons8-fingerprint.png" width="50" height="50"/>
+        <image name="onepassword-button" width="27" height="27"/>
     </resources>
 </document>

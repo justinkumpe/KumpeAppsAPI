@@ -1,4 +1,5 @@
 PODS:
+  - 1PasswordExtension (1.8.6)
   - Alamofire (4.9.1)
   - Alamofire-SwiftyJSON (3.0.0):
     - Alamofire (~> 4.5)
@@ -11,6 +12,7 @@ PODS:
   - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
+  - 1PasswordExtension
   - Alamofire-SwiftyJSON
   - Buglife
   - OneTimePassword
@@ -18,6 +20,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - 1PasswordExtension
     - Alamofire
     - Alamofire-SwiftyJSON
     - Base32
@@ -27,6 +30,7 @@ SPEC REPOS:
     - SwiftyJSON
 
 SPEC CHECKSUMS:
+  1PasswordExtension: f97cc80ae58053c331b2b6dc8843ba7103b33794
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   Alamofire-SwiftyJSON: 2b3649d57dc7bb2880fb8b86f8bb969397666916
   Base32: 163c298644d184e89ca4e00a996bad6bf5166390
@@ -35,6 +39,6 @@ SPEC CHECKSUMS:
   SwiftKeychainWrapper: 6fc49fbf7d4a6b0772917acb0e53a1639f6078d6
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: bc7e3a3fc7f838335ce3e39f0f32b542a543bad5
+PODFILE CHECKSUM: 888e4291fc46bee56600ec1a9faeb944a76d30fa
 
 COCOAPODS: 1.9.1
