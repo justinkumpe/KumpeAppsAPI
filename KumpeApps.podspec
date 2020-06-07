@@ -8,13 +8,13 @@ s.summary = "KumpeApps API and SSO Settings."
 #s.requires_arc = true
 
 # 2
-s.version = "7.0"
+s.version = "7.0.1"
 
 # 3
 s.license = { :type => "MIT", :file => "LICENSE"}
 
 # 4 - Replace with your name and e-mail address
-s.author = { "Justin Kumpe" => "jakumpe@kumpes.com" }
+s.author = { "Justin Kumpe" => "helpdesk@kumpeapps.com" }
 
 # 5 - Replace this URL with your own GitHub page's URL (from the address bar)
 s.homepage = "https://github.com/justinkumpe/KumpeAppsAPI.git"

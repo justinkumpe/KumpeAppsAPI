@@ -252,7 +252,7 @@ public struct params {
     }
     
     @IBAction func pressed1Password(_ sender: Any) {
-        OnePasswordExtension.shared().findLogin(forURLString: "https://www.acme.com", for: self, sender: sender, completion: { (loginDictionary, error) in
+        OnePasswordExtension.shared().findLogin(forURLString: "https://www.kumpeapps.com", for: self, sender: sender, completion: { (loginDictionary, error) in
             guard let loginDictionary = loginDictionary else {
                 if let error = error as NSError?, error.code != AppExtensionErrorCode.cancelledByUser.rawValue {
                     print("Error invoking 1Password App Extension for find login: \(String(describing: error))")
@@ -353,6 +353,26 @@ public struct params {
                        }
                }
 
+    }
+    
+    public func freeAccess(productCode:String = params.productCode){
+        
+        let url = "https://www.kumpeapps.com/api/access"
+        
+        print(url)
+        print(params.CurrentDate)
+        
+        let parameters: Parameters = ["_key":params.apikey,"user_id":params.UserID,"product_id":productCode,"begin_date":params.CurrentDate2,"expire_date":"2037-12-31"]
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default)
+                   .responseSwiftyJSON { dataResponse in
+                    if dataResponse.value != nil{
+                        let JSON = dataResponse.value!
+                        self.successAlert(title: "Success", message: "Your KumpeApps SSO account has been created")
+                        print(JSON)
+                        self.activityIndicator.stopAnimating()
+                        _ = self.confirmAccess(productCode: productCode, reAuth: true)
+                    }
+        }
     }
     
     public func resetPassword(){
