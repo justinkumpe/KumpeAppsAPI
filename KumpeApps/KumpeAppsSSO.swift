@@ -78,6 +78,7 @@ public struct params {
     public static var enableFreeAccessWithRegistration:Bool = false
     public static var enableRememberPassword:Bool = false
     public static var enable1Password:Bool = false
+    public static var enableDebug:Bool = false
 }
     
     override public func viewDidLoad() {
@@ -447,14 +448,20 @@ public struct params {
                             
                             KumpeAppsSSO.keychainSSOAccess.set("\(value.stringValue)", forKey: "\(key)Expiration")
                             KumpeAppsSSO.keychainSSOAccess.set(true, forKey: "AccessTo\(key)")
-
+                            
+                            if params.enableDebug{
+                                print("AccessTo\(key)")
+                            }
                         }
                     
                         for (key, value) in KappsArray["categories"] {
                         
                             KumpeAppsSSO.keychainSSOAccess.set("\(value.stringValue)", forKey: "Category\(key)Expiration")
                             KumpeAppsSSO.keychainSSOAccess.set(true, forKey: "AccessToCategory\(key)")
-
+                            
+                            if params.enableDebug{
+                                print("AccessToCategory\(key)")
+                            }
                         }
                     
                                  params.pollMessage = "AccessGranted"
@@ -491,9 +498,17 @@ public struct params {
     
     public func confirmAccess(ignoreDate: Bool = false, productCode: String = params.productCode, appScheme: String = params.appScheme, registerFreeIfDenied: Bool = false, reAuth: Bool = false, AccessType: String = "product") -> String{
         
+        if params.enableDebug{
+            print("DEBUG: confirmAccess")
+            print(productCode)
+        }
         var AccessString = "AccessTo"
         if AccessType == "category"{
             AccessString = "AccessToCategory"
+        }
+        
+        if params.enableDebug{
+            print("AccessString: \(AccessString)")
         }
         
         let formatter = DateFormatter()
@@ -657,6 +672,10 @@ public struct params {
         
         if KumpeAppsSSO.keychainSSOAccess.bool(forKey: "\(AccessString)\(productCode)") != nil{
             SSOAccessGranted = KumpeAppsSSO.keychainSSOAccess.bool(forKey: "\(AccessString)\(productCode)")!
+        }
+            
+        if params.enableDebug{
+            print("SSOAccessGranted: \(SSOAccessGranted)")
         }
         
         if username != "" && (SSOAuthDate == CurrentDate || ignoreDate) && SSOAccessGranted{
