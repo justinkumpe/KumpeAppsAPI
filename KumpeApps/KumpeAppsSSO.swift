@@ -450,6 +450,13 @@ public struct params {
 
                         }
                     
+                        for (key, value) in KappsArray["categories"] {
+                        
+                            KumpeAppsSSO.keychainSSOAccess.set("\(value.stringValue)", forKey: "Category\(key)Expiration")
+                            KumpeAppsSSO.keychainSSOAccess.set(true, forKey: "AccessToCategory\(key)")
+
+                        }
+                    
                                  params.pollMessage = "AccessGranted"
                                  print(params.pollMessage)
                                     self.navigationController?.popViewController(animated: true)
@@ -482,7 +489,13 @@ public struct params {
         
     }
     
-    public func confirmAccess(ignoreDate: Bool = false, productCode: String = params.productCode, appScheme: String = params.appScheme, registerFreeIfDenied: Bool = false, reAuth: Bool = false) -> String{
+    public func confirmAccess(ignoreDate: Bool = false, productCode: String = params.productCode, appScheme: String = params.appScheme, registerFreeIfDenied: Bool = false, reAuth: Bool = false, AccessType: String = "product") -> String{
+        
+        var AccessString = "AccessTo"
+        if AccessType == "category"{
+            AccessString = "AccessToCategory"
+        }
+        
         let formatter = DateFormatter()
          // initially set the format based on your datepicker date / server String
          formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -554,17 +567,27 @@ public struct params {
                              //Start SSOAccess Keychain
                              KumpeAppsSSO.keychainSSOAccess.set("\(params.CurrentDate)", forKey: "AuthDate")
                         
+                            
+//                        Set Access Permissions for Product Subscriptions
                             for (key, value) in KappsArray["subscriptions"] {
                                 
                                 KumpeAppsSSO.keychainSSOAccess.set("\(value.stringValue)", forKey: "\(key)Expiration")
                                 KumpeAppsSSO.keychainSSOAccess.set(true, forKey: "AccessTo\(key)")
 
                             }
+                            
+//                        Set Access Permissions for Product Categories
+                            for (key, value) in KappsArray["categories"] {
+                                
+                                KumpeAppsSSO.keychainSSOAccess.set("\(value.stringValue)", forKey: "Category\(key)Expiration")
+                                KumpeAppsSSO.keychainSSOAccess.set(true, forKey: "AccessToCategory\(key)")
+
+                            }
                         
                                      
                                              
-                                             if KumpeAppsSSO.keychainSSOAccess.bool(forKey: "AccessTo\(productCode)") != nil{
-                                                 SSOAccessGranted = KumpeAppsSSO.keychainSSOAccess.bool(forKey: "AccessTo\(productCode)")!
+                                             if KumpeAppsSSO.keychainSSOAccess.bool(forKey: "\(AccessString)\(productCode)") != nil{
+                                                 SSOAccessGranted = KumpeAppsSSO.keychainSSOAccess.bool(forKey: "\(AccessString)\(productCode)")!
                                              }
                                              
                                              if username != "" && (SSOAuthDate == CurrentDate || ignoreDate) && SSOAccessGranted{
@@ -632,8 +655,8 @@ public struct params {
             }
         }else{
         
-        if KumpeAppsSSO.keychainSSOAccess.bool(forKey: "AccessTo\(productCode)") != nil{
-            SSOAccessGranted = KumpeAppsSSO.keychainSSOAccess.bool(forKey: "AccessTo\(productCode)")!
+        if KumpeAppsSSO.keychainSSOAccess.bool(forKey: "\(AccessString)\(productCode)") != nil{
+            SSOAccessGranted = KumpeAppsSSO.keychainSSOAccess.bool(forKey: "\(AccessString)\(productCode)")!
         }
         
         if username != "" && (SSOAuthDate == CurrentDate || ignoreDate) && SSOAccessGranted{
