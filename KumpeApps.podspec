@@ -8,7 +8,7 @@ s.summary = "KumpeApps API and SSO Settings."
 #s.requires_arc = true
 
 # 2
-s.version = "7.0.4"
+s.version = "7.0.5"
 
 # 3
 s.license = { :type => "MIT", :file => "LICENSE"}
@@ -26,7 +26,6 @@ s.source = { :git => 'https://github.com/justinkumpe/KumpeAppsAPI.git', :tag => 
 s.framework = "UIKit"
 s.dependency 'Alamofire-SwiftyJSON'
 s.dependency 'SwiftKeychainWrapper'
-s.dependency 'Buglife'
 s.dependency 'OneTimePassword'
 s.dependency '1PasswordExtension'
 
