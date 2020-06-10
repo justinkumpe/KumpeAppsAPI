@@ -395,6 +395,11 @@ public struct params {
     }
     
     public func PollKumpeApps(username: String, password: String){
+        
+        if params.enableDebug{
+            print("DEBUG PollKumpeApps")
+        }
+        
         self.activityIndicator.startAnimating()
         sleep(1)
         params.pollMessage = "Pending"
