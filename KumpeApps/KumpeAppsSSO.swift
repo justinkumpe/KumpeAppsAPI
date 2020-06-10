@@ -18,6 +18,7 @@ import SwiftyJSON
 import Alamofire_SwiftyJSON
 import LocalAuthentication
 import OnePasswordExtension
+import BugBattle
 
 @_exported import struct LocalAuthentication.LAError
 
@@ -63,6 +64,7 @@ public struct params {
     public static var LastName = ""
     public static var CurrentDate = ""
     public static var CurrentDate2 = ""
+    public static var email = ""
     public static var apikey = ""
     public static var pollMessage = ""
     public static var appScheme = ""
@@ -83,6 +85,7 @@ public struct params {
     
     override public func viewDidLoad() {
     print("SSO View Did Load")
+        
     let formatter = DateFormatter()
      // initially set the format based on your datepicker date / server String
      formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -444,6 +447,7 @@ public struct params {
                          KumpeAppsSSO.keychainSSOUser.set("\(params.LastName)", forKey: "LastName")
                          KumpeAppsSSO.keychainSSOUser.set("\(params.CurrentDate)", forKey: "AuthDate")
                          KumpeAppsSSO.keychainSSOUser.set("\(params.UserID)", forKey: "UserID")
+                         KumpeAppsSSO.keychainSSOUser.set("\(params.email)", forKey: "email")
                          //End SSOUser Keychain
                          
                          //Start SSOAccess Keychain
