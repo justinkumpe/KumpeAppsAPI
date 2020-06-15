@@ -1,0 +1,6 @@
+framework module KBug {
+  umbrella header "KBug-umbrella.h"
+
+  export *
+  module * { export * }
+}

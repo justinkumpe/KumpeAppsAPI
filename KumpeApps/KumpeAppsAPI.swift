@@ -12,6 +12,7 @@ import Foundation
 import UIKit
 import Base32
 import OneTimePassword
+import KBug
 
 //Note: The below imports will be required on any view controller using the API
 //import Alamofire
@@ -34,6 +35,7 @@ public let url = "https://sql.kumpedns.us/API/mysql_v3.php"
         KumpeAppsSSO.params.apikey = apikey
         KumpeAppsSSO.params.appScheme = appScheme
         KumpeAppsSSO.params.productCode = productCode
+        KBug.initWithToken("5ee0340091d16186125d0b34", andActivationMethod: SHAKE)
 }
 
 public struct params {

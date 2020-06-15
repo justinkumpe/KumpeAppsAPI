@@ -7,5 +7,5 @@ target 'KumpeApps' do
 	pod 'SwiftKeychainWrapper'
 	pod 'OneTimePassword'
 	pod '1PasswordExtension'
-	pod 'BugBattle'
+	pod 'KBug'
 end

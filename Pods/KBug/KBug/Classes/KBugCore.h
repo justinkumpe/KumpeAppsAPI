@@ -1,9 +1,9 @@
 //
-//  BugBattle.h
+//  KBug.h
 //  AyAyObjectiveCPort
 //
-//  Created by Lukas on 13.01.19.
-//  Copyright © 2019 BugBattle. All rights reserved.
+//  Modified by Justin on 06-14-2020.
+//  Copyright © 2020 KBug. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -11,37 +11,37 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef enum activationMethodTypes { NONE, SHAKE } BugBattleActivationMethod;
+typedef enum activationMethodTypes { NONE, SHAKE } KBugActivationMethod;
 
-@interface BugBattle : NSObject
+@interface KBug : NSObject
 
 /**
- * Returns a new shared instance of BugBattle.
- * @author BugBattle
+ * Returns a new shared instance of KBug.
+ * @author KBug
  *
- * @return A new shared instance of BugBattle.
+ * @return A new shared instance of KBug.
  */
 + (instancetype)sharedInstance;
 
 /**
- * Initializes the BugBattle SDK.
- * @author BugBattle
+ * Initializes the KBug SDK.
+ * @author KBug
  *
- * @param token The SDK key, which can be found on dashboard.bugbattle.io
+ * @param token The SDK key, which can be found on dashboard.KBug.io
  * @param activationMethod Activation method, which triggers a new bug report.
  */
-+ (void)initWithToken: (NSString *)token andActivationMethod: (BugBattleActivationMethod)activationMethod;
++ (void)initWithToken: (NSString *)token andActivationMethod: (KBugActivationMethod)activationMethod;
 
 /**
  * Manually start the bug reporting workflow. This is used, when you use the activation method "NONE".
- * @author BugBattle
+ * @author KBug
  *
  */
 + (void)startBugReporting;
 
 /**
- * Attach custom data, which can be view in the BugBattle dashboard.
- * @author BugBattle
+ * Attach custom data, which can be view in the KBug dashboard.
+ * @author KBug
  *
  * @param customData The data to attach to a bug report.
  */
@@ -49,7 +49,7 @@ typedef enum activationMethodTypes { NONE, SHAKE } BugBattleActivationMethod;
 
 /**
  * Set a custom navigationbar tint color.
- * @author BugBattle
+ * @author KBug
  *
  * @param color The background color of the navigationbar.
  */
@@ -57,7 +57,7 @@ typedef enum activationMethodTypes { NONE, SHAKE } BugBattleActivationMethod;
 
 /**
  * Sets the customer's email address.
- * @author BugBattle
+ * @author KBug
  *
  * @param email The customer's email address.
  */
@@ -65,9 +65,9 @@ typedef enum activationMethodTypes { NONE, SHAKE } BugBattleActivationMethod;
 
 /**
  * Add a 'step to reproduce' step.
- * @author BugBattle
+ * @author KBug
  *
- * @param type Type of the step. (Use any custom string or one of the predefined constants - BugBattleStepTypeView, Button, Input)
+ * @param type Type of the step. (Use any custom string or one of the predefined constants - KBugStepTypeView, Button, Input)
  * @param data Custom data associated with the step.
  */
 + (void)trackStepWithType: (NSString *)type andData: (NSString *)data;
@@ -81,12 +81,12 @@ typedef enum activationMethodTypes { NONE, SHAKE } BugBattleActivationMethod;
 - (void)sendReport: (void (^)(bool success))completion;
 
 @property (nonatomic, retain) NSString* token;
-@property (nonatomic, assign) BugBattleActivationMethod activationMethod;
+@property (nonatomic, assign) KBugActivationMethod activationMethod;
 @property (nonatomic, retain) NSMutableDictionary* data;
 
-extern NSString *const BugBattleStepTypeView;
-extern NSString *const BugBattleStepTypeButton;
-extern NSString *const BugBattleStepTypeInput;
+extern NSString *const KBugStepTypeView;
+extern NSString *const KBugStepTypeButton;
+extern NSString *const KBugStepTypeInput;
 
 @end
 

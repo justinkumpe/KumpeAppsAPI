@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Bug Battle Image Editor View Controller-->
+        <!--Bug Image Editor View Controller-->
         <scene sceneID="EtO-iN-hro">
             <objects>
-                <viewController storyboardIdentifier="BugBattleImageEditorViewController" extendedLayoutIncludesOpaqueBars="YES" id="yVd-NC-yVb" customClass="BugBattleImageEditorViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="KBugImageEditorViewController" extendedLayoutIncludesOpaqueBars="YES" id="yVd-NC-yVb" customClass="KBugImageEditorViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V0x-Ic-8JP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Oj1-En-aAj" customClass="BugBattleTouchDrawImageView">
+                            <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Oj1-En-aAj" customClass="KBugTouchDrawImageView">
                                 <rect key="frame" x="56.5" y="100" width="262" height="467"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="262" id="1Zl-Mc-TfE"/>
@@ -117,10 +116,10 @@
             </objects>
             <point key="canvasLocation" x="-1015.2" y="-1106.8965517241379"/>
         </scene>
-        <!--Bug Battle Bug Details View Controller-->
+        <!--Bug Bug Details View Controller-->
         <scene sceneID="h6I-As-JKQ">
             <objects>
-                <viewController storyboardIdentifier="BugBattleBugDetailsViewController" id="2Rg-gB-hiD" customClass="BugBattleBugDetailsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="KBugBugDetailsViewController" id="2Rg-gB-hiD" customClass="KBugBugDetailsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bLL-DP-F10">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -8,7 +8,7 @@ s.summary = "KumpeApps API and SSO Settings."
 #s.requires_arc = true
 
 # 2
-s.version = "7.0.6"
+s.version = "7.1.0"
 
 # 3
 s.license = { :type => "MIT", :file => "LICENSE"}
@@ -28,7 +28,7 @@ s.dependency 'Alamofire-SwiftyJSON'
 s.dependency 'SwiftKeychainWrapper'
 s.dependency 'OneTimePassword'
 s.dependency '1PasswordExtension'
-s.dependency 'BugBattle'
+s.dependency 'KBug'
 
 # 8
 s.source_files = "KumpeApps/**/*.{swift,storyboard,xib,png}"

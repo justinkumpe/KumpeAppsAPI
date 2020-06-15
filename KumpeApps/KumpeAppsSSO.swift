@@ -18,7 +18,7 @@ import SwiftyJSON
 import Alamofire_SwiftyJSON
 import LocalAuthentication
 import OnePasswordExtension
-import BugBattle
+import KBug
 
 @_exported import struct LocalAuthentication.LAError
 
@@ -472,8 +472,10 @@ public struct params {
                                 print("AccessToCategory\(key)")
                             }
                         }
-                    
-                                 params.pollMessage = "AccessGranted"
+//                              Set Email Address for KBug
+                                KBug.setCustomerEmail(params.email)
+                                
+                                params.pollMessage = "AccessGranted"
                                  print(params.pollMessage)
                                     self.navigationController?.popViewController(animated: true)
                                     self.activityIndicator.stopAnimating()

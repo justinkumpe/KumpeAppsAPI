@@ -1,16 +1,16 @@
 //
-//  BugBattleTouchDrawImageView.h
+//  KBugTouchDrawImageView.h
 //  AyAyObjectiveCPort
 //
-//  Created by Lukas on 13.01.19.
-//  Copyright © 2019 BugBattle. All rights reserved.
+//  Modified by Justin on 06-14-2020.
+//  Copyright © 2020 KBug. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BugBattleTouchDrawImageView : UIImageView
+@interface KBugTouchDrawImageView : UIImageView
 
 @property (nonatomic, assign) CGFloat red;
 @property (nonatomic, assign) CGFloat green;

@@ -1,15 +1,15 @@
 //
-//  BugBattle.m
+//  KBug.m
 //  AyAyObjectiveCPort
 //
-//  Created by Lukas on 13.01.19.
-//  Copyright © 2019 BugBattle. All rights reserved.
+//  Modified by Justin on 06-14-2020.
+//  Copyright © 2020 KBug. All rights reserved.
 //
 
-#import "BugBattleCore.h"
-#import "BugBattleImageEditorViewController.h"
+#import "KBugCore.h"
+#import "KBugImageEditorViewController.h"
 
-@interface BugBattle ()
+@interface KBug ()
 
 @property (weak, nonatomic) UIImage *screenshot;
 @property (retain, nonatomic) UIColor *navigationBarTint;
@@ -24,17 +24,17 @@
 
 @end
 
-@implementation BugBattle
+@implementation KBug
 
 /*
  Returns a shared instance (singleton).
  */
 + (instancetype)sharedInstance
 {
-    static BugBattle *sharedInstance = nil;
+    static KBug *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [[BugBattle alloc] init];
+        sharedInstance = [[KBug alloc] init];
     });
     return sharedInstance;
 }
@@ -101,8 +101,8 @@
 /*
  Costom initialize method
  */
-+ (void)initWithToken: (NSString *)token andActivationMethod: (BugBattleActivationMethod)activationMethod {
-    BugBattle* instance = [BugBattle sharedInstance];
++ (void)initWithToken: (NSString *)token andActivationMethod: (KBugActivationMethod)activationMethod {
+    KBug* instance = [KBug sharedInstance];
     instance.token = token;
     instance.activationMethod = activationMethod;
 }
@@ -111,51 +111,51 @@
  Sets the customer's email address.
  */
 + (void)setCustomerEmail: (NSString *)email {
-    [[NSUserDefaults standardUserDefaults] setValue: email forKey: @"BugBattle_SenderEmail"];
+    [[NSUserDefaults standardUserDefaults] setValue: email forKey: @"KBug_SenderEmail"];
 }
 
 /*
  Sets the navigationbar tint color.
  */
 + (void)setNavigationBarTint: (UIColor *)color {
-    BugBattle.sharedInstance.navigationBarTint = color;
+    KBug.sharedInstance.navigationBarTint = color;
 }
 
 /*
  Get's the framework's NSBundle.
  */
 + (NSBundle *)frameworkBundle {
-    return [NSBundle bundleForClass: [BugBattle class]];
+    return [NSBundle bundleForClass: [KBug class]];
 }
 
 /*
  Starts the bug reporting flow, when a SDK key has been assigned.
  */
 + (void)startBugReporting {
-    if (BugBattle.sharedInstance.token.length > 0) {
+    if (KBug.sharedInstance.token.length > 0) {
         // Stop screen capturung
-        [BugBattle.sharedInstance.stepsToReproduceTimer invalidate];
+        [KBug.sharedInstance.stepsToReproduceTimer invalidate];
         
-        UIStoryboard* storyboard = [UIStoryboard storyboardWithName: @"BugBattleStoryboard" bundle: [BugBattle frameworkBundle]];
-        BugBattleImageEditorViewController *bugBattleImageEditor = [storyboard instantiateViewControllerWithIdentifier: @"BugBattleImageEditorViewController"];
+        UIStoryboard* storyboard = [UIStoryboard storyboardWithName: @"KBugStoryboard" bundle: [KBug frameworkBundle]];
+        KBugImageEditorViewController *KBugImageEditor = [storyboard instantiateViewControllerWithIdentifier: @"KBugImageEditorViewController"];
         
-        UIImage * screenshot = [BugBattle.sharedInstance captureScreen];
+        UIImage * screenshot = [KBug.sharedInstance captureScreen];
         
-        UINavigationController * navController = [[UINavigationController alloc] initWithRootViewController: bugBattleImageEditor];
+        UINavigationController * navController = [[UINavigationController alloc] initWithRootViewController: KBugImageEditor];
         navController.navigationBar.barStyle = UIBarStyleBlack;
         [navController.navigationBar setTranslucent: NO];
-        [navController.navigationBar setBarTintColor: BugBattle.sharedInstance.navigationBarTint];
+        [navController.navigationBar setBarTintColor: KBug.sharedInstance.navigationBarTint];
         [navController.navigationBar setTintColor: [UIColor whiteColor]];
         navController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
         
         navController.modalPresentationStyle = UIModalPresentationFullScreen;
         
         // Show on top of all viewcontrollers.
-        [[BugBattle.sharedInstance getTopMostViewController] presentViewController: navController animated: true completion:^{
-            [bugBattleImageEditor setScreenshot: screenshot];
+        [[KBug.sharedInstance getTopMostViewController] presentViewController: navController animated: true completion:^{
+            [KBugImageEditor setScreenshot: screenshot];
         }];
     } else {
-        NSLog(@"WARN: Please provide a valid BugBattle project TOKEN!");
+        NSLog(@"WARN: Please provide a valid KBug project TOKEN!");
     }
 }
 
@@ -163,8 +163,8 @@
  Invoked when a shake gesture is beeing performed.
  */
 + (void)shakeInvocation {
-    if ([BugBattle sharedInstance].activationMethod == SHAKE) {
-        [BugBattle startBugReporting];
+    if ([KBug sharedInstance].activationMethod == SHAKE) {
+        [KBug startBugReporting];
     }
 }
 
@@ -172,38 +172,38 @@
  Attaches custom data.
  */
 + (void)attachCustomData: (NSDictionary *)customData {
-    [BugBattle sharedInstance].customData = customData;
+    [KBug sharedInstance].customData = customData;
 }
 
 /*
  Attaches a screenshot.
  */
 + (void)attachScreenshot: (UIImage *)screenshot {
-    [BugBattle sharedInstance].screenshot = screenshot;
+    [KBug sharedInstance].screenshot = screenshot;
 }
 
 /*
  Returns the attacked screenshot.
  */
 + (UIImage *)getAttachedScreenshot {
-    return [BugBattle sharedInstance].screenshot;
+    return [KBug sharedInstance].screenshot;
 }
 
 /*
  Attaches custom data to a report.
  */
 + (void)attachData: (NSDictionary *)data {
-    [BugBattle.sharedInstance.data addEntriesFromDictionary: data];
+    [KBug.sharedInstance.data addEntriesFromDictionary: data];
 }
 
 /*
  Tracks a new step.
  */
 + (void)trackStepWithType: (NSString *)type andData: (NSString *)data {
-    [BugBattle.sharedInstance.stepsToReproduce addObject: @{
+    [KBug.sharedInstance.stepsToReproduce addObject: @{
                                     @"type": type,
                                     @"data": data,
-                                    @"date": [BugBattle.sharedInstance getJSStringForNSDate: [[NSDate alloc] init]]
+                                    @"date": [KBug.sharedInstance getJSStringForNSDate: [[NSDate alloc] init]]
                                     }];
 }
 
@@ -238,19 +238,19 @@
                 // Set screenshot url.
                 NSMutableDictionary *dataToAppend = [[NSMutableDictionary alloc] init];
                 [dataToAppend setValue: finalUrl forKey: @"screenshot"];
-                [BugBattle attachData: dataToAppend];
+                [KBug attachData: dataToAppend];
                 
                 // Fetch additional metadata.
-                [BugBattle attachData: @{ @"meta": [self getMetaData] }];
+                [KBug attachData: @{ @"meta": [self getMetaData] }];
                 
                 // Attach console log.
-                [BugBattle attachData: @{ @"consoleLog": self->_consoleLog }];
+                [KBug attachData: @{ @"consoleLog": self->_consoleLog }];
                 
                 // Attach steps to reproduce.
-                [BugBattle attachData: @{ @"actionLog": self->_stepsToReproduce }];
+                [KBug attachData: @{ @"actionLog": self->_stepsToReproduce }];
                 
                 // Attach custom data.
-                [BugBattle attachData: @{ @"customData": [self customData] }];
+                [KBug attachData: @{ @"customData": [self customData] }];
                 
                 // Sending report to server.
                 [self sendReportToServer:^(bool success) {
@@ -271,7 +271,7 @@
         return completion(false);
     }
     
-    NSString *urlString = [NSString stringWithFormat: @"https://webhooks.mongodb-stitch.com/api/client/v2.0/app/bugbattle-xfblb/service/reportBug/incoming_webhook/reportBugWebhook?token=%@", _token];
+    NSString *urlString = [NSString stringWithFormat: @"https://scripts.kumpeapps.com/BugReport.php"];
     
     NSError *error;
     NSData *jsonBodyData = [NSJSONSerialization dataWithJSONObject: _data options:kNilOptions error: &error];
@@ -311,7 +311,7 @@
     NSString *urlString = @"https://ii5xbrdd27.execute-api.eu-central-1.amazonaws.com/default/getSignedBugBattleUploadUrl";
     
     NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
-    [dict setObject: BugBattle.sharedInstance.token forKey: @"apiKey"];
+    [dict setObject: KBug.sharedInstance.token forKey: @"apiKey"];
     
     NSError *error;
     NSData *jsonBodyData = [NSJSONSerialization dataWithJSONObject: dict options:kNilOptions error: &error];

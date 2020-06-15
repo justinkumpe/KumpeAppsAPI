@@ -1,18 +1,18 @@
 //
-//  BugBattleImageEditorViewController.m
+//  KBugImageEditorViewController.m
 //  AyAyObjectiveCPort
 //
-//  Created by Lukas on 13.01.19.
-//  Copyright © 2019 BugBattle. All rights reserved.
+//  Modified by Justin on 06-14-2020.
+//  Copyright © 2020 KBug. All rights reserved.
 //
 
-#import "BugBattleImageEditorViewController.h"
-#import "BugBattleTouchDrawImageView.h"
-#import "BugBattleBugDetailsViewController.h"
-#import "BugBattleCore.h"
+#import "KBugImageEditorViewController.h"
+#import "KBugTouchDrawImageView.h"
+#import "KBugBugDetailsViewController.h"
+#import "KBugCore.h"
 
-@interface BugBattleImageEditorViewController ()
-@property (weak, nonatomic) IBOutlet BugBattleTouchDrawImageView *screenshotImageView;
+@interface KBugImageEditorViewController ()
+@property (weak, nonatomic) IBOutlet KBugTouchDrawImageView *screenshotImageView;
 @property (weak, nonatomic) IBOutlet UIButton *color1;
 @property (weak, nonatomic) IBOutlet UIButton *color2;
 @property (weak, nonatomic) IBOutlet UIButton *color3;
@@ -25,12 +25,12 @@
 
 @end
 
-@implementation BugBattleImageEditorViewController
+@implementation KBugImageEditorViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [[NSUserDefaults standardUserDefaults] setValue: @"" forKey: @"BugBattle_SavedDescription"];
+    [[NSUserDefaults standardUserDefaults] setValue: @"" forKey: @"KBug_SavedDescription"];
     
     UIBarButtonItem *nextButton = [[UIBarButtonItem alloc] initWithTitle: @"Next" style: UIBarButtonItemStyleDone target: self action: @selector(showNextStep:)];
     self.navigationItem.rightBarButtonItem = nextButton;
@@ -120,12 +120,12 @@
 
 - (IBAction)showNextStep:(id)sender {
     if (self.screenshotImageView.image) {
-        [BugBattle attachScreenshot: self.screenshotImageView.image];
+        [KBug attachScreenshot: self.screenshotImageView.image];
         
         // Push finalization screen.
-        UIStoryboard* storyboard = [UIStoryboard storyboardWithName: @"BugBattleStoryboard" bundle: [BugBattle frameworkBundle]];
-        BugBattleBugDetailsViewController *bugBattleBugDetails = [storyboard instantiateViewControllerWithIdentifier: @"BugBattleBugDetailsViewController"];
-        [self.navigationController pushViewController: bugBattleBugDetails animated: true];
+        UIStoryboard* storyboard = [UIStoryboard storyboardWithName: @"KBugStoryboard" bundle: [KBug frameworkBundle]];
+        KBugBugDetailsViewController *KBugBugDetails = [storyboard instantiateViewControllerWithIdentifier: @"KBugBugDetailsViewController"];
+        [self.navigationController pushViewController: KBugBugDetails animated: true];
     }
 }
 

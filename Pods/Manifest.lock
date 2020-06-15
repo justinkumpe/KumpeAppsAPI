@@ -5,7 +5,7 @@ PODS:
     - Alamofire (~> 4.5)
     - SwiftyJSON (~> 4.0.0)
   - Base32 (1.1.2)
-  - BugBattle (2.1.0)
+  - KBug (1.0)
   - OneTimePassword (3.2.0):
     - Base32 (~> 1.1.2)
   - SwiftKeychainWrapper (3.4.0)
@@ -14,7 +14,7 @@ PODS:
 DEPENDENCIES:
   - 1PasswordExtension
   - Alamofire-SwiftyJSON
-  - BugBattle
+  - KBug
   - OneTimePassword
   - SwiftKeychainWrapper
 
@@ -24,7 +24,7 @@ SPEC REPOS:
     - Alamofire
     - Alamofire-SwiftyJSON
     - Base32
-    - BugBattle
+    - KBug
     - OneTimePassword
     - SwiftKeychainWrapper
     - SwiftyJSON
@@ -34,11 +34,11 @@ SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   Alamofire-SwiftyJSON: 2b3649d57dc7bb2880fb8b86f8bb969397666916
   Base32: 163c298644d184e89ca4e00a996bad6bf5166390
-  BugBattle: df1d7af50c4db639dd9c540023095d6fe3fc3007
+  KBug: fafd151307054163ae543f9d6024a99953994041
   OneTimePassword: c00ecc908e67e6c5bfda9d50b0b2e4696d0b066e
   SwiftKeychainWrapper: 6fc49fbf7d4a6b0772917acb0e53a1639f6078d6
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 1aeb97465efc2bbc621e3f4adeb48eeb34109436
+PODFILE CHECKSUM: 05d96069e4c359cdae089748269b69a5b39ff45e
 
 COCOAPODS: 1.9.3

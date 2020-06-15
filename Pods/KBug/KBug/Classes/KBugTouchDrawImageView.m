@@ -1,20 +1,20 @@
 //
-//  BugBattleTouchDrawImageView.m
+//  KBugTouchDrawImageView.m
 //  AyAyObjectiveCPort
 //
-//  Created by Lukas on 13.01.19.
-//  Copyright © 2019 BugBattle. All rights reserved.
+//  Modified by Justin on 06-14-2020.
+//  Copyright © 2020 KBug. All rights reserved.
 //
 
-#import "BugBattleTouchDrawImageView.h"
+#import "KBugTouchDrawImageView.h"
 
-@interface BugBattleTouchDrawImageView ()
+@interface KBugTouchDrawImageView ()
 
 @property (nonatomic, assign) CGPoint lastPoint;
 
 @end
 
-@implementation BugBattleTouchDrawImageView
+@implementation KBugTouchDrawImageView
 
 @synthesize red, green, blue;
 

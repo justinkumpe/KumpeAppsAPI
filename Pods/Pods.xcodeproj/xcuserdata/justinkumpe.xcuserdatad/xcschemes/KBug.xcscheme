@@ -14,9 +14,9 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "80BCC9C5F348D6D6A837F993647BBF9A"
-               BuildableName = "BugBattle.framework"
-               BlueprintName = "BugBattle"
+               BlueprintIdentifier = "07EB133AC1EE4DEB2FAAFC8C8DE659B3"
+               BuildableName = "KBug.framework"
+               BlueprintName = "KBug"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

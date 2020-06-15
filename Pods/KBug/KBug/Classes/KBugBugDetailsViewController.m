@@ -1,15 +1,15 @@
 //
-//  BugBattleBugDetailsViewController.m
+//  KBugBugDetailsViewController.m
 //  AyAyObjectiveCPort
 //
-//  Created by Lukas on 13.01.19.
-//  Copyright © 2019 BugBattle. All rights reserved.
+//  Modified by Justin on 06-14-2020.
+//  Copyright © 2020 KBug. All rights reserved.
 //
 
-#import "BugBattleBugDetailsViewController.h"
-#import "BugBattleCore.h"
+#import "KBugBugDetailsViewController.h"
+#import "KBugCore.h"
 
-@interface BugBattleBugDetailsViewController ()
+@interface KBugBugDetailsViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView *loadingView;
 @property (weak, nonatomic) IBOutlet UIView *reportSent;
@@ -24,7 +24,7 @@
 
 @end
 
-@implementation BugBattleBugDetailsViewController
+@implementation KBugBugDetailsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -61,9 +61,9 @@
     [_loadingView setHidden: true];
     [_reportSent setHidden: true];
     
-    NSString *email = [[NSUserDefaults standardUserDefaults] stringForKey: @"BugBattle_SenderEmail"];
+    NSString *email = [[NSUserDefaults standardUserDefaults] stringForKey: @"KBug_SenderEmail"];
     _emailTextField.text = email;
-    NSString *savedDescription = [[NSUserDefaults standardUserDefaults] stringForKey: @"BugBattle_SavedDescription"];
+    NSString *savedDescription = [[NSUserDefaults standardUserDefaults] stringForKey: @"KBug_SavedDescription"];
     _descriptionTextView.text = savedDescription;
     [self isSendEnabled];
     
@@ -100,7 +100,7 @@
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    [[NSUserDefaults standardUserDefaults] setValue: _descriptionTextView.text forKey: @"BugBattle_SavedDescription"];
+    [[NSUserDefaults standardUserDefaults] setValue: _descriptionTextView.text forKey: @"KBug_SavedDescription"];
     return YES;
 }
 
@@ -115,7 +115,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear: animated];
     
-    _screenshotPreview.image = [BugBattle getAttachedScreenshot];
+    _screenshotPreview.image = [KBug getAttachedScreenshot];
 }
 
 - (void)textViewDidEndEditing:(UITextView *) textView {
@@ -166,14 +166,14 @@
         _descriptionTextView.text = @"--";
     }
     
-    [[NSUserDefaults standardUserDefaults] setValue: _emailTextField.text forKey: @"BugBattle_SenderEmail"];
+    [[NSUserDefaults standardUserDefaults] setValue: _emailTextField.text forKey: @"KBug_SenderEmail"];
     [dataToAppend setValue: _emailTextField.text forKey: @"reportedBy"];
     [dataToAppend setValue: _descriptionTextView.text forKey: @"description"];
     [dataToAppend setValue: [self getCurrentSeverity] forKey: @"severity"];
-    [BugBattle attachData: dataToAppend];
+    [KBug attachData: dataToAppend];
     
     [_loadingView setHidden: false];
-    [BugBattle.sharedInstance sendReport:^(bool success) {
+    [KBug.sharedInstance sendReport:^(bool success) {
         [self->_loadingView setHidden: true];
         if (success) {
             [self->_reportSent setHidden: false];
@@ -181,7 +181,7 @@
             dispatch_after(popTime, dispatch_get_main_queue(), ^(void) {
                 self->_sending = NO;
                 [self dismissViewControllerAnimated: true completion:^{
-                    [[NSUserDefaults standardUserDefaults] setValue: @"" forKey: @"BugBattle_SavedDescription"];
+                    [[NSUserDefaults standardUserDefaults] setValue: @"" forKey: @"KBug_SavedDescription"];
                 }];
             });
         } else {
