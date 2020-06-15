@@ -417,6 +417,7 @@ public struct params {
                 params.FirstName = KappsArray["name_f"].stringValue
                 params.LastName = KappsArray["name_l"].stringValue
                 params.UserID = KappsArray["user_id"].stringValue
+                    params.email = KappsArray["email"].stringValue
                 if(Authenticated == "true"){
                    //Access Granted
                             let formatter = DateFormatter()
