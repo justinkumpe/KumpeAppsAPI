@@ -1,3 +1,5 @@
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
 # KumpeAppsAPI
 
 <u><b>Initial Setup:</b></u><br>
