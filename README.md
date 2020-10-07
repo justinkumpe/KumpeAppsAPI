@@ -1,6 +1,4 @@
-<img src="https://img.shields.io/maintenance/no/2020"/>
-
-# KumpeAppsAPI
+# KumpeAppsAPI <img src="https://img.shields.io/maintenance/no/2020"/>
 
 <u><b>Initial Setup:</b></u><br>
 <br>
