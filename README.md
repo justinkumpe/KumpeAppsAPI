@@ -1,4 +1,4 @@
-[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+(https://img.shields.io/maintenance/no/2020)
 
 # KumpeAppsAPI
 
