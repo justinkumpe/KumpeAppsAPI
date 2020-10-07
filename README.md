@@ -1,4 +1,4 @@
-(https://img.shields.io/maintenance/no/2020)
+[(https://img.shields.io/maintenance/no/2020)]
 
 # KumpeAppsAPI
 
